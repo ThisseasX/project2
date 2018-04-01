@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="NewPersistenceUnit" />
+          <factory-entry name="em" value="0bb7d373-afb5-44d7-aabb-8236751c0df8" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
       </configuration>
@@ -21,14 +21,14 @@
         </webroots>
       </configuration>
     </facet>
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map />
         <naming-strategy-map />
       </configuration>
-    </facet>
-    <facet type="Spring" name="Spring">
-      <configuration />
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
@@ -44,5 +44,6 @@
     <orderEntry type="library" name="Hibernate 5.2.14-5.2.14" level="project" />
     <orderEntry type="library" name="Spring-4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Spring MVC-4.3.14.RELEASE" level="project" />
+    <orderEntry type="library" name="Hibernate 5.2.14-5.2.14" level="project" />
   </component>
 </module>
