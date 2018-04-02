@@ -1,0 +1,44 @@
+body {
+    background-color: #f3f3f3;
+}
+
+.error {
+    color: red;
+    word-break: break-all;
+    font-size: smaller;
+    display: block;
+}
+
+.my-btn {
+    text-transform: uppercase;
+    padding: 14px 0;
+    width: 100%
+}
+
+.my-header {
+    font-weight: bold;
+}
+
+.my-panel {
+    margin-top: 50px;
+    border-color: #ccc;
+    -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2)
+}
+
+.my-panel label {
+    margin-bottom: 0;
+}
+
+.my-panel hr {
+    margin-top: 10px;
+    margin-bottom: 0;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+}
