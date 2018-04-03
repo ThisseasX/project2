@@ -42,13 +42,9 @@ public class UserController {
             @Valid @ModelAttribute("user") User user,
             BindingResult result) {
 
-        if (result.hasErrors()) {
-            System.out.println("ERROR FAILED");
-            return "insert";
-        }
-//        userService.insert(user);
+        if (result.hasErrors()) return "insert";
+        userService.insert(user);
 
-        System.out.println("INSERTED???");
         return getAll(m);
     }
 }

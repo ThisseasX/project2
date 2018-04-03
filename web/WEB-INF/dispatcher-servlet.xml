@@ -24,6 +24,7 @@
     <!--<mvc:resources mapping="/js/**" location="/js/" />-->
 
     <bean id="userService" class="services.UserService"/>
+    <bean id="productService" class="services.ProductService"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
