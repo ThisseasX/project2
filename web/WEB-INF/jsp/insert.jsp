@@ -86,10 +86,13 @@
 
             <div class="row">
               <div class="col-xs-12">
-                <form:label path="role">Role</form:label>
-                <form:errors cssClass="error" path="role"/>
+                <form:label path="role.roleId">Role</form:label>
+                <form:errors cssClass="error" path="role.roleId"/>
                 <div class="form-group">
-                  <form:input cssClass="form-control" path="role"/>
+                  <form:select path="role.roleId">
+                    <form:option value="0" label="Select an Option"/>
+                    <form:options title="asd" items="${all_roles}" itemValue="roleId" itemLabel="roleName"/>
+                  </form:select>
                 </div>
               </div>
             </div>

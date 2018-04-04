@@ -1,8 +1,11 @@
 package entities;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import java.util.Collection;
 
+@SuppressWarnings("RedundantIfStatement")
 @NamedQuery(name = "Role.getAll", query = "SELECT r FROM Role r")
 @Entity
 public class Role {
@@ -11,6 +14,7 @@ public class Role {
     private String roleName;
     private Collection<User> usersByRoleId;
 
+    @Range(min = 1, max = 3, message = "Please choose a role!")
     @Id
     @Column(name = "role_id", nullable = false)
     public Integer getRoleId() {
@@ -51,7 +55,7 @@ public class Role {
         return result;
     }
 
-    @OneToMany(mappedBy = "roleByRoleId")
+    @OneToMany(mappedBy = "role")
     public Collection<User> getUsersByRoleId() {
         return usersByRoleId;
     }

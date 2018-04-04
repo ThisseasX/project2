@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 
+@SuppressWarnings({"DefaultAnnotationParam", "RedundantIfStatement"})
 @NamedQuery(name = "Product.getAll", query = "SELECT p FROM Product p")
 @Entity
 public class Product {

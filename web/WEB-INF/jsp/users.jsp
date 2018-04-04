@@ -41,7 +41,7 @@
           <tr>
             <td>${u.name}</td>
             <td>${u.surname}</td>
-            <td>${u.role}</td>
+            <td>${u.role.roleName}</td>
           </tr>
         </c:forEach>
         </tbody>

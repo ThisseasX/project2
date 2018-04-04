@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+@SuppressWarnings("RedundantIfStatement")
 @NamedQuery(name = "Sale.getAll", query = "SELECT s FROM Sale s")
 @Entity
 public class Sale {

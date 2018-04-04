@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Role;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import services.ProductService;
 import services.UserService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @SuppressWarnings("SameReturnValue")
 @RequestMapping("/users")
@@ -19,10 +22,12 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
+    private final ProductService productService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ProductService productService) {
         this.userService = userService;
+        this.productService = productService;
     }
 
     @GetMapping("/all")
@@ -42,9 +47,18 @@ public class UserController {
             @Valid @ModelAttribute("user") User user,
             BindingResult result) {
 
+        if (userService.contains(user))
+            result.rejectValue("username", "username.exists", "Username already exists!");
+
         if (result.hasErrors()) return "insert";
+
         userService.insert(user);
 
         return getAll(m);
+    }
+
+    @ModelAttribute("all_roles")
+    public List<Role> getAllRoles() {
+        return productService.getAll(Role.class);
     }
 }

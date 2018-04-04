@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 
+@SuppressWarnings({"DefaultAnnotationParam", "RedundantIfStatement"})
 @NamedQuery(name = "Account.getAll", query = "SELECT a FROM Account a")
 @Entity
 public class Account {

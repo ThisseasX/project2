@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
 
+@SuppressWarnings("RedundantIfStatement")
 @NamedQuery(name = "Listing.getAll", query = "SELECT l FROM Listing l")
 @Entity
 public class Listing {

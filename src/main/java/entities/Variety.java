@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 
+@SuppressWarnings("RedundantIfStatement")
 @NamedQuery(name = "Variety.getAll", query = "SELECT v FROM Variety v")
 @Entity
 public class Variety {

@@ -1,12 +1,20 @@
 package entities;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Collection;
 
-@NamedQuery(name = "User.getAll", query = "SELECT u FROM User u")
+@SuppressWarnings("RedundantIfStatement")
+@NamedQueries({
+        @NamedQuery(name = "User.getAll", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "User.getByUsername", query = "SELECT u FROM User u where u.username = :username")
+})
 @Entity
-public class User {
+public class User implements Serializable {
 
     private Integer userId;
     private String username;
@@ -16,7 +24,7 @@ public class User {
     private Collection<Account> accountsByUserId;
     private Collection<Contact> contactsByUserId;
     private Collection<Listing> listingsByUserId;
-    private Role roleByRoleId;
+    private Role role;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +37,8 @@ public class User {
         this.userId = userId;
     }
 
-    @Size(min = 1, max = 50, message = "Must be within {min} and {max} characters long!")
+    @NotBlank(message = "Must not be empty!")
+    @Size(max = 50, message = "Cannot exceed {max} characters!")
     @Basic
     @Column(name = "username", nullable = false, length = 50)
     public String getUsername() {
@@ -40,7 +49,8 @@ public class User {
         this.username = username;
     }
 
-    @Size(min = 1, max = 50, message = "Must be within {min} and {max} characters long!")
+    @NotBlank(message = "Must not be empty!")
+    @Size(max = 50, message = "Cannot exceed {max} characters!")
     @Basic
     @Column(name = "password", nullable = false, length = 50)
     public String getPassword() {
@@ -51,7 +61,8 @@ public class User {
         this.password = password;
     }
 
-    @Size(min = 1, max = 50, message = "Must be within {min} and {max} characters long!")
+    @NotBlank(message = "Must not be empty!")
+    @Size(max = 50, message = "Cannot exceed {max} characters!")
     @Basic
     @Column(name = "name", nullable = false, length = 50)
     public String getName() {
@@ -62,7 +73,8 @@ public class User {
         this.name = name;
     }
 
-    @Size(min = 1, max = 50, message = "Must be between {min} and {max} characters long!")
+    @NotBlank(message = "Must not be empty!")
+    @Size(max = 50, message = "Cannot exceed {max} characters!")
     @Basic
     @Column(name = "surname", nullable = false, length = 50)
     public String getSurname() {
@@ -126,13 +138,14 @@ public class User {
         this.listingsByUserId = listingsByUserId;
     }
 
+    @Valid
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "role_id", nullable = false)
-    public Role getRoleByRoleId() {
-        return roleByRoleId;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleByRoleId(Role roleByRoleId) {
-        this.roleByRoleId = roleByRoleId;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
