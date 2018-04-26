@@ -3,7 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 
-@NamedQuery(name = "Listing.getAll", query = "SELECT c FROM Category c")
+@NamedQuery(name = "Category.getAll", query = "SELECT c FROM Category c")
 @Entity
 public class Category {
 
