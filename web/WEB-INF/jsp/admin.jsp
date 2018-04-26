@@ -13,13 +13,18 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Index</title>
+  <title>Admin Panel</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 </head>
 <body>
 
 <div class="container">
+
+  <div class="jumbotron">
+    <h1 class="text-center">Admin</h1>
+  </div>
+
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
 
@@ -38,12 +43,12 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-md-12">
-              <a class="btn btn-primary my-btn" style="margin-top: 16px;" href="${pageContext.request.contextPath}/users/all">See
-                all users</a>
               <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/users/insert_form">Insert user</a>
+                 href="${pageContext.request.contextPath}/users/all">Manage Categories</a>
               <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/admin/admin_panel">Admin</a>
+                 href="${pageContext.request.contextPath}/users/insert_form">Manage Types</a>
+              <a class="btn btn-primary my-btn" style="margin-top: 16px;"
+                 href="${pageContext.request.contextPath}/users/admin_panel">Manage Products</a>
             </div>
           </div>
         </div>

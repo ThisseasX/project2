@@ -3,16 +3,20 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 
-@SuppressWarnings({"DefaultAnnotationParam", "RedundantIfStatement"})
-@NamedQuery(name = "Product.getAll", query = "SELECT p FROM Product p")
+@NamedQueries({
+        @NamedQuery(name = "Product.getAll", query = "SELECT p FROM Product p"),
+        @NamedQuery(name = "Product.getByProductName", query = "SELECT p FROM Product p where p.productName = :name")
+})
 @Entity
 public class Product {
 
     private Integer productId;
+    private String productName;
+    private String imagePath;
     private Double basePriceIn;
     private Double basePriceOut;
     private Collection<Listing> listingsByProductId;
-    private Variety varietyByTypeId;
+    private Category categoryByCategoryId;
 
     @Id
     @Column(name = "product_id", nullable = false)
@@ -22,6 +26,26 @@ public class Product {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+
+    @Basic
+    @Column(name = "product_name", nullable = false, length = 50)
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    @Basic
+    @Column(name = "image_path", nullable = false, length = -1)
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     @Basic
@@ -51,17 +75,18 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (productId != null ? !productId.equals(product.productId) : product.productId != null) return false;
-        if (basePriceIn != null ? !basePriceIn.equals(product.basePriceIn) : product.basePriceIn != null) return false;
-        if (basePriceOut != null ? !basePriceOut.equals(product.basePriceOut) : product.basePriceOut != null)
-            return false;
-
-        return true;
+        return (productId != null ? productId.equals(product.productId) : product.productId == null) &&
+                (productName != null ? productName.equals(product.productName) : product.productName == null) &&
+                (imagePath != null ? imagePath.equals(product.imagePath) : product.imagePath == null) &&
+                (basePriceIn != null ? basePriceIn.equals(product.basePriceIn) : product.basePriceIn == null) &&
+                (basePriceOut != null ? basePriceOut.equals(product.basePriceOut) : product.basePriceOut == null);
     }
 
     @Override
     public int hashCode() {
         int result = productId != null ? productId.hashCode() : 0;
+        result = 31 * result + (productName != null ? productName.hashCode() : 0);
+        result = 31 * result + (imagePath != null ? imagePath.hashCode() : 0);
         result = 31 * result + (basePriceIn != null ? basePriceIn.hashCode() : 0);
         result = 31 * result + (basePriceOut != null ? basePriceOut.hashCode() : 0);
         return result;
@@ -77,12 +102,12 @@ public class Product {
     }
 
     @ManyToOne
-    @JoinColumn(name = "type_id", referencedColumnName = "variety_id")
-    public Variety getVarietyByTypeId() {
-        return varietyByTypeId;
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    public Category getCategoryByCategoryId() {
+        return categoryByCategoryId;
     }
 
-    public void setVarietyByTypeId(Variety varietyByTypeId) {
-        this.varietyByTypeId = varietyByTypeId;
+    public void setCategoryByCategoryId(Category categoryByCategoryId) {
+        this.categoryByCategoryId = categoryByCategoryId;
     }
 }

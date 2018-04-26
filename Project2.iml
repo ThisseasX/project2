@@ -19,7 +19,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="em" value="7e6a8b8e-fada-4779-8269-c074b82c6351" />
+          <factory-entry name="em" value="0bb7d373-afb5-44d7-aabb-8236751c0df8" />
         </datasource-mapping>
       </configuration>
     </facet>

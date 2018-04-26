@@ -1,6 +1,7 @@
 package controllers;
 
-import entities.Role;
+import entities.Category;
+import entities.Product;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,15 +18,15 @@ import javax.validation.Valid;
 import java.util.List;
 
 @SuppressWarnings("SameReturnValue")
-@RequestMapping("/users")
+@RequestMapping("/admin")
 @Controller
-public class UserController {
+public class AdminController {
 
     private final UserService userService;
     private final ProductService productService;
 
     @Autowired
-    public UserController(UserService userService, ProductService productService) {
+    public AdminController(UserService userService, ProductService productService) {
         this.userService = userService;
         this.productService = productService;
     }
@@ -42,17 +43,17 @@ public class UserController {
     }
 
     @PostMapping("/insert")
-    public String insertUser(
+    public String insertProduct(
             Model m,
-            @Valid @ModelAttribute("user") User user,
+            @Valid @ModelAttribute("product") Product product,
             BindingResult result) {
 
-        if (userService.contains(user))
-            result.rejectValue("username", "username.exists", "Username already exists!");
+        if (productService.contains(product))
+            result.rejectValue("product", "product.exists", "Product already exists!");
 
         if (result.hasErrors()) return "insert";
 
-        userService.insert(user);
+        productService.insert(product);
 
         return getAll(m);
     }
@@ -62,8 +63,13 @@ public class UserController {
         return "admin";
     }
 
-    @ModelAttribute("all_roles")
-    public List<Role> getAllRoles() {
-        return productService.getAll(Role.class);
+    @ModelAttribute("all_products")
+    public List<Product> getAllProducts() {
+        return productService.getAll(Product.class);
+    }
+
+    @ModelAttribute("all_categories")
+    public List<Category> getAllCategories() {
+        return productService.getAll(Category.class);
     }
 }

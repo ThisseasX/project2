@@ -3,14 +3,13 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 
-@SuppressWarnings("RedundantIfStatement")
-@NamedQuery(name = "Category.getAll", query = "SELECT c FROM Category c")
+@NamedQuery(name = "Listing.getAll", query = "SELECT c FROM Category c")
 @Entity
 public class Category {
 
     private Integer categoryId;
     private String categoryName;
-    private Collection<Type> typesByCategoryId;
+    private Collection<Product> productsByCategoryId;
 
     @Id
     @Column(name = "category_id", nullable = false)
@@ -39,11 +38,8 @@ public class Category {
 
         Category category = (Category) o;
 
-        if (categoryId != null ? !categoryId.equals(category.categoryId) : category.categoryId != null) return false;
-        if (categoryName != null ? !categoryName.equals(category.categoryName) : category.categoryName != null)
-            return false;
-
-        return true;
+        return (categoryId != null ? categoryId.equals(category.categoryId) : category.categoryId == null) &&
+                (categoryName != null ? categoryName.equals(category.categoryName) : category.categoryName == null);
     }
 
     @Override
@@ -54,11 +50,11 @@ public class Category {
     }
 
     @OneToMany(mappedBy = "categoryByCategoryId")
-    public Collection<Type> getTypesByCategoryId() {
-        return typesByCategoryId;
+    public Collection<Product> getProductsByCategoryId() {
+        return productsByCategoryId;
     }
 
-    public void setTypesByCategoryId(Collection<Type> typesByCategoryId) {
-        this.typesByCategoryId = typesByCategoryId;
+    public void setProductsByCategoryId(Collection<Product> productsByCategoryId) {
+        this.productsByCategoryId = productsByCategoryId;
     }
 }

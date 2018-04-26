@@ -1,5 +1,6 @@
 package services;
 
+import entities.Product;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -22,5 +23,17 @@ public class ProductService {
     @Transactional
     public <T> void insert(T t) {
         em.persist(t);
+    }
+
+    public boolean contains(Product p) {
+        try {
+            em
+                    .createNamedQuery("Product.getByProductName", Product.class)
+                    .setParameter("name", p.getProductName())
+                    .getSingleResult();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
