@@ -41,8 +41,7 @@
 
         <div class="panel-body">
 
-          <form:form method="post" action="${pageContext.request.contextPath}/users/insert"
-                     modelAttribute="user">
+          <form:form method="post" modelAttribute="user">
 
             <div class="row">
               <div class="col-xs-12">

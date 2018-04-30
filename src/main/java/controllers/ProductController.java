@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import services.ProductService;
 
 @SuppressWarnings("SameReturnValue")
-@RequestMapping("/test")
+@RequestMapping("/products")
 @Controller
 public class ProductController {
 

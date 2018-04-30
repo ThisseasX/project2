@@ -41,7 +41,7 @@
               <a class="btn btn-primary my-btn" style="margin-top: 16px;" href="${pageContext.request.contextPath}/users/all">See
                 all users</a>
               <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/users/insert_form">Insert user</a>
+                 href="${pageContext.request.contextPath}/users/insert">Insert user</a>
               <a class="btn btn-primary my-btn" style="margin-top: 16px;"
                  href="${pageContext.request.contextPath}/admin/admin_panel">Admin</a>
             </div>

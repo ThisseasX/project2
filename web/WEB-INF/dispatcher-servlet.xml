@@ -25,6 +25,7 @@
 
     <bean id="userService" class="services.UserService"/>
     <bean id="productService" class="services.ProductService"/>
+    <bean id="listingService" class="services.ListingService"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>

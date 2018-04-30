@@ -44,11 +44,11 @@
           <div class="row">
             <div class="col-md-12">
               <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/users/all">Manage Categories</a>
+                 href="${pageContext.request.contextPath}/admin/categories">Manage Categories</a>
               <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/users/insert_form">Manage Types</a>
+                 href="${pageContext.request.contextPath}/admin/products">Manage Products</a>
               <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/users/admin_panel">Manage Products</a>
+                 href="${pageContext.request.contextPath}/admin/listings">Manage Listings</a>
             </div>
           </div>
         </div>

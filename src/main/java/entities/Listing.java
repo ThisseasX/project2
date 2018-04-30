@@ -5,7 +5,10 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 @SuppressWarnings("RedundantIfStatement")
-@NamedQuery(name = "Listing.getAll", query = "SELECT l FROM Listing l")
+@NamedQueries({
+        @NamedQuery(name = "Listing.getAll", query = "SELECT l FROM Listing l"),
+        @NamedQuery(name = "Listing.getByProductId", query = "SELECT l FROM Listing l WHERE l.productByProductId.productId = :id"),
+})
 @Entity
 public class Listing {
 

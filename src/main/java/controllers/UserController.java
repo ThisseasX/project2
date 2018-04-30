@@ -36,9 +36,9 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/insert_form")
+    @GetMapping("/insert")
     public String insertForm(@ModelAttribute User user) {
-        return "insert";
+        return "insert_user";
     }
 
     @PostMapping("/insert")
@@ -50,7 +50,7 @@ public class UserController {
         if (userService.contains(user))
             result.rejectValue("username", "username.exists", "Username already exists!");
 
-        if (result.hasErrors()) return "insert";
+        if (result.hasErrors()) return "insert_user";
 
         userService.insert(user);
 

@@ -1,61 +1,31 @@
 package controllers;
 
 import entities.Category;
+import entities.Listing;
 import entities.Product;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import services.ListingService;
 import services.ProductService;
-import services.UserService;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @SuppressWarnings("SameReturnValue")
 @RequestMapping("/admin")
 @Controller
 public class AdminController {
 
-    private final UserService userService;
+    private final ListingService listingService;
     private final ProductService productService;
 
     @Autowired
-    public AdminController(UserService userService, ProductService productService) {
-        this.userService = userService;
+    public AdminController(ListingService listingService, ProductService productService) {
+        this.listingService = listingService;
         this.productService = productService;
-    }
-
-    @GetMapping("/all")
-    public String getAll(Model m) {
-        m.addAttribute("list", userService.getAll());
-        return "users";
-    }
-
-    @GetMapping("/insert_form")
-    public String insertForm(@ModelAttribute User user) {
-        return "insert";
-    }
-
-    @PostMapping("/insert")
-    public String insertProduct(
-            Model m,
-            @Valid @ModelAttribute("product") Product product,
-            BindingResult result) {
-
-        if (productService.contains(product))
-            result.rejectValue("product", "product.exists", "Product already exists!");
-
-        if (result.hasErrors()) return "insert";
-
-        productService.insert(product);
-
-        return getAll(m);
     }
 
     @GetMapping("/admin_panel")
@@ -63,13 +33,33 @@ public class AdminController {
         return "admin";
     }
 
-    @ModelAttribute("all_products")
-    public List<Product> getAllProducts() {
-        return productService.getAll(Product.class);
+    @GetMapping("/categories")
+    public String getAllCategories(Model m) {
+        m.addAttribute("categories", productService.getAll(Category.class));
+        return "categories";
     }
 
-    @ModelAttribute("all_categories")
-    public List<Category> getAllCategories() {
-        return productService.getAll(Category.class);
+    @GetMapping("/products/{id}")
+    public String getAllProductsById(Model m, @PathVariable("id") int id) {
+        m.addAttribute("products", productService.getAllProductsByCategoryId(id));
+        return "products";
+    }
+
+    @GetMapping("/listings/{id}")
+    public String getAllListingsById(Model m, @PathVariable("id") int id) {
+        m.addAttribute("listings", listingService.getAllListingsByProductId(id));
+        return "listings";
+    }
+
+    @GetMapping("/products")
+    public String getAllProducts(Model m) {
+        m.addAttribute("products", productService.getAll(Product.class));
+        return "products";
+    }
+
+    @GetMapping("/listings")
+    public String getAllListings(Model m) {
+        m.addAttribute("listings", productService.getAll(Listing.class));
+        return "listings";
     }
 }

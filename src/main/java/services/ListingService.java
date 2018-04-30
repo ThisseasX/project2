@@ -1,5 +1,6 @@
 package services;
 
+import entities.Listing;
 import entities.Product;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public class ProductService {
+public class ListingService {
 
     @PersistenceContext
     private EntityManager em;
@@ -20,9 +21,9 @@ public class ProductService {
                 .getResultList();
     }
 
-    public List<Product> getAllProductsByCategoryId(int id) {
+    public List<Listing> getAllListingsByProductId(int id) {
         return em
-                .createNamedQuery("Product.getByCategoryId", Product.class)
+                .createNamedQuery("Listing.getByProductId", Listing.class)
                 .setParameter("id", id)
                 .getResultList();
     }
