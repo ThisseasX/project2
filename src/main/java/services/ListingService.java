@@ -2,6 +2,7 @@ package services;
 
 import entities.Listing;
 import entities.Product;
+import entities.Status;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -31,6 +32,28 @@ public class ListingService {
     @Transactional
     public <T> void insert(T t) {
         em.persist(t);
+    }
+
+    @Transactional
+    public String changeListingStatus(int id) {
+        Listing listing = em.find(Listing.class, id);
+        Status status = null;
+        String statusName = null;
+
+        switch (listing.getStatusByStatusId().getStatusId()) {
+            case 1:
+                status = em.find(Status.class, 2);
+                statusName = status.getStatusName();
+                break;
+            case 2:
+            case 4:
+                status = em.find(Status.class, 1);
+                statusName = status.getStatusName();
+        }
+
+        listing.setStatusByStatusId(status);
+        em.merge(listing);
+        return statusName;
     }
 
     public boolean contains(Product p) {

@@ -16,6 +16,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Listings</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 </head>
 <body>
 
@@ -53,7 +54,11 @@
             <td>${l.productByProductId.basePriceIn}</td>
             <td>${l.productByProductId.basePriceOut}</td>
             <td>${l.listingDate}</td>
-            <td>${l.statusByStatusId.statusName}</td>
+            <td>
+              <button onclick="changeStatus(${l.listingId})" id="_${l.listingId}">
+                  ${l.statusByStatusId.statusName}
+              </button>
+            </td>
           </tr>
         </c:forEach>
         </tbody>
@@ -62,6 +67,18 @@
     </div>
   </div>
 </div>
+
+<script>
+
+    function changeStatus(id) {
+        $.post("${pageContext.request.contextPath}/admin/change_listing_status/" + id,
+            function (data) {
+                $("#_" + id).text(data);
+            }
+        );
+    }
+
+</script>
 
 </body>
 </html>

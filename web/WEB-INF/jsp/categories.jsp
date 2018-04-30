@@ -49,7 +49,6 @@
   </div>
 </div>
 
-
 <script>
 
     function redirectToProducts(id) {

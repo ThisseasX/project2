@@ -7,10 +7,7 @@ import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import services.ListingService;
 import services.ProductService;
 
@@ -61,5 +58,11 @@ public class AdminController {
     public String getAllListings(Model m) {
         m.addAttribute("listings", productService.getAll(Listing.class));
         return "listings";
+    }
+
+    @PostMapping("/change_listing_status/{id}")
+    public @ResponseBody
+    String changeListingStatus(@PathVariable("id") int id) {
+        return listingService.changeListingStatus(id);
     }
 }
