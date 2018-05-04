@@ -9,24 +9,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <%--<meta charset="UTF-8">--%>
-  <%--<meta name="viewport"--%>
-        <%--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">--%>
-  <%--<meta http-equiv="X-UA-Compatible" content="ie=edge">--%>
+  <%@include file="WEB-INF/reusables/head.jspf" %>
   <title>Index</title>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
-
-  <!-- Bootstrap CSS CDN -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- Our Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style5.css">
-
 </head>
 <body>
 
@@ -42,9 +26,9 @@
       <li class="active">
         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
         <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li><a href="#">Home 1</a></li>
-          <li><a href="#">Home 2</a></li>
-          <li><a href="#">Home 3</a></li>
+          <li><a href="${pageContext.request.contextPath}/users/all">Home 1</a></li>
+          <li><a href="${pageContext.request.contextPath}/users/insert">Home 2</a></li>
+          <li><a href="${pageContext.request.contextPath}/admin/admin_panel">Home 3</a></li>
         </ul>
       </li>
       <li>
@@ -99,74 +83,78 @@
     </nav>
 
     <h2>Collapsible Sidebar Using Bootstrap 3</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
     <div class="line"></div>
 
     <h2>Lorem Ipsum Dolor</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
     <div class="line"></div>
 
     <h2>Lorem Ipsum Dolor</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
     <div class="line"></div>
 
     <h3>Lorem Ipsum Dolor</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   </div>
 </div>
 
-<%--<div class="container">--%>
-  <%--<div class="row">--%>
-    <%--<div class="col-md-4 col-md-offset-4">--%>
+<%--<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
 
-      <%--<div class="panel my-panel">--%>
+      <div class="panel my-panel">
 
-        <%--<div class="panel-heading">--%>
-          <%--<div class="row">--%>
-            <%--<div class="col-md-12">--%>
-              <%--<h1 class="text-center my-header">Actions</h1>--%>
-            <%--</div>--%>
-          <%--</div>--%>
-        <%--</div>--%>
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="text-center my-header">Actions</h1>
+            </div>
+          </div>
+        </div>
 
-        <%--<hr>--%>
+        <hr>
 
-        <%--<div class="panel-body">--%>
-          <%--<div class="row">--%>
-            <%--<div class="col-md-12">--%>
-              <%--<a class="btn btn-primary my-btn" style="margin-top: 16px;" href="${pageContext.request.contextPath}/users/all">See--%>
-                <%--all users</a>--%>
-              <%--<a class="btn btn-primary my-btn" style="margin-top: 16px;"--%>
-                 <%--href="${pageContext.request.contextPath}/users/insert">Insert user</a>--%>
-              <%--<a class="btn btn-primary my-btn" style="margin-top: 16px;"--%>
-                 <%--href="${pageContext.request.contextPath}/admin/admin_panel">Admin</a>--%>
-            <%--</div>--%>
-          <%--</div>--%>
-        <%--</div>--%>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <a class="btn btn-primary my-btn" style="margin-top: 16px;"
+                 href="${pageContext.request.contextPath}/users/all">See
+                all users</a>
+              <a class="btn btn-primary my-btn" style="margin-top: 16px;"
+                 href="${pageContext.request.contextPath}/users/insert">Insert user</a>
+              <a class="btn btn-primary my-btn" style="margin-top: 16px;"
+                 href="${pageContext.request.contextPath}/admin/admin_panel">Admin</a>
+            </div>
+          </div>
+        </div>
 
-      <%--</div>--%>
+      </div>
 
-    <%--</div>--%>
-  <%--</div>--%>
-<%--</div>--%>
+    </div>
+  </div>
+</div>--%>
 
-<!-- jQuery CDN -->
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<!-- Bootstrap Js CDN -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-            $(this).toggleClass('active');
-        });
-    });
-</script>
+<%@include file="WEB-INF/reusables/footer.jspf" %>
 
 </body>
 </html>
