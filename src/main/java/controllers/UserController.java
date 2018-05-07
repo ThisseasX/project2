@@ -2,6 +2,7 @@ package controllers;
 
 import entities.Role;
 import entities.User;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,12 +37,12 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/insert")
+    @GetMapping("/register")
     public String insertForm(@ModelAttribute User user) {
-        return "insert_user";
+        return "register";
     }
 
-    @PostMapping("/insert")
+    @PostMapping("/register")
     public String insertUser(
             Model m,
             @Valid @ModelAttribute("user") User user,
@@ -50,8 +51,9 @@ public class UserController {
         if (userService.contains(user))
             result.rejectValue("username", "username.exists", "Username already exists!");
 
-        if (result.hasErrors()) return "insert_user";
+        if (result.hasErrors()) return "register";
 
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12)));
         userService.insert(user);
 
         return getAll(m);
