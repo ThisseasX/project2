@@ -1,6 +1,7 @@
 package services;
 
 import entities.User;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -28,20 +29,28 @@ public class UserService {
                 .getSingleResult();
     }
 
-    public boolean contains(User u) {
+    public User contains(User u) {
         try {
-            em
+            return em
                     .createNamedQuery("User.getByUsername", User.class)
                     .setParameter("username", u.getUsername())
                     .getSingleResult();
-            return true;
         } catch (Exception e) {
-            return false;
+            e.printStackTrace();
         }
+        return null;
+    }
+
+    public User login(User u) {
+        User existingUser;
+        if ((existingUser = contains(u)) != null)
+            BCrypt.checkpw(u.getPassword(), existingUser.getPassword());
+        return existingUser;
     }
 
     @Transactional
-    public void insert(User u) {
+    public void register(User u) {
+        u.setPassword(BCrypt.hashpw(u.getPassword(), BCrypt.gensalt(12)));
         em.persist(u);
     }
 }

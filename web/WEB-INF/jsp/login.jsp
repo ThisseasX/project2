@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
   <%@include file="../reusables/head.jspf" %>
-  <title>Register</title>
+  <title>Login</title>
 </head>
 <body>
 
@@ -26,7 +26,7 @@
 
           <div class="row">
             <div class="col-xs-12">
-              <h1 class="text-center text-primary my-header">Register</h1>
+              <h1 class="text-center text-primary my-header">Login</h1>
             </div>
           </div>
 
@@ -60,48 +60,6 @@
 
             <div class="row">
               <div class="col-xs-12">
-                <label for="password-confirm">Confirm Password</label>
-                <div class="form-group">
-                  <input id="password-confirm" class="form-control no-space" type="password" pattern="[^\s]+"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="name">Name</form:label>
-                <form:errors cssClass="error" path="name"/>
-                <div class="form-group">
-                  <form:input cssClass="form-control no-space capitalize" path="name" pattern="[^\s]+"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="surname">Surname</form:label>
-                <form:errors cssClass="error" path="surname"/>
-                <div class="form-group">
-                  <form:input cssClass="form-control no-space capitalize" path="surname" pattern="[^\s]+"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="role.roleId">Role</form:label>
-                <form:errors cssClass="error" path="role.roleId"/>
-                <div class="form-group">
-                  <form:select path="role.roleId">
-                    <form:option value="0" label="Select an Option"/>
-                    <form:options title="asd" items="${all_roles}" itemValue="roleId" itemLabel="roleName"/>
-                  </form:select>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
                 <input class="btn btn-primary my-btn" type="submit" value="Insert">
               </div>
             </div>
@@ -115,10 +73,6 @@
 </div>
 
 <%@include file="../reusables/footer.jspf" %>
-
-<script>
-
-</script>
 
 </body>
 </html>

@@ -15,6 +15,11 @@
 </head>
 <body>
 
+<%--TODO: Testing welcome user from session--%>
+<c:if test="${sessionScope.user ne null}">
+  <h1 style="color: #f00">Welcome ${sessionScope.user.name}</h1>
+</c:if>
+
 <div class="wrapper">
   <!-- Sidebar Holder -->
   <nav id="sidebar">
@@ -76,8 +81,10 @@
             <li><a href="#">ABOUT US</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">CONTACT</a></li>
-            <li><a href="#">LOG IN</a></li>
-            <li><a href="#">SIGN UP</a></li>
+            <%--TODO: Se auta ta links evala ta actions pou egrapsa--%>
+            <li><a href="${pageContext.request.contextPath}/users/login">LOG IN</a></li>
+            <li><a href="${pageContext.request.contextPath}/users/register">SIGN UP</a></li>
+            <li><a href="${pageContext.request.contextPath}/users/logout">LOG OUT</a></li>
           </ul>
         </div>
       </div>
@@ -142,7 +149,7 @@
                  href="${pageContext.request.contextPath}/users/all">See
                 all users</a>
               <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/users/insert">Insert user</a>
+                 href="${pageContext.request.contextPath}/users/register">Insert user</a>
               <a class="btn btn-primary my-btn" style="margin-top: 16px;"
                  href="${pageContext.request.contextPath}/admin/admin_panel">Admin</a>
             </div>

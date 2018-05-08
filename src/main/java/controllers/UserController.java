@@ -2,7 +2,6 @@ package controllers;
 
 import entities.Role;
 import entities.User;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import services.ProductService;
 import services.UserService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -38,25 +38,49 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String insertForm(@ModelAttribute User user) {
+    public String registerForm(@ModelAttribute User user) {
         return "register";
     }
 
     @PostMapping("/register")
-    public String insertUser(
-            Model m,
-            @Valid @ModelAttribute("user") User user,
-            BindingResult result) {
+    public String register(@Valid @ModelAttribute("user") User user, BindingResult result) {
 
-        if (userService.contains(user))
+        if (userService.contains(user) != null)
             result.rejectValue("username", "username.exists", "Username already exists!");
 
         if (result.hasErrors()) return "register";
 
-        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12)));
-        userService.insert(user);
+        userService.register(user);
 
-        return getAll(m);
+        return "redirect:all";
+    }
+
+    // TODO: Login Form
+    @GetMapping("/login")
+    public String loginForm(@ModelAttribute("user") User user) {
+        return "login";
+    }
+
+    // TODO: Login Result, Mpainei sto Session, lew Welcome sthn index
+    @PostMapping("/login")
+    public String login(HttpSession session, @ModelAttribute("user") User user, BindingResult result) {
+
+        User u;
+
+        if ((u = userService.login(user)) != null) {
+            session.setAttribute("user", u);
+            return "redirect:/";
+        } else {
+            result.rejectValue("username", "login.fail", "Login Failed");
+            return "login";
+        }
+    }
+
+    // TODO: Logout Button
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 
     @GetMapping("/admin_panel")

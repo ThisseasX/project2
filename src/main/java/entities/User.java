@@ -1,6 +1,7 @@
 package entities;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -46,19 +47,19 @@ public class User implements Serializable {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.replaceAll("\\s+", "");
     }
 
     @NotBlank(message = "Must not be empty!")
-    @Size(max = 50, message = "Cannot exceed {max} characters!")
+    @Size(max = 255, message = "Cannot exceed {max} characters!")
     @Basic
-    @Column(name = "password", nullable = false, length = 50)
+    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.replaceAll("\\s+", "");
     }
 
     @NotBlank(message = "Must not be empty!")
@@ -70,7 +71,7 @@ public class User implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = StringUtils.capitalize(name).replaceAll("\\s+", "");
     }
 
     @NotBlank(message = "Must not be empty!")
@@ -82,7 +83,7 @@ public class User implements Serializable {
     }
 
     public void setSurname(String surname) {
-        this.surname = surname;
+        this.surname = StringUtils.capitalize(surname).replaceAll("\\s+", "");
     }
 
     @Override
