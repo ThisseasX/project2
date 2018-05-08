@@ -85,6 +85,10 @@
             <li><a href="${pageContext.request.contextPath}/users/login">LOG IN</a></li>
             <li><a href="${pageContext.request.contextPath}/users/register">SIGN UP</a></li>
             <li><a href="${pageContext.request.contextPath}/users/logout">LOG OUT</a></li>
+            <%--TODO: Wishlist DONE--%>
+            <c:if test="${sessionScope.user ne null}">
+              <li><a href="${pageContext.request.contextPath}/wishlist/${sessionScope.user.userId}">WISHLIST</a></li>
+            </c:if>
           </ul>
         </div>
       </div>

@@ -25,6 +25,7 @@ public class User implements Serializable {
     private Collection<Account> accountsByUserId;
     private Collection<Contact> contactsByUserId;
     private Collection<Listing> listingsByUserId;
+    private Collection<Wish> wishesByUserId;
     private Role role;
 
     @Id
@@ -137,6 +138,15 @@ public class User implements Serializable {
 
     public void setListingsByUserId(Collection<Listing> listingsByUserId) {
         this.listingsByUserId = listingsByUserId;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<Wish> getWishesByUserId() {
+        return wishesByUserId;
+    }
+
+    public void setWishesByUserId(Collection<Wish> wishesByUserId) {
+        this.wishesByUserId = wishesByUserId;
     }
 
     @Valid

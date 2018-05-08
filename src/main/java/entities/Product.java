@@ -17,6 +17,7 @@ public class Product {
     private Double basePriceIn;
     private Double basePriceOut;
     private Collection<Listing> listingsByProductId;
+    private Collection<Wish> wishesByProductId;
     private Category categoryByCategoryId;
 
     @Id
@@ -100,6 +101,15 @@ public class Product {
 
     public void setListingsByProductId(Collection<Listing> listingsByProductId) {
         this.listingsByProductId = listingsByProductId;
+    }
+
+    @OneToMany(mappedBy = "productByProductId")
+    public Collection<Wish> getWishesByProductId() {
+        return wishesByProductId;
+    }
+
+    public void setWishesByProductId(Collection<Wish> wishesByProductId) {
+        this.wishesByProductId = wishesByProductId;
     }
 
     @ManyToOne
