@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: thiss
@@ -31,7 +32,7 @@
         </thead>
         <tbody>
         <c:forEach items="${categories}" var="c">
-          <tr style="cursor: pointer" onclick="redirectToProducts(${c.categoryId})">
+          <tr class="clickable" onclick="redirectToProducts(${c.categoryId})">
             <td>${c.categoryId}</td>
             <td>${c.categoryName}</td>
           </tr>
@@ -48,7 +49,7 @@
 <script>
 
     function redirectToProducts(id) {
-        window.location.href = "${pageContext.request.contextPath}/admin/products/" + id;
+        window.location.href = "${pageContext.request.contextPath}/products/" + id;
     }
 
 </script>

@@ -34,7 +34,10 @@
         <ul class="collapse list-unstyled" id="homeSubmenu">
           <li><a href="${pageContext.request.contextPath}/users/all">All Users</a></li>
           <li><a href="${pageContext.request.contextPath}/users/register">Register User</a></li>
-          <li><a href="${pageContext.request.contextPath}/admin/admin_panel">Admin Panel</a></li>
+          <%--TODO: Evala stuffz--%>
+          <li><a href="${pageContext.request.contextPath}/categories">Categories</a></li>
+          <li><a href="${pageContext.request.contextPath}/products">Products</a></li>
+          <li><a href="${pageContext.request.contextPath}/listings">Listings</a></li>
         </ul>
       </li>
       <li>
@@ -81,14 +84,17 @@
             <li><a href="#">ABOUT US</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">CONTACT</a></li>
-            <%--TODO: Se auta ta links evala ta actions pou egrapsa--%>
-            <li><a href="${pageContext.request.contextPath}/users/login">LOG IN</a></li>
-            <li><a href="${pageContext.request.contextPath}/users/register">SIGN UP</a></li>
-            <li><a href="${pageContext.request.contextPath}/users/logout">LOG OUT</a></li>
-            <%--TODO: Wishlist DONE--%>
-            <c:if test="${sessionScope.user ne null}">
-              <li><a href="${pageContext.request.contextPath}/wishlist/${sessionScope.user.userId}">WISHLIST</a></li>
-            </c:if>
+            <%--TODO: Ki edw evala stuffz--%>
+            <c:choose>
+              <c:when test="${sessionScope.user ne null}">
+                <li><a href="${pageContext.request.contextPath}/wishlist">WISHLIST</a></li>
+                <li><a href="${pageContext.request.contextPath}/users/logout">LOG OUT</a></li>
+              </c:when>
+              <c:otherwise>
+                <li><a href="${pageContext.request.contextPath}/users/login">LOG IN</a></li>
+                <li><a href="${pageContext.request.contextPath}/users/register">SIGN UP</a></li>
+              </c:otherwise>
+            </c:choose>
           </ul>
         </div>
       </div>

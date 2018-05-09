@@ -19,6 +19,7 @@
 
   <div class="jumbotron">
     <h1 class="text-center">${products[0].categoryByCategoryId.categoryName}</h1>
+    <p>Logged User: ${sessionScope.user.name}</p>
   </div>
 
   <div class="row">
@@ -32,16 +33,29 @@
           <th>Image Path</th>
           <th>Base Price In</th>
           <th>Base Price Out</th>
+          <c:if test="${sessionScope.user ne null}">
+            <th>Action</th>
+          </c:if>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${products}" var="p">
-          <tr style="cursor: pointer" onclick="redirectToListings(${p.productId})">
+          <tr>
             <td>${p.productId}</td>
-            <td>${p.productName}</td>
+            <td class="clickable" onclick="redirectToListings(${p.productId})">${p.productName}</td>
             <td>${p.imagePath}</td>
             <td>${p.basePriceIn}</td>
             <td>${p.basePriceOut}</td>
+            <td>
+              <c:if test="${sessionScope.user ne null and not wishlist.contains(p)}">
+                <button
+                    id="_${p.productId}"
+                    onclick="addToWishlist(${p.productId})"
+                    class="btn btn-info btn-lg" style="z-index: 3">
+                  <span class="glyphicon glyphicon-heart"></span>
+                </button>
+              </c:if>
+            </td>
           </tr>
         </c:forEach>
         </tbody>
@@ -55,8 +69,18 @@
 
 <script>
 
+    function addToWishlist(productId) {
+        let e = window.event;
+        e.cancelBubble = true;
+        if (e.stopPropagation) e.stopPropagation();
+        $.post("${pageContext.request.contextPath}/wishlist/" + productId,
+            function () {
+                $("#_" + productId).remove();
+            })
+    }
+
     function redirectToListings(id) {
-        window.location.href = "${pageContext.request.contextPath}/admin/listings/" + id;
+        window.location.href = "${pageContext.request.contextPath}/listings/" + id;
     }
 
 </script>

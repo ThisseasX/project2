@@ -46,3 +46,11 @@ body {
 .capitalize {
     text-transform: capitalize;
 }
+
+.clickable {
+    cursor: pointer;
+}
+
+table {
+    background-color: #f3f3f3;
+}

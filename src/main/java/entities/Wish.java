@@ -11,6 +11,7 @@ public class Wish {
     private Product productByProductId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "wish_id", nullable = false)
     public Integer getWishId() {
         return wishId;

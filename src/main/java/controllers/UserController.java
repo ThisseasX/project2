@@ -31,6 +31,7 @@ public class UserController {
         this.productService = productService;
     }
 
+    // TODO: Might have to reposition this
     @GetMapping("/all")
     public String getAll(Model m) {
         m.addAttribute("list", userService.getAll());
@@ -43,7 +44,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("user") User user, BindingResult result) {
+    public String register(@Valid @ModelAttribute("user") User user,
+                           BindingResult result,
+                           HttpSession session) {
 
         if (userService.contains(user) != null)
             result.rejectValue("username", "username.exists", "Username already exists!");
@@ -52,16 +55,16 @@ public class UserController {
 
         userService.register(user);
 
-        return "redirect:all";
+        session.setAttribute("user", user);
+
+        return "redirect:/";
     }
 
-    // TODO: Login Form
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("user") User user) {
         return "login";
     }
 
-    // TODO: Login Result, Mpainei sto Session, lew Welcome sthn index
     @PostMapping("/login")
     public String login(HttpSession session, @ModelAttribute("user") User user, BindingResult result) {
 
@@ -76,16 +79,10 @@ public class UserController {
         }
     }
 
-    // TODO: Logout Button
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
-    }
-
-    @GetMapping("/admin_panel")
-    public String adminPanel(@ModelAttribute User user) {
-        return "admin";
     }
 
     @ModelAttribute("all_roles")

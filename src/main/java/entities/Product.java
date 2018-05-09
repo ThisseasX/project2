@@ -77,21 +77,12 @@ public class Product {
 
         Product product = (Product) o;
 
-        return (productId != null ? productId.equals(product.productId) : product.productId == null) &&
-                (productName != null ? productName.equals(product.productName) : product.productName == null) &&
-                (imagePath != null ? imagePath.equals(product.imagePath) : product.imagePath == null) &&
-                (basePriceIn != null ? basePriceIn.equals(product.basePriceIn) : product.basePriceIn == null) &&
-                (basePriceOut != null ? basePriceOut.equals(product.basePriceOut) : product.basePriceOut == null);
+        return productId != null ? productId.equals(product.productId) : product.productId == null;
     }
 
     @Override
     public int hashCode() {
-        int result = productId != null ? productId.hashCode() : 0;
-        result = 31 * result + (productName != null ? productName.hashCode() : 0);
-        result = 31 * result + (imagePath != null ? imagePath.hashCode() : 0);
-        result = 31 * result + (basePriceIn != null ? basePriceIn.hashCode() : 0);
-        result = 31 * result + (basePriceOut != null ? basePriceOut.hashCode() : 0);
-        return result;
+        return productId != null ? productId.hashCode() : 0;
     }
 
     @OneToMany(mappedBy = "productByProductId")
