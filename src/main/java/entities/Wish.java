@@ -2,13 +2,21 @@ package entities;
 
 import javax.persistence.*;
 
-@NamedQuery(name = "Wish.getByUserId", query = "SELECT w FROM Wish w WHERE w.userByUserId.userId = :id")
+@NamedQuery(name = "Wish.exists", query = "SELECT w FROM Wish w WHERE w.userByUserId = :user AND w.productByProductId = :product")
 @Entity
 public class Wish {
 
     private Integer wishId;
     private User userByUserId;
     private Product productByProductId;
+
+    public Wish() {
+    }
+
+    public Wish(User userByUserId, Product productByProductId) {
+        this.userByUserId = userByUserId;
+        this.productByProductId = productByProductId;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,11 +56,14 @@ public class Wish {
 
         Wish wish = (Wish) o;
 
-        return wishId != null ? wishId.equals(wish.wishId) : wish.wishId == null;
+        return (userByUserId != null ? userByUserId.equals(wish.userByUserId) : wish.userByUserId == null)
+                && (productByProductId != null ? productByProductId.equals(wish.productByProductId) : wish.productByProductId == null);
     }
 
     @Override
     public int hashCode() {
-        return wishId != null ? wishId.hashCode() : 0;
+        int result = userByUserId != null ? userByUserId.hashCode() : 0;
+        result = 31 * result + (productByProductId != null ? productByProductId.hashCode() : 0);
+        return result;
     }
 }

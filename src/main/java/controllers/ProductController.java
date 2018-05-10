@@ -1,69 +1,64 @@
 package controllers;
 
-import entities.*;
+import entities.Category;
+import entities.Listing;
+import entities.Product;
+import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import services.ListingService;
-import services.ProductService;
+import services.GenericService;
 import services.WishService;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @SuppressWarnings("SameReturnValue")
 @Controller
 public class ProductController {
 
-    private final ListingService listingService;
-    private final ProductService productService;
+    private final GenericService genericService;
     private final WishService wishService;
 
     @Autowired
-    public ProductController(ListingService listingService,
-                             ProductService productService,
+    public ProductController(GenericService genericService,
                              WishService wishService) {
-        this.listingService = listingService;
-        this.productService = productService;
+        this.genericService = genericService;
         this.wishService = wishService;
     }
 
     @GetMapping("/categories")
-    public String getAllCategories(Model m) {
-        m.addAttribute("categories", productService.getAll(Category.class));
+    public String getCategories(Model m) {
+        m.addAttribute("categories", genericService.getAll(Category.class));
         return "categories";
     }
 
-    @GetMapping("/products")
-    public String getAllProducts(Model m,
-                                 HttpSession session) {
+    @GetMapping(value = {"/products", "/products/{id}" })
+    public String getProducts(Model m,
+                              HttpSession session,
+                              @PathVariable(required = false) Integer id) {
+
         User u = (User) session.getAttribute("user");
-        if (u != null) m.addAttribute("wishlist", wishService.getWishListByUserId(u.getUserId()));
-        m.addAttribute("products", productService.getAll(Product.class));
+        m.addAttribute("wishlist", wishService.getWishListByUser(u));
+
+        List<Product> products = id == null ?
+                genericService.getAll(Product.class) :
+                genericService.getByTargetId(Product.class, Category.class, id);
+
+        m.addAttribute("products", products);
         return "products";
     }
 
-    @GetMapping("/products/{id}")
-    public String getAllProductsById(Model m,
-                                     HttpSession session,
-                                     @PathVariable("id") int id) {
-        User u = (User) session.getAttribute("user");
-        if (u != null) m.addAttribute("wishlist", wishService.getWishListByUserId(u.getUserId()));
-        m.addAttribute("products", productService.getAllProductsByCategoryId(id));
-        return "products";
-    }
+    @GetMapping(value = {"/listings", "/listings/{id}" })
+    public String getListings(Model m, @PathVariable(required = false) Integer id) {
 
-    @GetMapping("/listings")
-    public String getAllListings(Model m) {
-        m.addAttribute("listings", productService.getAll(Listing.class));
-        return "listings";
-    }
+        List<Listing> listings = id == null ?
+                genericService.getAll(Listing.class) :
+                genericService.getByTargetId(Listing.class, Product.class, id);
 
-    @GetMapping("/listings/{id}")
-    public String getAllListingsById(Model m, @PathVariable("id") int id) {
-        m.addAttribute("listings", listingService.getAllListingsByProductId(id));
+        m.addAttribute("listings", listings);
         return "listings";
     }
 }

@@ -26,9 +26,9 @@
     <mvc:resources mapping="/bootstrap/**" location="/bootstrap/"/>
 
     <bean id="userService" class="services.UserService"/>
-    <bean id="productService" class="services.ProductService"/>
     <bean id="listingService" class="services.ListingService"/>
     <bean id="wishService" class="services.WishService"/>
+    <bean id="genericService" class="services.GenericService"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>

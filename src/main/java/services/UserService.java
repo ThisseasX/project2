@@ -29,7 +29,7 @@ public class UserService {
                 .getSingleResult();
     }
 
-    public User contains(User u) {
+    public User exists(User u) {
         try {
             return em
                     .createNamedQuery("User.getByUsername", User.class)
@@ -43,7 +43,7 @@ public class UserService {
 
     public User login(User u) {
         User existingUser;
-        if ((existingUser = contains(u)) != null
+        if ((existingUser = exists(u)) != null
                 && BCrypt.checkpw(u.getPassword(), existingUser.getPassword())) {
             return existingUser;
         }

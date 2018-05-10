@@ -11,6 +11,7 @@
 <html lang="en">
 <head>
   <%@include file="../reusables/head.jspf" %>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/heart.css">
   <title>Wishlist</title>
 </head>
 <body>
@@ -26,21 +27,28 @@
 
       <c:choose>
 
-        <c:when test="${wishlist ne null}">
+        <c:when test="${wishlist ne null and wishlist.size() > 0}">
           <table class="table table-bordered table-hover table-striped">
             <thead>
             <tr>
               <th>ID</th>
-              <th>User</th>
               <th>Product</th>
+              <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${wishlist.wishes}" var="w">
+            <c:forEach items="${wishlist}" var="p">
               <tr>
-                <td>${w.wishId}</td>
-                <td>${w.userByUserId.name}</td>
-                <td>${w.productByProductId.productName}</td>
+                <td>${p.productId}</td>
+                <td>${p.productName}</td>
+                <td>
+                  <input id="_${p.productId}" class="heart-checkbox" type="checkbox"
+                      <c:if test="${wishlist.contains(p)}">
+                        checked
+                      </c:if>
+                  />
+                  <label for="_${p.productId}" class="heart" onclick="toggleWish(${p.productId})">❤</label>
+                </td>
               </tr>
             </c:forEach>
             </tbody>
@@ -48,26 +56,9 @@
         </c:when>
 
         <c:otherwise>
-          <c:choose>
-            <%--@elvariable id="wish" type="entities.Wish"--%>
-            <c:when test="${wish ne null}">
-              <%--TODO: Prosoxh: Inline CSS--%>
-              <div style="background-color: #f00">
-                <h1 style="text-align: center">Thank you for adding your wish!</h1>
-                <h3 style="text-align: center">${wish.wishId}</h3>
-                <h3 style="text-align: center">${wish.userByUserId.name}</h3>
-                <h3 style="text-align: center">${wish.productByProductId.productName}</h3>
-              </div>
-            </c:when>
-
-            <c:otherwise><%--@elvariable id="error" type="java.lang.String"--%>
-              <h1 style="background-color: #f00">
-                  ${error}
-              </h1>
-            </c:otherwise>
-
-          </c:choose>
-
+          <h1 style="background-color: #f00">
+            You have no items in your wishlist! Go add some!
+          </h1>
         </c:otherwise>
 
       </c:choose>
@@ -77,6 +68,19 @@
 </div>
 
 <%@include file="../reusables/footer.jspf" %>
+
+<script>
+
+    function toggleWish(productId) {
+        // Stop Event Propagation
+        let e = window.event;
+        e.cancelBubble = true;
+        if (e.stopPropagation) e.stopPropagation();
+
+        $.post("${pageContext.request.contextPath}/wishlist/" + productId)
+    }
+
+</script>
 
 </body>
 </html>

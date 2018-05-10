@@ -5,8 +5,9 @@ import java.util.Collection;
 
 @NamedQueries({
         @NamedQuery(name = "Product.getAll", query = "SELECT p FROM Product p"),
-        @NamedQuery(name = "Product.getByProductName", query = "SELECT p FROM Product p where p.productName = :name"),
-        @NamedQuery(name = "Product.getByCategoryId", query = "SELECT p FROM Product p WHERE p.categoryByCategoryId.categoryId = :id")
+        @NamedQuery(name = "Product.getByProductName", query = "SELECT p FROM Product p WHERE p.productName = :name"),
+        @NamedQuery(name = "Product.getByCategoryId", query = "SELECT p FROM Product p WHERE p.categoryByCategoryId.categoryId = :id"),
+        @NamedQuery(name = "Product.getWishlistByUser", query = "SELECT p FROM Product p JOIN Wish w ON w.productByProductId = p AND w.userByUserId = :user")
 })
 @Entity
 public class Product {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import services.ProductService;
+import services.GenericService;
 import services.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -22,13 +22,13 @@ import java.util.List;
 @Controller
 public class UserController {
 
+    private final GenericService genericService;
     private final UserService userService;
-    private final ProductService productService;
 
     @Autowired
-    public UserController(UserService userService, ProductService productService) {
+    public UserController(GenericService genericService, UserService userService) {
+        this.genericService = genericService;
         this.userService = userService;
-        this.productService = productService;
     }
 
     // TODO: Might have to reposition this
@@ -48,7 +48,7 @@ public class UserController {
                            BindingResult result,
                            HttpSession session) {
 
-        if (userService.contains(user) != null)
+        if (userService.exists(user) != null)
             result.rejectValue("username", "username.exists", "Username already exists!");
 
         if (result.hasErrors()) return "register";
@@ -87,6 +87,6 @@ public class UserController {
 
     @ModelAttribute("all_roles")
     public List<Role> getAllRoles() {
-        return productService.getAll(Role.class);
+        return genericService.getAll(Role.class);
     }
 }

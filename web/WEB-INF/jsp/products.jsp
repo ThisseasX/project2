@@ -11,6 +11,7 @@
 <html lang="en">
 <head>
   <%@include file="../reusables/head.jspf" %>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/heart.css">
   <title>Products</title>
 </head>
 <body>
@@ -46,16 +47,16 @@
             <td>${p.imagePath}</td>
             <td>${p.basePriceIn}</td>
             <td>${p.basePriceOut}</td>
-            <td>
-              <c:if test="${sessionScope.user ne null and not wishlist.contains(p)}">
-                <button
-                    id="_${p.productId}"
-                    onclick="addToWishlist(${p.productId})"
-                    class="btn btn-info btn-lg" style="z-index: 3">
-                  <span class="glyphicon glyphicon-heart"></span>
-                </button>
-              </c:if>
-            </td>
+            <c:if test="${sessionScope.user ne null}">
+              <td>
+                <input id="_${p.productId}" class="heart-checkbox" type="checkbox"
+                    <c:if test="${wishlist.contains(p)}">
+                      checked
+                    </c:if>
+                />
+                <label for="_${p.productId}" class="heart" onclick="toggleWish(${p.productId})">❤</label>
+              </td>
+            </c:if>
           </tr>
         </c:forEach>
         </tbody>
@@ -69,14 +70,13 @@
 
 <script>
 
-    function addToWishlist(productId) {
+    function toggleWish(productId) {
+        // Stop Event Propagation
         let e = window.event;
         e.cancelBubble = true;
         if (e.stopPropagation) e.stopPropagation();
-        $.post("${pageContext.request.contextPath}/wishlist/" + productId,
-            function () {
-                $("#_" + productId).remove();
-            })
+
+        $.post("${pageContext.request.contextPath}/wishlist/" + productId)
     }
 
     function redirectToListings(id) {
