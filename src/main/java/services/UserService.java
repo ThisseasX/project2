@@ -43,9 +43,11 @@ public class UserService {
 
     public User login(User u) {
         User existingUser;
-        if ((existingUser = contains(u)) != null)
-            BCrypt.checkpw(u.getPassword(), existingUser.getPassword());
-        return existingUser;
+        if ((existingUser = contains(u)) != null
+                && BCrypt.checkpw(u.getPassword(), existingUser.getPassword())) {
+            return existingUser;
+        }
+        return null;
     }
 
     @Transactional
