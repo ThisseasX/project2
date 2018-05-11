@@ -63,5 +63,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml:classmate:0.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-validator-annotation-processor:5.0.1.Final" level="project" />
     <orderEntry type="library" name="Maven: org.mindrot:jbcrypt:0.3m" level="project" />
+    <orderEntry type="library" name="angular" level="application" />
   </component>
 </module>

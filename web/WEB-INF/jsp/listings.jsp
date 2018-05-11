@@ -36,6 +36,7 @@
           <th>Base Price Out</th>
           <th>Date Listed</th>
           <th>Status</th>
+          <th>Cart</th>
         </tr>
         </thead>
         <tbody>
@@ -50,8 +51,13 @@
             <td>${l.productByProductId.basePriceOut}</td>
             <td>${l.listingDate}</td>
             <td>
-              <button onclick="changeStatus(${l.listingId})" id="_${l.listingId}">
+              <button onclick="changeStatus(${l.listingId})" id="status_${l.listingId}">
                   ${l.statusByStatusId.statusName}
+              </button>
+            </td>
+            <td>
+              <button onclick="addToCart(${l.listingId})" id="cart_${l.listingId}">
+                <span class="glyphicon glyphicon-shopping-cart"> Cart</span>
               </button>
             </td>
           </tr>
@@ -70,9 +76,13 @@
     function changeStatus(id) {
         $.post("${pageContext.request.contextPath}/admin/change_listing_status/" + id,
             function (data) {
-                $("#_" + id).text(data);
+                $("#status_" + id).text(data);
             }
         );
+    }
+
+    function addToCart(id) {
+        $.post("${pageContext.request.contextPath}/cart/" + id + "/add");
     }
 
 </script>

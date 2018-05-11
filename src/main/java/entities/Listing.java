@@ -22,7 +22,10 @@ public class Listing {
     private Unit unitByUnitId;
     private Collection<Sale> salesByListingId;
 
+    private int cartQuantity;
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "listing_id", nullable = false)
     public Integer getListingId() {
         return listingId;
@@ -62,6 +65,15 @@ public class Listing {
         this.listingDate = listingDate;
     }
 
+    @Transient
+    public Integer getCartQuantity() {
+        return cartQuantity;
+    }
+
+    public void setCartQuantity(Integer cartQuantity) {
+        this.cartQuantity = cartQuantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,22 +82,13 @@ public class Listing {
         Listing listing = (Listing) o;
 
         if (listingId != null ? !listingId.equals(listing.listingId) : listing.listingId != null) return false;
-        if (listingQuantity != null ? !listingQuantity.equals(listing.listingQuantity) : listing.listingQuantity != null)
-            return false;
-        if (pricePerUnit != null ? !pricePerUnit.equals(listing.pricePerUnit) : listing.pricePerUnit != null)
-            return false;
-        if (listingDate != null ? !listingDate.equals(listing.listingDate) : listing.listingDate != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = listingId != null ? listingId.hashCode() : 0;
-        result = 31 * result + (listingQuantity != null ? listingQuantity.hashCode() : 0);
-        result = 31 * result + (pricePerUnit != null ? pricePerUnit.hashCode() : 0);
-        result = 31 * result + (listingDate != null ? listingDate.hashCode() : 0);
-        return result;
+        return listingId != null ? listingId.hashCode() : 0;
     }
 
     @ManyToOne

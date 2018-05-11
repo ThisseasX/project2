@@ -84,6 +84,7 @@
             <li><a href="#">ABOUT US</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">CONTACT</a></li>
+            <li><a href="${pageContext.request.contextPath}/cart">CART</a></li>
             <%--TODO: Ki edw evala stuffz--%>
             <c:choose>
               <c:when test="${sessionScope.user ne null}">
