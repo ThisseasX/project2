@@ -25,7 +25,6 @@ public class CartService {
         if (action.equals("add")) c.add(l);
         else if (action.equals("subtract")) c.subtract(l);
 
-
         session.setAttribute("cart", c);
     }
 }

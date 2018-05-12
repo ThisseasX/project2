@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
 
-      <table class="table table-bordered table-hover table-striped" ng-controller="ctrl">
+      <table class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
           <th>ID</th>
