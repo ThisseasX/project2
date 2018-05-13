@@ -1,124 +1,125 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: thiss
-  Date: 2/4/2018
-  Time: 1:21 πμ
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-  <%@include file="../reusables/head.jspf" %>
+  <%@include file="../fragments/head.jspf" %>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login-register.css">
   <title>Register</title>
 </head>
+
 <body>
 
-<div class="container">
+<%--Header--%>
+<%@include file="../fragments/header.jspf" %>
 
-  <div class="row">
-    <div class="col-xs-12 col-md-4 col-md-offset-4">
+<%
+  List<String> path = new ArrayList<>(Collections.singletonList("Register"));
+  pageContext.setAttribute("path", path);
+%>
 
-      <div class="panel my-panel">
+<%--Breadcrumbs--%>
+<%@include file="../fragments/breadcrumbs.jspf" %>
 
-        <div class="panel-heading">
+<%--Register--%>
+<div class="register">
 
-          <div class="row">
-            <div class="col-xs-12">
-              <h1 class="text-center text-primary my-header">Register</h1>
+  <div class="container">
+
+    <h2>Register</h2>
+
+    <div class="login-form-grids">
+
+      <h6>Login information</h6>
+      <form:form method="post" modelAttribute="user">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <form:label path="username">Username</form:label>
+            <form:errors cssClass="error" path="username"/>
+            <div class="form-group">
+              <form:input cssClass="form-control no-space" path="username" pattern="[^\s]+"/>
             </div>
           </div>
-
         </div>
 
-        <hr>
-
-        <div class="panel-body">
-
-          <form:form method="post" modelAttribute="user">
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="username">Username</form:label>
-                <form:errors cssClass="error" path="username"/>
-                <div class="form-group">
-                  <form:input cssClass="form-control no-space" path="username" pattern="[^\s]+"/>
-                </div>
-              </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <form:label path="password">Password</form:label>
+            <form:errors cssClass="error" path="password"/>
+            <div class="form-group">
+              <form:password id="password" cssClass="form-control no-space" path="password" pattern="[^\s]+"/>
             </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="password">Password</form:label>
-                <form:errors cssClass="error" path="password"/>
-                <div class="form-group">
-                  <form:password id="password" cssClass="form-control no-space" path="password" pattern="[^\s]+"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <label for="password-confirm">Confirm Password</label>
-                <div class="form-group">
-                  <input id="password-confirm" class="form-control no-space" type="password" pattern="[^\s]+"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="name">Name</form:label>
-                <form:errors cssClass="error" path="name"/>
-                <div class="form-group">
-                  <form:input cssClass="form-control no-space capitalize" path="name" pattern="[^\s]+"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="surname">Surname</form:label>
-                <form:errors cssClass="error" path="surname"/>
-                <div class="form-group">
-                  <form:input cssClass="form-control no-space capitalize" path="surname" pattern="[^\s]+"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="role.roleId">Role</form:label>
-                <form:errors cssClass="error" path="role.roleId"/>
-                <div class="form-group">
-                  <form:select path="role.roleId">
-                    <form:option value="0" label="Select an Option"/>
-                    <form:options title="asd" items="${all_roles}" itemValue="roleId" itemLabel="roleName"/>
-                  </form:select>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <input class="btn btn-primary my-btn" type="submit" value="Insert">
-              </div>
-            </div>
-
-          </form:form>
-
+          </div>
         </div>
-      </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <label for="password-confirm">Confirm Password</label>
+            <div class="form-group">
+              <input id="password-confirm" class="form-control no-space" type="password" pattern="[^\s]+"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <form:label path="name">Name</form:label>
+            <form:errors cssClass="error" path="name"/>
+            <div class="form-group">
+              <form:input cssClass="form-control no-space capitalize" path="name" pattern="[^\s]+"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <form:label path="surname">Surname</form:label>
+            <form:errors cssClass="error" path="surname"/>
+            <div class="form-group">
+              <form:input cssClass="form-control no-space capitalize" path="surname" pattern="[^\s]+"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <form:label path="role.roleId">Role</form:label>
+            <form:errors cssClass="error" path="role.roleId"/>
+            <div class="form-group">
+              <form:select path="role.roleId">
+                <form:option value="0" label="Select an Option"/>
+                <form:options title="role" items="${all_roles}" itemValue="roleId" itemLabel="roleName"/>
+              </form:select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <input type="submit" value="Register">
+          </div>
+        </div>
+
+      </form:form>
+
     </div>
+
+    <div class="register-home">
+      <a href="${pageContext.request.contextPath}/">Home</a>
+    </div>
+
   </div>
 </div>
+<%--//Register --%>
 
-<%@include file="../reusables/footer.jspf" %>
+<%--Footer--%>
+<%@include file="../fragments/footer.jspf" %>
 
-<script>
-
-</script>
+<script src="${pageContext.request.contextPath}/js/password-validation.js"></script>
+<script src="${pageContext.request.contextPath}/js/no-space.js"></script>
 
 </body>
 </html>

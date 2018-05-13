@@ -10,7 +10,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <%@include file="../reusables/head.jspf" %>
+  <%@include file="../fragments/head.jspf" %>
   <title>Listings</title>
 </head>
 <body>
@@ -69,7 +69,7 @@
   </div>
 </div>
 
-<%@include file="../reusables/footer.jspf" %>
+<%@include file="../fragments/footer_scripts.jspf" %>
 
 <script>
 

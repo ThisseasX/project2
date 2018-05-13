@@ -10,7 +10,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <%@include file="../reusables/head.jspf" %>
+  <%@include file="../fragments/head.jspf" %>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/heart.css">
   <title>Wishlist</title>
 </head>
@@ -67,7 +67,7 @@
   </div>
 </div>
 
-<%@include file="../reusables/footer.jspf" %>
+<%@include file="../fragments/footer_scripts.jspf" %>
 
 <script>
 

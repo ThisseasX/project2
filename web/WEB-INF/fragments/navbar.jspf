@@ -1,0 +1,129 @@
+<div id="topnav" class="navigation-agileits">
+  <div class="container-fluid">
+    <nav class="navbar navbar-default">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header nav_2">
+        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                data-target="#bs-megadropdown-tabs">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+        <ul class="nav navbar-nav col-sm-12">
+          <li class="col-sm-2">
+            <a href="${pageContext.request.contextPath}/" class="act">Home</a>
+          </li>
+          <!-- Mega Menu -->
+          <li class="dropdown col-sm-2">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu multi-column columns-3">
+              <div class="row" style="display:flex">
+                <div class="multi-gd-img">
+                  <ul class="multi-column-dropdown">
+                    <h6>Fruits</h6>
+                    <li>
+                      <a href="groceries.html">Apples</a>
+                    </li>
+                    <li>
+                      <a href="groceries.html">Oranges</a>
+                    </li>
+                    <li>
+                      <a href="groceries.html">Bananas</a>
+                    </li>
+                    <li>
+                      <a href="groceries.html">Oranges</a>
+                    </li>
+                  </ul>
+
+                </div>
+                <div class="multi-gd-img">
+                  <ul class="multi-column-dropdown">
+                    <h6>Vegetables</h6>
+                    <li>
+                      <a href="groceries.html">Tomatoes</a>
+                    </li>
+                    <li>
+                      <a href="groceries.html">Potatos</a>
+                    </li>
+                    <li>
+                      <a href="groceries.html">Carrots</a>
+                    </li>
+                    <li>
+                      <a href="groceries.html">Peppers</a>
+                    </li>
+                  </ul>
+
+                </div>
+                <div class="multi-gd-img">
+                  <ul class="multi-column-dropdown">
+                    <h6>Dry Nuts</h6>
+                    <li>
+                      <a href="groceries.html">Almonts</a>
+                    </li>
+                    <li>
+                      <a href="groceries.html">Peanuts</a>
+                    </li>
+                    <li>
+                      <a href="groceries.html">Walnuts</a>
+                    </li>
+                    <li>
+                      <a href="groceries.html">Pistachios</a>
+                    </li>
+                  </ul>
+
+                </div>
+
+              </div>
+
+            </ul>
+          </li>
+          <li class="dropdown col-sm-2">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu multi-column columns-3" style="min-width:250px">
+              <div class="row">
+                <div class="multi-gd-img">
+                  <ul class="multi-column-dropdown">
+                    <h6>My Account</h6>
+                    <li>
+                      <a href="household.html">Manage Account</a>
+                    </li>
+                    <li>
+                      <a href="household.html">My Cart</a>
+                    </li>
+                    <li>
+                      <a href="household.html">My Wishlist</a>
+                    </li>
+                    <li>
+                      <a href="household.html">Login</a>
+                    </li>
+                    <li>
+                      <a href="household.html">Register</a>
+                    </li>
+                  </ul>
+                </div>
+
+
+              </div>
+            </ul>
+          </li>
+          <li class="col-sm-2">
+            <a href="gourmet.html">About Us</a>
+          </li>
+          <li class="col-sm-2">
+            <a href="offers.html">FAQ</a>
+          </li>
+          <li class="col-sm-2">
+            <a href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>

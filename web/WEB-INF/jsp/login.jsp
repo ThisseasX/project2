@@ -10,7 +10,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <%@include file="../reusables/head.jspf" %>
+  <%@include file="../fragments/head.jspf" %>
   <title>Login</title>
 </head>
 <body>
@@ -72,7 +72,8 @@
   </div>
 </div>
 
-<%@include file="../reusables/footer.jspf" %>
+<%@include file="../fragments/footer_scripts.jspf" %>
+<script src="${pageContext.request.contextPath}/js/no-space.js"></script>
 
 </body>
 </html>

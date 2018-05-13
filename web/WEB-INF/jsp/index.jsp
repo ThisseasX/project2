@@ -1,179 +1,60 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: thiss
-  Date: 11/3/2018
-  Time: 7:13 μμ
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--suppress CssUnknownTarget --%>
+<%--suppress CssOptimizeSimilarProperties --%>
 <!doctype html>
-<html lang="en">
+<html>
+
 <head>
-  <%@include file="../reusables/head.jspf" %>
-  <title>Index</title>
+  <%@include file="../fragments/head.jspf" %>
+  <title>Farmers Market</title>
 </head>
+
 <body>
 
-<%--TODO: Testing welcome user from session--%>
-<c:if test="${sessionScope.user ne null}">
-  <h1 style="color: #f00">Welcome ${sessionScope.user.name}</h1>
-</c:if>
+<%--Header--%>
+<%@include file="../fragments/header.jspf" %>
 
-<div class="wrapper">
-  <!-- Sidebar Holder -->
-  <nav id="sidebar">
-    <div class="sidebar-header">
-      <h3>My Account</h3>
-    </div>
+<%--Slider--%>
+<%@include file="../fragments/main-slider.jspf" %>
 
-    <ul class="list-unstyled components">
-      <p>Dummy Heading</p>
-      <li class="active">
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li><a href="${pageContext.request.contextPath}/users/all">All Users</a></li>
-          <li><a href="${pageContext.request.contextPath}/users/register">Register User</a></li>
-          <%--TODO: Evala stuffz--%>
-          <li><a href="${pageContext.request.contextPath}/categories">Categories</a></li>
-          <li><a href="${pageContext.request.contextPath}/products">Products</a></li>
-          <li><a href="${pageContext.request.contextPath}/listings">Listings</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">About</a>
-        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-        <ul class="collapse list-unstyled" id="pageSubmenu">
-          <li><a href="#">Page 1</a></li>
-          <li><a href="#">Page 2</a></li>
-          <li><a href="#">Page 3</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Portfolio</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
-      </li>
-    </ul>
+<%--Parallax--%>
+<div id="colorlib-intro" class="colorlib-intro"
+     style="background-image: url(images/fruits.jpg); background-attachment: fixed" data-stellar-background-ratio="0.6">
 
-    <ul class="list-unstyled CTAs">
-      <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
-      <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
-    </ul>
-  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
 
-  <!-- Page Content Holder -->
-  <div id="content">
+            <h2>45</h2>
+            <p>%</p>
+            <p>Off</p>
 
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
+            <h2>Sale</h2>
 
-        <div class="navbar-header">
-          <button type="button" id="sidebarCollapse" class="navbar-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
+            <h3 class="title">Just hurry up limited offer!</h3>
+            <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <img src="${pageContext.request.contextPath}/img/logo.png"/>
-          <ul class="nav navbar-nav navbar-right navbar-btn">
-            <%--<li><a href="#" style="background-image: url('${pageContext.request.contextPath}/img/logo.png')"></a></li>--%>
-            <li><a href="#">ABOUT US</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">CONTACT</a></li>
-            <li><a href="${pageContext.request.contextPath}/cart">CART</a></li>
-            <%--TODO: Ki edw evala stuffz--%>
-            <c:choose>
-              <c:when test="${sessionScope.user ne null}">
-                <li><a href="${pageContext.request.contextPath}/wishlist">WISHLIST</a></li>
-                <li><a href="${pageContext.request.contextPath}/users/logout">LOG OUT</a></li>
-              </c:when>
-              <c:otherwise>
-                <li><a href="${pageContext.request.contextPath}/users/login">LOG IN</a></li>
-                <li><a href="${pageContext.request.contextPath}/users/register">SIGN UP</a></li>
-              </c:otherwise>
-            </c:choose>
-          </ul>
-        </div>
+            <p>
+              <a href="#" class="btn btn-primary">Shop Now</a>
+              <a href="#" class="btn btn-primary btn-outline">Read more</a>
+            </p>
+
       </div>
-    </nav>
-
-    <h2>Collapsible Sidebar Using Bootstrap 3</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-    <div class="line"></div>
-
-    <h2>Lorem Ipsum Dolor</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-    <div class="line"></div>
-
-    <h2>Lorem Ipsum Dolor</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-    <div class="line"></div>
-
-    <h3>Lorem Ipsum Dolor</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
   </div>
 </div>
 
-<%--<div class="container">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
+<%--Top Brands--%>
+<%@include file="../fragments/top-brands.jspf" %>
 
-      <div class="panel my-panel">
+<%--Carousel--%>
+<%@include file="../fragments/carousel.jspf" %>
 
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-md-12">
-              <h1 class="text-center my-header">Actions</h1>
-            </div>
-          </div>
-        </div>
+<%--Banner Bottom--%>
+<%@include file="../fragments/banner-bottom.jspf" %>
 
-        <hr>
-
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12">
-              <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/users/all">See
-                all users</a>
-              <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/users/register">Insert user</a>
-              <a class="btn btn-primary my-btn" style="margin-top: 16px;"
-                 href="${pageContext.request.contextPath}/admin/admin_panel">Admin</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</div>--%>
-
-<%@include file="../reusables/footer.jspf" %>
+<%--Footer--%>
+<%@include file="../fragments/footer.jspf" %>
 
 </body>
+
 </html>
