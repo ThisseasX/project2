@@ -149,6 +149,11 @@ public class User implements Serializable {
         this.wishesByUserId = wishesByUserId;
     }
 
+    @Transient
+    public boolean isAdmin() {
+        return this.role.getRoleId() == 1;
+    }
+
     @Valid
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "role_id", nullable = false)

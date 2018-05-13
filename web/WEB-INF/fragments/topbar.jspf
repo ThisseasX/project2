@@ -49,7 +49,7 @@
   <div class="container">
 
     <div class="logo_left">
-      <%-- Stuff might be inserted here, but most likely not --%>
+      <c:if test="${sessionScope.user ne null}">Welcome ${sessionScope.user.name}</c:if>
     </div>
 
     <div class="company_logo">

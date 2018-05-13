@@ -12,15 +12,17 @@ public class GenericService {
     @PersistenceContext
     private EntityManager em;
 
-    public <T> List<T> getAll(Class<T> c) {
+    public <T> List<T> getAll(Class<T> c, boolean isAdmin) {
+        String query = isAdmin ? ".getAll" : ".getAllAvailable";
         return em
-                .createNamedQuery(c.getSimpleName() + ".getAll", c)
+                .createNamedQuery(c.getSimpleName() + query, c)
                 .getResultList();
     }
 
-    public <S, T> List<S> getByTargetId(Class<S> source, Class<T> target, int id) {
+    public <S, T> List<S> getByTargetId(Class<S> source, Class<T> target, int id, boolean isAdmin) {
+        String query = isAdmin ? ".getBy" : ".getAvailableBy";
         return em
-                .createNamedQuery(source.getSimpleName() + ".getBy" + target.getSimpleName() + "Id", source)
+                .createNamedQuery(source.getSimpleName() + query + target.getSimpleName() + "Id", source)
                 .setParameter("id", id)
                 .getResultList();
     }

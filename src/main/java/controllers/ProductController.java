@@ -44,19 +44,25 @@ public class ProductController {
         m.addAttribute("wishlist", wishService.getWishListByUser(u));
 
         List<Product> products = id == null ?
-                genericService.getAll(Product.class) :
-                genericService.getByTargetId(Product.class, Category.class, id);
+                genericService.getAll(Product.class, true) :
+                genericService.getByTargetId(Product.class, Category.class, id, true);
 
         m.addAttribute("products", products);
         return "products";
     }
 
     @GetMapping(value = {"/listings", "/listings/{id}"})
-    public String getListings(Model m, @PathVariable(required = false) Integer id) {
+    public String getListings(Model m,
+                              HttpSession session,
+                              @PathVariable(required = false) Integer id) {
+
+        User u = (User) session.getAttribute("user");
+        boolean isAdmin = false;
+        if (u != null) isAdmin = u.isAdmin();
 
         List<Listing> listings = id == null ?
-                genericService.getAll(Listing.class) :
-                genericService.getByTargetId(Listing.class, Product.class, id);
+                genericService.getAll(Listing.class, isAdmin) :
+                genericService.getByTargetId(Listing.class, Product.class, id, isAdmin);
 
         m.addAttribute("listings", listings);
         return "listings";
@@ -64,6 +70,6 @@ public class ProductController {
 
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
-        return genericService.getAll(Category.class);
+        return genericService.getAll(Category.class, true);
     }
 }

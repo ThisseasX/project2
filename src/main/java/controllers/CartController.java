@@ -41,6 +41,6 @@ public class CartController {
 
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
-        return genericService.getAll(Category.class);
+        return genericService.getAll(Category.class, true);
     }
 }

@@ -88,11 +88,11 @@ public class UserController {
 
     @ModelAttribute("all_roles")
     public List<Role> getAllRoles() {
-        return genericService.getAll(Role.class);
+        return genericService.getAll(Role.class, true);
     }
 
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
-        return genericService.getAll(Category.class);
+        return genericService.getAll(Category.class, true);
     }
 }
