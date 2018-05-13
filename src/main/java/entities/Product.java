@@ -52,7 +52,7 @@ public class Product {
     }
 
     @Basic
-    @Column(name = "base_price_in", nullable = false, precision = 0)
+    @Column(name = "base_price_in", nullable = false)
     public Double getBasePriceIn() {
         return basePriceIn;
     }
@@ -62,7 +62,7 @@ public class Product {
     }
 
     @Basic
-    @Column(name = "base_price_out", nullable = false, precision = 0)
+    @Column(name = "base_price_out", nullable = false)
     public Double getBasePriceOut() {
         return basePriceOut;
     }

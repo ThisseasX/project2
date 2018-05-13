@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Category;
 import entities.Role;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,5 +89,10 @@ public class UserController {
     @ModelAttribute("all_roles")
     public List<Role> getAllRoles() {
         return genericService.getAll(Role.class);
+    }
+
+    @ModelAttribute("categories")
+    public List<Category> fetchCategories() {
+        return genericService.getAll(Category.class);
     }
 }

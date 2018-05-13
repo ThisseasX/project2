@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class Cart {
 
-    private Set<Listing> items = new HashSet<>();
+    private final Set<Listing> items = new HashSet<>();
 
     public List<Listing> getItems() {
         return new ArrayList<>(items);

@@ -49,7 +49,7 @@ public class Category {
         return result;
     }
 
-    @OneToMany(mappedBy = "categoryByCategoryId")
+    @OneToMany(mappedBy = "categoryByCategoryId", fetch = FetchType.EAGER)
     public Collection<Product> getProductsByCategoryId() {
         return productsByCategoryId;
     }

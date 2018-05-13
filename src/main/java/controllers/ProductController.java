@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import services.GenericService;
 import services.WishService;
@@ -30,12 +31,11 @@ public class ProductController {
     }
 
     @GetMapping("/categories")
-    public String getCategories(Model m) {
-        m.addAttribute("categories", genericService.getAll(Category.class));
+    public String getCategories() {
         return "categories";
     }
 
-    @GetMapping(value = {"/products", "/products/{id}" })
+    @GetMapping(value = {"/products", "/products/{id}"})
     public String getProducts(Model m,
                               HttpSession session,
                               @PathVariable(required = false) Integer id) {
@@ -51,7 +51,7 @@ public class ProductController {
         return "products";
     }
 
-    @GetMapping(value = {"/listings", "/listings/{id}" })
+    @GetMapping(value = {"/listings", "/listings/{id}"})
     public String getListings(Model m, @PathVariable(required = false) Integer id) {
 
         List<Listing> listings = id == null ?
@@ -60,5 +60,10 @@ public class ProductController {
 
         m.addAttribute("listings", listings);
         return "listings";
+    }
+
+    @ModelAttribute("categories")
+    public List<Category> fetchCategories() {
+        return genericService.getAll(Category.class);
     }
 }

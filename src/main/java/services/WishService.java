@@ -50,7 +50,7 @@ public class WishService {
         return new Wish(u, p);
     }
 
-    private Wish exists(Wish w) throws Exception {
+    private Wish exists(Wish w) {
         return em
                 .createNamedQuery("Wish.exists", Wish.class)
                 .setParameter("user", w.getUserByUserId())

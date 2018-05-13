@@ -1,3 +1,5 @@
+<%--@elvariable id="categories" type="java.util.List"--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="topnav" class="navigation-agileits">
   <div class="container-fluid">
     <nav class="navbar navbar-default">
@@ -25,6 +27,8 @@
               <div class="row" style="display:flex">
                 <div class="multi-gd-img">
                   <ul class="multi-column-dropdown">
+
+                    <c:forEach items="${categories}" var="c">
                     <h6>Fruits</h6>
                     <li>
                       <a href="groceries.html">Apples</a>
@@ -38,48 +42,10 @@
                     <li>
                       <a href="groceries.html">Oranges</a>
                     </li>
+                    </c:forEach>
+
                   </ul>
-
                 </div>
-                <div class="multi-gd-img">
-                  <ul class="multi-column-dropdown">
-                    <h6>Vegetables</h6>
-                    <li>
-                      <a href="groceries.html">Tomatoes</a>
-                    </li>
-                    <li>
-                      <a href="groceries.html">Potatos</a>
-                    </li>
-                    <li>
-                      <a href="groceries.html">Carrots</a>
-                    </li>
-                    <li>
-                      <a href="groceries.html">Peppers</a>
-                    </li>
-                  </ul>
-
-                </div>
-                <div class="multi-gd-img">
-                  <ul class="multi-column-dropdown">
-                    <h6>Dry Nuts</h6>
-                    <li>
-                      <a href="groceries.html">Almonts</a>
-                    </li>
-                    <li>
-                      <a href="groceries.html">Peanuts</a>
-                    </li>
-                    <li>
-                      <a href="groceries.html">Walnuts</a>
-                    </li>
-                    <li>
-                      <a href="groceries.html">Pistachios</a>
-                    </li>
-                  </ul>
-
-                </div>
-
-              </div>
-
             </ul>
           </li>
           <li class="dropdown col-sm-2">
