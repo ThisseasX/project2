@@ -59,4 +59,11 @@ public class Cart {
                 .mapToInt((a) -> a.getCartQuantity() * a.getPricePerUnit())
                 .sum();
     }
+
+    public int getTotalNumber() {
+        return items
+                .stream()
+                .mapToInt((a) -> a.getCartQuantity())
+                .sum();
+    }
 }
