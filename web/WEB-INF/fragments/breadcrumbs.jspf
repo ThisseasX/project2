@@ -1,5 +1,4 @@
 <%--@elvariable id="path" type="java.util.List"--%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="breadcrumbs">
   <div class="container">
     <ol class="breadcrumb breadcrumb1">

@@ -13,7 +13,7 @@
 <body>
 
 <%--Header--%>
-<%@include file="../fragments/header.jspf" %>
+<%@include file="../fragments/topbar.jspf" %>
 
 <%
   List<String> path = new ArrayList<>(Collections.singletonList("Register"));
@@ -32,7 +32,6 @@
 
     <div class="login-form-grids">
 
-      <h6>Login information</h6>
       <form:form method="post" modelAttribute="user">
 
         <div class="row">

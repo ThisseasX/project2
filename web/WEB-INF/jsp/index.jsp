@@ -11,7 +11,7 @@
 <body>
 
 <%--Header--%>
-<%@include file="../fragments/header.jspf" %>
+<%@include file="../fragments/topbar.jspf" %>
 
 <%--Slider--%>
 <%@include file="../fragments/main-slider.jspf" %>

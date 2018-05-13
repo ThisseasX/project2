@@ -1,5 +1,4 @@
 <%--@elvariable id="categories" type="java.util.List"--%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="topnav" class="navigation-agileits">
   <div class="container-fluid">
     <nav class="navbar navbar-default">
@@ -25,27 +24,26 @@
             </a>
             <ul class="dropdown-menu multi-column columns-3">
               <div class="row" style="display:flex">
-                <div class="multi-gd-img">
-                  <ul class="multi-column-dropdown">
 
-                    <c:forEach items="${categories}" var="c">
-                    <h6>Fruits</h6>
-                    <li>
-                      <a href="groceries.html">Apples</a>
-                    </li>
-                    <li>
-                      <a href="groceries.html">Oranges</a>
-                    </li>
-                    <li>
-                      <a href="groceries.html">Bananas</a>
-                    </li>
-                    <li>
-                      <a href="groceries.html">Oranges</a>
-                    </li>
-                    </c:forEach>
+                <c:forEach items="${categories}" var="c">
+                  <div class="multi-gd-img">
+                    <ul class="multi-column-dropdown">
 
-                  </ul>
-                </div>
+                      <h6>${c.categoryName}</h6>
+
+                      <c:forEach items="${c.productsByCategoryId}" var="p">
+                        <li>
+                          <a href="${pageContext.request.contextPath}/listings/${p.productId}">
+                              ${p.productName}
+                          </a>
+                        </li>
+                      </c:forEach>
+
+                    </ul>
+                  </div>
+                </c:forEach>
+
+              </div>
             </ul>
           </li>
           <li class="dropdown col-sm-2">
@@ -54,39 +52,52 @@
             </a>
             <ul class="dropdown-menu multi-column columns-3" style="min-width:250px">
               <div class="row">
+
                 <div class="multi-gd-img">
                   <ul class="multi-column-dropdown">
+
                     <h6>My Account</h6>
+
                     <li>
-                      <a href="household.html">Manage Account</a>
+                      <a href="#">Manage Account</a>
                     </li>
-                    <li>
-                      <a href="household.html">My Cart</a>
-                    </li>
-                    <li>
-                      <a href="household.html">My Wishlist</a>
-                    </li>
-                    <li>
-                      <a href="household.html">Login</a>
-                    </li>
-                    <li>
-                      <a href="household.html">Register</a>
-                    </li>
+
+                    <c:choose>
+                      <c:when test="${sessionScope.user ne null}">
+                        <li>
+                          <a href="${pageContext.request.contextPath}/cart">My Cart</a>
+                        </li>
+                        <li>
+                          <a href="${pageContext.request.contextPath}/wishlist">My Wishlist</a>
+                        </li>
+                        <li>
+                          <a href="${pageContext.request.contextPath}/users/logout">Logout</a>
+                        </li>
+                      </c:when>
+                      <c:otherwise>
+                        <li>
+                          <a href="${pageContext.request.contextPath}/users/login">Login</a>
+                        </li>
+                        <li>
+                          <a href="${pageContext.request.contextPath}/users/register">Register</a>
+                        </li>
+                      </c:otherwise>
+                    </c:choose>
+
                   </ul>
                 </div>
-
 
               </div>
             </ul>
           </li>
           <li class="col-sm-2">
-            <a href="gourmet.html">About Us</a>
+            <a href="#">About Us</a>
           </li>
           <li class="col-sm-2">
-            <a href="offers.html">FAQ</a>
+            <a href="#">FAQ</a>
           </li>
           <li class="col-sm-2">
-            <a href="contact.html">Contact</a>
+            <a href="#">Contact</a>
           </li>
         </ul>
       </div>

@@ -1,78 +1,80 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: thiss
-  Date: 2/4/2018
-  Time: 1:21 πμ
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <%@include file="../fragments/head.jspf" %>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login-register.css">
   <title>Login</title>
 </head>
+
 <body>
 
-<div class="container">
+<%--Header--%>
+<%@include file="../fragments/topbar.jspf" %>
 
-  <div class="row">
-    <div class="col-xs-12 col-md-4 col-md-offset-4">
+<%
+  List<String> path = new ArrayList<>(Collections.singletonList("Login"));
+  pageContext.setAttribute("path", path);
+%>
 
-      <div class="panel my-panel">
+<%--Breadcrumbs--%>
+<%@include file="../fragments/breadcrumbs.jspf" %>
 
-        <div class="panel-heading">
+<%--Register--%>
+<div class="register">
 
-          <div class="row">
-            <div class="col-xs-12">
-              <h1 class="text-center text-primary my-header">Login</h1>
+  <div class="container">
+
+    <h2>Login</h2>
+
+    <div class="login-form-grids">
+
+      <form:form method="post" modelAttribute="user">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <form:label path="username">Username</form:label>
+            <form:errors cssClass="error" path="username"/>
+            <div class="form-group">
+              <form:input cssClass="form-control no-space" path="username" pattern="[^\s]+"/>
             </div>
           </div>
-
         </div>
 
-        <hr>
-
-        <div class="panel-body">
-
-          <form:form method="post" modelAttribute="user">
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="username">Username</form:label>
-                <form:errors cssClass="error" path="username"/>
-                <div class="form-group">
-                  <form:input cssClass="form-control no-space" path="username" pattern="[^\s]+"/>
-                </div>
-              </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <form:label path="password">Password</form:label>
+            <form:errors cssClass="error" path="password"/>
+            <div class="form-group">
+              <form:password id="password" cssClass="form-control no-space" path="password" pattern="[^\s]+"/>
             </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <form:label path="password">Password</form:label>
-                <form:errors cssClass="error" path="password"/>
-                <div class="form-group">
-                  <form:password id="password" cssClass="form-control no-space" path="password" pattern="[^\s]+"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <input class="btn btn-primary my-btn" type="submit" value="Insert">
-              </div>
-            </div>
-
-          </form:form>
-
+          </div>
         </div>
-      </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <input type="submit" value="Login">
+          </div>
+        </div>
+
+      </form:form>
+
     </div>
+
+    <div class="register-home">
+      <a href="${pageContext.request.contextPath}/">Home</a>
+    </div>
+
   </div>
 </div>
+<%--//Register --%>
 
-<%@include file="../fragments/footer_scripts.jspf" %>
+<%--Footer--%>
+<%@include file="../fragments/footer.jspf" %>
+
 <script src="${pageContext.request.contextPath}/js/no-space.js"></script>
 
 </body>
