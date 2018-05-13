@@ -7,7 +7,9 @@ import java.util.Collection;
 @SuppressWarnings("RedundantIfStatement")
 @NamedQueries({
         @NamedQuery(name = "Listing.getAll", query = "SELECT l FROM Listing l"),
+        @NamedQuery(name = "Listing.getAllAvailable", query = "SELECT l FROM Listing l WHERE l.statusByStatusId.statusId = 1"),
         @NamedQuery(name = "Listing.getByProductId", query = "SELECT l FROM Listing l WHERE l.productByProductId.productId = :id"),
+        @NamedQuery(name = "Listing.getAvailableByProductId", query = "SELECT l FROM Listing l WHERE l.productByProductId.productId = :id AND l.statusByStatusId.statusId = 1")
 })
 @Entity
 public class Listing {

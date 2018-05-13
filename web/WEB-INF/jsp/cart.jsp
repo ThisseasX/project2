@@ -97,7 +97,7 @@
           <li style="font-size: 22px">Total Price<i> :</i> <span>$${cart.totalPrice}</span></li>
         </ul>
         <a href="#"><h4>Proceed to Checkout</h4></a>
-        <button onclick="modifyCart('clear')">Clear Cart</button>
+        <button onclick="modifyCart('clear', -1)">Clear Cart</button>
       </div>
       <div class="checkout-right-basket">
         <a href="${pageContext.request.contextPath}/products">

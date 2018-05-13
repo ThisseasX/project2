@@ -44,6 +44,11 @@
                 </c:forEach>
 
               </div>
+
+              <button onclick="window.location.href='${pageContext.request.contextPath}/products'" class="product-button">
+                  View All Products
+              </button>
+
             </ul>
           </li>
           <li class="dropdown col-sm-2">
