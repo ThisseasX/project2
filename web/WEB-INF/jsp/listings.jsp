@@ -43,7 +43,7 @@
         <c:forEach items="${listings}" var="l">
           <tr>
             <td>${l.listingId}</td>
-            <td>${l.userByUserId.username}</td>
+            <td>${l.userByUserId.email}</td>
             <td>${l.unitByUnitId.unitName}</td>
             <td>${l.listingQuantity}</td>
             <td>${l.pricePerUnit}</td>

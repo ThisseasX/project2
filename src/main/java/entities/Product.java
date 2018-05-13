@@ -17,6 +17,7 @@ public class Product {
     private String imagePath;
     private Double basePriceIn;
     private Double basePriceOut;
+    private Integer discount;
     private Collection<Listing> listingsByProductId;
     private Collection<Wish> wishesByProductId;
     private Category categoryByCategoryId;
@@ -69,6 +70,16 @@ public class Product {
 
     public void setBasePriceOut(Double basePriceOut) {
         this.basePriceOut = basePriceOut;
+    }
+
+    @Basic
+    @Column(name = "discount", nullable = false)
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
     }
 
     @Override

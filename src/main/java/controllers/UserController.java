@@ -50,7 +50,7 @@ public class UserController {
                            HttpSession session) {
 
         if (userService.exists(user) != null)
-            result.rejectValue("username", "username.exists", "Username already exists!");
+            result.rejectValue("email", "email.exists", "email already exists!");
 
         if (result.hasErrors()) return "register";
 
@@ -75,7 +75,7 @@ public class UserController {
             session.setAttribute("user", u);
             return "redirect:/";
         } else {
-            result.rejectValue("username", "login.fail", "Login Failed");
+            result.rejectValue("email", "login.fail", "Login Failed");
             return "login";
         }
     }

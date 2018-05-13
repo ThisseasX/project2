@@ -36,10 +36,10 @@
 
         <div class="row">
           <div class="col-xs-12">
-            <form:label path="username">Username</form:label>
-            <form:errors cssClass="error" path="username"/>
+            <form:label path="email">Email</form:label>
+            <form:errors cssClass="error" path="email"/>
             <div class="form-group">
-              <form:input cssClass="form-control no-space" path="username" pattern="[^\s]+"/>
+              <form:input cssClass="form-control no-space" path="email" pattern="[^\s]+"/>
             </div>
           </div>
         </div>

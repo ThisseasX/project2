@@ -17,6 +17,7 @@ public class Listing {
     private Integer listingId;
     private Integer listingQuantity;
     private Integer pricePerUnit;
+    private String listingName;
     private Timestamp listingDate;
     private Product productByProductId;
     private User userByUserId;
@@ -58,6 +59,16 @@ public class Listing {
     }
 
     @Basic
+    @Column(name = "listing_name", nullable = false)
+    public String getListingName() {
+        return listingName;
+    }
+
+    public void setListingName(String listingName) {
+        this.listingName = listingName;
+    }
+
+    @Basic
     @Column(name = "listing_date", nullable = false)
     public Timestamp getListingDate() {
         return listingDate;
@@ -72,7 +83,7 @@ public class Listing {
         return cartQuantity;
     }
 
-    public void setCartQuantity(Integer cartQuantity) {
+    public void setCartQuantity(int cartQuantity) {
         this.cartQuantity = cartQuantity;
     }
 

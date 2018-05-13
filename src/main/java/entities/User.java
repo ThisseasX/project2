@@ -12,13 +12,13 @@ import java.util.Collection;
 @SuppressWarnings("RedundantIfStatement")
 @NamedQueries({
         @NamedQuery(name = "User.getAll", query = "SELECT u FROM User u"),
-        @NamedQuery(name = "User.getByUsername", query = "SELECT u FROM User u where u.username = :username")
+        @NamedQuery(name = "User.getByEmail", query = "SELECT u FROM User u where u.email = :email")
 })
 @Entity
 public class User implements Serializable {
 
     private Integer userId;
-    private String username;
+    private String email;
     private String password;
     private String name;
     private String surname;
@@ -40,15 +40,15 @@ public class User implements Serializable {
     }
 
     @NotBlank(message = "Must not be empty!")
-    @Size(max = 50, message = "Cannot exceed {max} characters!")
+    @Size(max = 100, message = "Cannot exceed {max} characters!")
     @Basic
-    @Column(name = "username", nullable = false, length = 50)
-    public String getUsername() {
-        return username;
+    @Column(name = "email", nullable = false, length = 100)
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username.replaceAll("\\s+", "");
+    public void setEmail(String email) {
+        this.email = email.replaceAll("\\s+", "");
     }
 
     @NotBlank(message = "Must not be empty!")
@@ -95,7 +95,7 @@ public class User implements Serializable {
         User user = (User) o;
 
         if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
@@ -106,7 +106,7 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);

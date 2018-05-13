@@ -50,7 +50,7 @@
         <c:forEach items="${cart.items}" var="l">
           <tr id="row_${l.listingId}" class="rem1">
             <td class="invert">${l.listingId}</td>
-            <td class="invert-image"><a href="single.html"><img src="images/1.png" alt=" " class="img-responsive"/></a>
+            <td class="invert-image"><a href="${pageContext.request.contextPath}/listings/${l.productByProductId.productId}"><img src="${l.productByProductId.imagePath}" alt=" " class="img-responsive"/></a>
             </td>
             <td class="invert">${l.productByProductId.productName}</td>
             <td class="invert">${l.userByUserId.name}</td>
