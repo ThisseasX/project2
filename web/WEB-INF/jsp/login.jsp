@@ -6,6 +6,7 @@
 <html>
 <head>
   <%@include file="../fragments/head.jspf" %>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login-register.css">
   <title>Login</title>
 </head>
 

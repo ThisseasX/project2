@@ -16,11 +16,11 @@ public class CartService {
     private EntityManager em;
 
     @Transactional
-    public void modify(HttpSession session, String action, Integer id) {
+    public void modify(HttpSession session, String action, int id) {
         Cart c = (Cart) session.getAttribute("cart");
         if (c == null) c = new Cart();
 
-        if (id == null && action.equals("clear")) {
+        if (action.equals("clear")) {
             session.setAttribute("cart", null);
             return;
         }

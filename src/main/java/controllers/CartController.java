@@ -34,7 +34,7 @@ public class CartController {
     @PostMapping("/{action}/{id}")
     public ResponseEntity addToCart(HttpSession session,
                                     @PathVariable String action,
-                                    @PathVariable(required = false) Integer id) {
+                                    @PathVariable int id) {
         cartService.modify(session, action, id);
         return new ResponseEntity(HttpStatus.OK);
     }
