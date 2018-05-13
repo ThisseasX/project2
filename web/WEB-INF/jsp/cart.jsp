@@ -128,8 +128,6 @@
     <div class="checkout-left">
       <div class="checkout-left-basket">
         <ul>
-          <jsp:useBean id="cart" scope="session" class="model.Cart"/>
-          <c:forEach items="${cart.items}" var="l">
           <%--<li>Product1 <i>-</i> <span>$15.00 </span></li>--%>
           <%--<li>Product2 <i>-</i> <span>$25.00 </span></li>--%>
           <%--<li>Product3 <i>-</i> <span>$29.00 </span></li>--%>
