@@ -60,10 +60,10 @@ public class Cart {
                 .sum();
     }
 
-    public int getTotalNumber() {
+    public int getTotalQuantity() {
         return items
                 .stream()
-                .mapToInt((a) -> a.getCartQuantity())
+                .mapToInt(Listing::getCartQuantity)
                 .sum();
     }
 }

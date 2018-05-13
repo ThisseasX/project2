@@ -1,82 +1,37 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: thiss
-  Date: 1/4/2018
-  Time: 11:12 μμ
-  To change this template use File | Settings | File Templates.
---%>
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <%@include file="../fragments/head.jspf" %>
   <title>Cart</title>
 </head>
+
 <body>
 
-<div class="container">
+<%--Header--%>
+<%@include file="../fragments/topbar.jspf" %>
 
-  <div class="jumbotron">
-    <h1 class="text-center">Cart</h1>
-  </div>
+<%
+  List<String> path = new ArrayList<>(Collections.singletonList("Cart"));
+  pageContext.setAttribute("path", path);
+%>
 
-  <%--<div class="row">--%>
-  <%--<div class="col-md-6 col-md-offset-3">--%>
+<%--Breadcrumbs--%>
+<%@include file="../fragments/breadcrumbs.jspf" %>
 
-  <%--<table class="table table-bordered table-hover table-striped">--%>
-  <%--<thead>--%>
-  <%--<tr>--%>
-  <%--<th>ID</th>--%>
-  <%--<th>Name</th>--%>
-  <%--<th>User</th>--%>
-  <%--<th>Quantity</th>--%>
-  <%--<th>Cart</th>--%>
-  <%--<th>Price Per Unit</th>--%>
-  <%--<th>Total</th>--%>
-  <%--<th>Action</th>--%>
-  <%--</tr>--%>
-  <%--</thead>--%>
-  <%--<tbody>--%>
-  <%--<jsp:useBean id="cart" scope="session" class="model.Cart"/>--%>
-  <%--<c:forEach items="${cart.items}" var="l">--%>
-  <%--<tr id="row_${l.listingId}">--%>
-  <%--<td>${l.listingId}</td>--%>
-  <%--<td>${l.productByProductId.productName}</td>--%>
-  <%--<td>${l.userByUserId.name}</td>--%>
-  <%--<td>${l.listingQuantity}</td>--%>
-  <%--<td id="cart_${l.listingId}">${l.cartQuantity}</td>--%>
-  <%--<td id="price_${l.listingId}">${l.pricePerUnit}</td>--%>
-  <%--<td id="total_${l.listingId}">${l.cartQuantity * l.pricePerUnit}</td>--%>
-  <%--<td>--%>
-  <%--<button type="button"--%>
-  <%--class="btn btn-danger btn-number"--%>
-  <%--onclick="subtractFromCart(${l.listingId})">--%>
-  <%--<span class="glyphicon glyphicon-minus"></span>--%>
-  <%--</button>--%>
-  <%--</td>--%>
-  <%--</tr>--%>
-  <%--</c:forEach>--%>
-  <%--</tbody>--%>
-  <%--</table>--%>
-
-  <%--<h1 style="background-color: red; color: white;">--%>
-  <%--${cart.totalPrice}--%>
-  <%--</h1>--%>
-
-  <%--<button onclick="clearCart()">--%>
-  <%--Clear Cart--%>
-  <%--</button>--%>
-
-  <%--</div>--%>
-  <%--</div>--%>
-</div>
+<jsp:useBean id="cart" scope="session" class="model.Cart"/>
 
 <!-- checkout -->
 <div class="checkout">
   <div class="container">
-    <h2>Your shopping cart contains: <span>${cart.totalNumber} Products</span></h2>
+    <h2>Your shopping cart contains: <span>${cart.totalQuantity} Products</span></h2>
     <div class="checkout-right">
+
       <table class="timetable_sub">
+
         <thead>
         <tr>
           <th>SL No.</th>
@@ -90,8 +45,8 @@
           <th>Remove</th>
         </tr>
         </thead>
+
         <tbody>
-        <jsp:useBean id="cart" scope="session" class="model.Cart"/>
         <c:forEach items="${cart.items}" var="l">
           <tr id="row_${l.listingId}" class="rem1">
             <td class="invert">${l.listingId}</td>
@@ -103,9 +58,15 @@
             <td id="cart_${l.listingId}" class="invert">
               <div class="quantity">
                 <div class="quantity-select">
-                  <div class="entry value-minus">&nbsp;</div>
+                  <div class="entry value-minus"
+                       onclick="modifyCart('subtract',${l.listingId})">
+                    &nbsp;
+                  </div>
                   <div class="entry value"><span>${l.cartQuantity}</span></div>
-                  <div class="entry value-plus active">&nbsp;</div>
+                  <div class="entry value-plus active"
+                       onclick="modifyCart('add',${l.listingId})">
+                    &nbsp;
+                  </div>
                 </div>
               </div>
             </td>
@@ -113,17 +74,19 @@
             <td id="total_${l.listingId}" class="invert">$${l.cartQuantity * l.pricePerUnit}</td>
             <td class="invert">
               <div class="rem">
-                  <button type="button"
-                          class="btn btn-danger btn-number"
-                          onclick="subtractFromCart(${l.listingId})">
-                    <span class="glyphicon glyphicon-minus"></span>
-                  </button>
+                <button type="button"
+                        class="btn btn-danger btn-number"
+                        onclick="modifyCart('remove',${l.listingId})">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
               </div>
             </td>
           </tr>
         </c:forEach>
         </tbody>
+
       </table>
+
     </div>
     <div class="checkout-left">
       <div class="checkout-left-basket">
@@ -134,11 +97,14 @@
           <li style="font-size: 22px">Total Price<i> :</i> <span>$${cart.totalPrice}</span></li>
         </ul>
         <a href="#"><h4>Proceed to Checkout</h4></a>
-            <button onclick="clearCart()">Clear Cart</button>
+        <button onclick="modifyCart('clear')">Clear Cart</button>
       </div>
       <div class="checkout-right-basket">
-        <a href="#"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue
-          Shopping</a>
+        <a href="${pageContext.request.contextPath}/products">
+          <span class="glyphicon glyphicon-menu-left"
+                aria-hidden="true"></span>
+          Continue Shopping
+        </a>
       </div>
       <div class="clearfix"></div>
     </div>
@@ -146,20 +112,15 @@
 </div>
 <!-- //checkout -->
 
-<%@include file="../fragments/footer_scripts.jspf" %>
+<%--Footer--%>
+<%@include file="../fragments/footer.jspf" %>
 
 <script>
 
-    function clearCart() {
-        $.post("${pageContext.request.contextPath}/cart/clear", () => {
-            location.reload()
-        })
-    }
-
-    function subtractFromCart(id) {
-        $.post("${pageContext.request.contextPath}/cart/" + id + "/subtract").always(
-            location.reload()
-        )
+    function modifyCart(action, id) {
+        $
+            .post("${pageContext.request.contextPath}/cart/" + action + "/" + id)
+            .always(location.reload())
     }
 
 </script>

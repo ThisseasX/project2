@@ -82,7 +82,7 @@
     }
 
     function addToCart(id) {
-        $.post("${pageContext.request.contextPath}/cart/" + id + "/add");
+        $.post("${pageContext.request.contextPath}/cart/add/" + id);
     }
 
 </script>

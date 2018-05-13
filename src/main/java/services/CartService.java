@@ -16,14 +16,27 @@ public class CartService {
     private EntityManager em;
 
     @Transactional
-    public void modify(HttpSession session, int id, String action) {
+    public void modify(HttpSession session, String action, Integer id) {
         Cart c = (Cart) session.getAttribute("cart");
         if (c == null) c = new Cart();
 
+        if (id == null && action.equals("clear")) {
+            session.setAttribute("cart", null);
+            return;
+        }
+
         Listing l = em.find(Listing.class, id);
 
-        if (action.equals("add")) c.add(l);
-        else if (action.equals("subtract")) c.subtract(l);
+        switch (action) {
+            case "add":
+                c.add(l);
+                break;
+            case "subtract":
+                c.subtract(l);
+                break;
+            case "remove":
+                c.remove(l);
+        }
 
         session.setAttribute("cart", c);
     }

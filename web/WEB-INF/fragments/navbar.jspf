@@ -61,12 +61,11 @@
                     <li>
                       <a href="#">Manage Account</a>
                     </li>
-
+                    <li>
+                      <a href="${pageContext.request.contextPath}/cart">My Cart</a>
+                    </li>
                     <c:choose>
                       <c:when test="${sessionScope.user ne null}">
-                        <li>
-                          <a href="${pageContext.request.contextPath}/cart">My Cart</a>
-                        </li>
                         <li>
                           <a href="${pageContext.request.contextPath}/wishlist">My Wishlist</a>
                         </li>

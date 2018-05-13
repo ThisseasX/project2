@@ -31,19 +31,19 @@ public class CartController {
         return "cart";
     }
 
-    @PostMapping("/{id}/{action}")
+    @PostMapping("/{action}/{id}")
     public ResponseEntity addToCart(HttpSession session,
-                                    @PathVariable int id,
-                                    @PathVariable String action) {
-        cartService.modify(session, id, action);
+                                    @PathVariable String action,
+                                    @PathVariable(required = false) Integer id) {
+        cartService.modify(session, action, id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping("/clear")
-    public ResponseEntity clearCart(HttpSession session) {
-        session.setAttribute("cart", null);
-        return new ResponseEntity(HttpStatus.OK);
-    }
+//    @PostMapping("/clear")
+//    public ResponseEntity clearCart(HttpSession session) {
+//        session.setAttribute("cart", null);
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
 
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
