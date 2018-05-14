@@ -52,7 +52,7 @@
             <td class="invert">${l.listingId}</td>
             <td class="invert-image"><a href="${pageContext.request.contextPath}/listings/${l.productByProductId.productId}"><img src="${l.productByProductId.imagePath}" alt=" " class="img-responsive"/></a>
             </td>
-            <td class="invert">${l.productByProductId.productName}</td>
+            <td class="invert">${l.listingName}</td>
             <td class="invert">${l.userByUserId.name}</td>
             <td class="invert">${l.listingQuantity}</td>
             <td id="cart_${l.listingId}" class="invert">
@@ -96,7 +96,7 @@
           <%--<li>Product3 <i>-</i> <span>$29.00 </span></li>--%>
           <li style="font-size: 22px">Total Price<i> :</i> <span>$${cart.totalPrice}</span></li>
         </ul>
-        <a href="#"><h4>Proceed to Checkout</h4></a>
+        <a href="${pageContext.request.contextPath}/cart/checkout"><h4>Proceed to Checkout</h4></a>
         <button onclick="modifyCart('clear', -1)">Clear Cart</button>
       </div>
       <div class="checkout-right-basket">

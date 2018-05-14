@@ -24,19 +24,19 @@
     <div class="row">
       <div class="col-md-6">
 
-            <h2>45</h2>
-            <p>%</p>
-            <p>Off</p>
+        <h2>45</h2>
+        <p>%</p>
+        <p>Off</p>
 
-            <h2>Sale</h2>
+        <h2>Sale</h2>
 
-            <h3 class="title">Just hurry up limited offer!</h3>
-            <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+        <h3 class="title">Just hurry up limited offer!</h3>
+        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
 
-            <p>
-              <a href="#" class="btn btn-primary">Shop Now</a>
-              <a href="#" class="btn btn-primary btn-outline">Read more</a>
-            </p>
+        <p>
+          <a href="#" class="btn btn-primary">Shop Now</a>
+          <a href="#" class="btn btn-primary btn-outline">Read more</a>
+        </p>
 
       </div>
     </div>

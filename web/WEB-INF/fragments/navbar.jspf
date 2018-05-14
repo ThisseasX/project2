@@ -64,7 +64,7 @@
                     <h6>My Account</h6>
 
                     <li>
-                      <a href="#">Manage Account</a>
+                      <a href="${pageContext.request.contextPath}/admin/listings/all">Manage</a>
                     </li>
                     <li>
                       <a href="${pageContext.request.contextPath}/cart">My Cart</a>

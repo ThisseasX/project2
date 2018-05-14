@@ -8,18 +8,31 @@
       </p>
     </div>
 
-    <c:if test="${sessionScope.user eq null}">
-      <div class="nav_login">
-        <ul>
-          <li>
-            <a href="${pageContext.request.contextPath}/users/login">Login</a>
-          </li>
-          <li>
-            <a href="${pageContext.request.contextPath}/users/register">Register</a>
-          </li>
-        </ul>
-      </div>
-    </c:if>
+    <c:choose>
+      <c:when test="${sessionScope.user eq null}">
+        <div class="nav_login">
+          <ul>
+            <li>
+              <a href="${pageContext.request.contextPath}/users/login">Login</a>
+            </li>
+            <li>
+              <a href="${pageContext.request.contextPath}/users/register">Register</a>
+            </li>
+          </ul>
+        </div>
+      </c:when>
+      <c:otherwise>
+        <%--<c:catch>--%>
+        <div class="nav_login">
+          <ul>
+            <li>
+              <a id="user_balance">Balance: ${sessionScope.user.accountsByUserId[0].balance}&euro;</a>
+            </li>
+          </ul>
+        </div>
+        <%--</c:catch>--%>
+      </c:otherwise>
+    </c:choose>
 
     <div class="product_list_header">
       <form action="#" method="post" class="last">

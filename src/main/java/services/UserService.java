@@ -21,16 +21,23 @@ public class UserService {
                 .getResultList();
     }
 
-    public User getByUsername(String username) {
+    private User getByEmail(String email) {
         return em
                 .createNamedQuery("User.getByEmail", User.class)
-                .setParameter("email", username)
+                .setParameter("email", email)
                 .getSingleResult();
+    }
+
+    public User getAdmin() {
+        return em
+                .createNamedQuery("User.getAdmin", User.class)
+                .getResultList()
+                .get(0);
     }
 
     public User exists(User u) {
         try {
-            return getByUsername(u.getEmail());
+            return getByEmail(u.getEmail());
         } catch (Exception e) {
             e.printStackTrace();
         }

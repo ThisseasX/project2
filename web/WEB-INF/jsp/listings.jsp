@@ -46,14 +46,23 @@
             <td>${l.userByUserId.email}</td>
             <td>${l.unitByUnitId.unitName}</td>
             <td>${l.listingQuantity}</td>
-            <td>${l.pricePerUnit}</td>
-            <td>${l.productByProductId.basePriceIn}</td>
-            <td>${l.productByProductId.basePriceOut}</td>
+            <td>${l.pricePerUnit}&euro;</td>
+            <td>${l.productByProductId.basePriceIn}&euro;</td>
+            <td>${l.productByProductId.basePriceOut}&euro;</td>
             <td>${l.listingDate}</td>
             <td>
-              <button onclick="changeStatus(${l.listingId})" id="status_${l.listingId}">
-                  ${l.statusByStatusId.statusName}
-              </button>
+              <c:choose>
+                <c:when test="${l.statusByStatusId.statusId eq 3}">
+                  <p id="status_${l.listingId}">
+                      ${l.statusByStatusId.statusName}
+                  </p>
+                </c:when>
+                <c:otherwise>
+                  <button onclick="changeStatus(${l.listingId})" id="status_${l.listingId}">
+                      ${l.statusByStatusId.statusName}
+                  </button>
+                </c:otherwise>
+              </c:choose>
             </td>
             <td>
               <button onclick="addToCart(${l.listingId})" id="cart_${l.listingId}">

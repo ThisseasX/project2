@@ -3,7 +3,11 @@ package entities;
 import javax.persistence.*;
 
 @SuppressWarnings({"DefaultAnnotationParam", "RedundantIfStatement"})
-@NamedQuery(name = "Account.getAll", query = "SELECT a FROM Account a")
+@NamedQueries({
+        @NamedQuery(name = "Account.getAll", query = "SELECT a FROM Account a"),
+        @NamedQuery(name = "Account.getAllVendors", query = "SELECT a FROM Account a WHERE a.userByUserId.role.roleId = 2"),
+        @NamedQuery(name = "Account.getByUser", query = "SELECT a FROM Account a WHERE a.userByUserId = :user")
+})
 @Entity
 public class Account {
 
@@ -39,16 +43,13 @@ public class Account {
         Account account = (Account) o;
 
         if (accountId != null ? !accountId.equals(account.accountId) : account.accountId != null) return false;
-        if (balance != null ? !balance.equals(account.balance) : account.balance != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = accountId != null ? accountId.hashCode() : 0;
-        result = 31 * result + (balance != null ? balance.hashCode() : 0);
-        return result;
+        return accountId != null ? accountId.hashCode() : 0;
     }
 
     @ManyToOne

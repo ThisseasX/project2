@@ -2,24 +2,35 @@ package services;
 
 import entities.Listing;
 import entities.Status;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public class ListingService {
 
+    private AccountService accountService;
+
     @PersistenceContext
     private EntityManager em;
 
+    @Autowired
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
     @Transactional
-    public String changeListingStatus(int id) {
+    public String changeListingStatus(HttpSession session, int id) {
         Listing listing = em.find(Listing.class, id);
         Status status = null;
 
-        switch (listing.getStatusByStatusId().getStatusId()) {
+        int statusId = listing.getStatusByStatusId().getStatusId();
+        switch (statusId) {
             case 1:
                 status = em.find(Status.class, 2);
                 break;
@@ -28,10 +39,21 @@ public class ListingService {
                 status = em.find(Status.class, 1);
         }
 
+        if (statusId == 4) {
+            accountService.buyAsCoop(session, listing);
+        }
+
         listing.setStatusByStatusId(status);
         em.merge(listing);
 
         //noinspection ConstantConditions
         return status.getStatusName();
+    }
+
+    public List<Listing> getAll(String query) {
+        if (query.equals("All")) query = "";
+        return em
+                .createNamedQuery("Listing.getAll" + query, Listing.class)
+                .getResultList();
     }
 }

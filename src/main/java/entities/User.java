@@ -12,7 +12,8 @@ import java.util.Collection;
 @SuppressWarnings("RedundantIfStatement")
 @NamedQueries({
         @NamedQuery(name = "User.getAll", query = "SELECT u FROM User u"),
-        @NamedQuery(name = "User.getByEmail", query = "SELECT u FROM User u where u.email = :email")
+        @NamedQuery(name = "User.getByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
+        @NamedQuery(name = "User.getAdmin", query = "SELECT u FROM User u WHERE u.role.roleId = 1")
 })
 @Entity
 public class User implements Serializable {
@@ -113,7 +114,7 @@ public class User implements Serializable {
         return result;
     }
 
-    @OneToMany(mappedBy = "userByUserId")
+    @OneToMany(mappedBy = "userByUserId", fetch = FetchType.EAGER)
     public Collection<Account> getAccountsByUserId() {
         return accountsByUserId;
     }
