@@ -28,6 +28,10 @@
 <div class="checkout">
   <div class="container">
     <h2>Your shopping cart contains: <span>${cart.totalQuantity} Products</span></h2>
+    <%--@elvariable id="error" type="java.lang.String"--%>
+    <c:if test="${error ne null and error.length() gt 0}">
+      <h2 style="color: red">Failed to checkout - Insufficient Balance</h2>
+    </c:if>
     <div class="checkout-right">
 
       <table class="timetable_sub">
@@ -50,7 +54,9 @@
         <c:forEach items="${cart.items}" var="l">
           <tr id="row_${l.listingId}" class="rem1">
             <td class="invert">${l.listingId}</td>
-            <td class="invert-image"><a href="${pageContext.request.contextPath}/listings/${l.productByProductId.productId}"><img src="${l.productByProductId.imagePath}" alt=" " class="img-responsive"/></a>
+            <td class="invert-image"><a
+                href="${pageContext.request.contextPath}/listings/${l.productByProductId.productId}"><img
+                src="${l.productByProductId.imagePath}" alt=" " class="img-responsive"/></a>
             </td>
             <td class="invert">${l.listingName}</td>
             <td class="invert">${l.userByUserId.name}</td>

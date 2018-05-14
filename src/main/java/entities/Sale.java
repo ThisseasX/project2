@@ -11,10 +11,18 @@ public class Sale {
     private Integer saleId;
     private Integer saleQuantity;
     private Timestamp saleDate;
-    private Byte paid;
     private Listing listingByListingId;
 
+    public Sale() {
+    }
+
+    public Sale(Listing listingByListingId) {
+        this.saleQuantity = listingByListingId.getCartQuantity();
+        this.listingByListingId = listingByListingId;
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sale_id", nullable = false)
     public Integer getSaleId() {
         return saleId;
@@ -44,16 +52,6 @@ public class Sale {
         this.saleDate = saleDate;
     }
 
-    @Basic
-    @Column(name = "paid", nullable = false)
-    public Byte getPaid() {
-        return paid;
-    }
-
-    public void setPaid(Byte paid) {
-        this.paid = paid;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,7 +62,6 @@ public class Sale {
         if (saleId != null ? !saleId.equals(sale.saleId) : sale.saleId != null) return false;
         if (saleQuantity != null ? !saleQuantity.equals(sale.saleQuantity) : sale.saleQuantity != null) return false;
         if (saleDate != null ? !saleDate.equals(sale.saleDate) : sale.saleDate != null) return false;
-        if (paid != null ? !paid.equals(sale.paid) : sale.paid != null) return false;
 
         return true;
     }
@@ -74,7 +71,6 @@ public class Sale {
         int result = saleId != null ? saleId.hashCode() : 0;
         result = 31 * result + (saleQuantity != null ? saleQuantity.hashCode() : 0);
         result = 31 * result + (saleDate != null ? saleDate.hashCode() : 0);
-        result = 31 * result + (paid != null ? paid.hashCode() : 0);
         return result;
     }
 
