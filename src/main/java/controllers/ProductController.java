@@ -65,7 +65,7 @@ public class ProductController {
                 genericService.getByTargetId(Listing.class, Product.class, id, isAdmin);
 
         m.addAttribute("listings", listings);
-        return "listings";
+        return "products2";
     }
 
     @ModelAttribute("categories")
