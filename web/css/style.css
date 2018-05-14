@@ -14,12 +14,6 @@ html, body {
     transition: .5s;
 }
 
-/* .sticky {
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-} */
-
 .navigation-agileits.sticky {
     background-color: #333333;
     position: sticky;
@@ -94,6 +88,10 @@ i.badge.badge-notify.my-cart-badge {
     font-size: 1em;
     color: #fff;
     top: 1em;
+}
+
+.product_list_header form {
+    float: right;
 }
 
 input[type="submit"], #PPMiniCart .minicart-submit, .w3ls_vegetables ul li a, input[type="reset"], .agileinfo_mail_grid_left ul li a, .events_bottom_left2 ul li a, .w3ls_service_grids1_right a, ul.agileits_social_icons li a, .w3l_banner_nav_right_banner_pet a, .w3ls_w3l_banner_nav_right_grid_head_grid ul li a, .products-breadcrumb ul li a, .w3_footer_grid ul li a, .w3l_fresh_vegetables_grid ul li a, .wthree_footer_copy p a, .agile_top_brand_left_grid1 .button, .logo_left ul.special_items li a, .logo_left ul.phone_email li a {
@@ -258,6 +256,12 @@ button.w3view-cart:focus {
     line-height: 1;
 }
 
+.company_logo h1 a img {
+    max-width: 100%;
+    height: auto;
+    padding-top: 5px;
+}
+
 .logo_left {
     float: left;
     margin-top: 0.6em;
@@ -359,6 +363,10 @@ ul.multi-column-dropdown h6 {
     color: #999 !important;
     white-space: normal;
     font-weight: 500 !important;
+}
+
+.multi-column-dropdown li a:hover {
+    color: rgb(0, 0, 0) !important;
 }
 
 .dropdown-menu.columns-3 {
@@ -3068,7 +3076,7 @@ h3.agileits-icons-title {
     }
 
     .brand_name {
-        width: 52%;
+        width: 46%;
     }
 
     .nav_login {
@@ -3428,7 +3436,7 @@ h3.agileits-icons-title {
     }
 
     .brand_name {
-        width: 56%;
+        width: 48%;
     }
 
     .nav_login ul li {
@@ -4326,4 +4334,69 @@ section {
 
 .product-button:hover {
     background-color: #fe9126;
+}
+
+.navbar-toggle.navbar-toggle1.collapsed {
+    background-color:#fe9126;
+    border: #fe9126;
+    padding: 10px 11px;
+    transition: .5s;
+}
+
+.navbar-toggle.navbar-toggle1.collapsed:hover {
+    /* background-color:#dddddd;
+    border: #dddddd; */
+    background-color:#ffffff;
+    border: #ffffff;
+}
+
+.row.product-row {
+    display: flex;
+}
+
+@media only screen and (max-width:768px) {
+    .row.product-row {
+        display: block;
+    }
+
+    .dropdown-menu.columns-3 {
+        min-width: 100%;
+    }
+
+    .navbar-default .navbar-nav li a.sticky:hover {
+        color: #333 !important;
+        /* font-size: 17px; */
+    }
+
+    .navigation-agileits.sticky {
+        background-color: #fe9126;
+        position: initial;
+        top: auto;
+        z-index: 9999;
+        max-height: none;
+    }
+
+    .navbar-default .navbar-nav li a.sticky {
+        color: #fff;
+        font-size: 18px;
+        padding: 0 0;
+    }
+}
+
+.navbar-default .navbar-nav.extra li {
+    margin-left: 0;
+    margin-right: 0;
+    /* padding-left: 0;
+    padding-right: 0; */
+    padding: 0;
+}
+
+.navbar-default .navbar-nav.extra li a {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    transition: .5s;
+    padding-left: 0;
+    padding-right: 0;
 }
