@@ -2,6 +2,7 @@ package services;
 
 import entities.Listing;
 import entities.Status;
+import exceptions.InsufficientBalanceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -40,7 +41,11 @@ public class ListingService {
         }
 
         if (statusId == 4) {
-            accountService.buyAsCoop(session, listing);
+            try {
+                accountService.buyAsCoop(session, listing);
+            } catch (InsufficientBalanceException e) {
+                return "Insufficient Balance";
+            }
         }
 
         listing.setStatusByStatusId(status);
@@ -55,5 +60,11 @@ public class ListingService {
         return em
                 .createNamedQuery("Listing.getAll" + query, Listing.class)
                 .getResultList();
+    }
+
+    @Transactional
+    public void addNewListing(Listing l) {
+        l.setStatusByStatusId(em.find(Status.class, 4));
+        em.persist(l);
     }
 }

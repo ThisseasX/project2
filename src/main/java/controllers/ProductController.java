@@ -1,16 +1,15 @@
 package controllers;
 
-import entities.Category;
-import entities.Listing;
-import entities.Product;
-import entities.User;
+import entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import services.GenericService;
+import services.ListingService;
 import services.WishService;
 
 import javax.servlet.http.HttpSession;
@@ -21,12 +20,14 @@ import java.util.List;
 public class ProductController {
 
     private final GenericService genericService;
+    private final ListingService listingService;
     private final WishService wishService;
 
     @Autowired
     public ProductController(GenericService genericService,
-                             WishService wishService) {
+                             ListingService listingService, WishService wishService) {
         this.genericService = genericService;
+        this.listingService = listingService;
         this.wishService = wishService;
     }
 
@@ -66,6 +67,25 @@ public class ProductController {
 
         m.addAttribute("listings", listings);
         return "listings";
+    }
+
+    @GetMapping("/listings/new")
+    public String newListingForm(@ModelAttribute("listing") Listing listing,
+                                 Model m) {
+        List<Product> products = genericService.getAll(Product.class, true);
+        List<Unit> units = genericService.getAll(Unit.class, true);
+        m.addAttribute("all_units", units);
+        m.addAttribute("all_products", products);
+        return "new-listing";
+    }
+
+    @PostMapping("/listings/new")
+    public String newListing(@ModelAttribute("listing") Listing listing,
+                             HttpSession session) {
+        User u = (User) session.getAttribute("user");
+        listing.setUserByUserId(u);
+        listingService.addNewListing(listing);
+        return "redirect:/";
     }
 
     @ModelAttribute("categories")

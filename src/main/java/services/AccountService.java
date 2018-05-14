@@ -1,8 +1,7 @@
 package services;
 
-import entities.Account;
-import entities.Listing;
-import entities.User;
+import entities.*;
+import exceptions.InsufficientBalanceException;
 import model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,7 +26,7 @@ public class AccountService {
     }
 
     @Transactional
-    public void buyAsCoop(HttpSession session, Listing listing) {
+    public void buyAsCoop(HttpSession session, Listing listing) throws InsufficientBalanceException {
         Account coop = em.find(Account.class, 1);
         Account vendor = getUserAccount(listing.getUserByUserId());
 
@@ -39,7 +38,7 @@ public class AccountService {
     }
 
     @Transactional
-    public void checkoutAsClient(HttpSession session) {
+    public void checkoutAsClient(HttpSession session) throws InsufficientBalanceException {
         User u = (User) session.getAttribute("user");
         Cart cart = (Cart) session.getAttribute("cart");
 
@@ -55,6 +54,19 @@ public class AccountService {
 
         session.setAttribute("cart", null);
         session.setAttribute("user", em.find(User.class, u.getUserId()));
+    }
+
+    private void finalizeCart(Cart cart) {
+        for (Listing l : cart.getItems()) {
+            recordSale(l);
+            subtractQuantity(l);
+            em.merge(l);
+        }
+    }
+
+    private void recordSale(Listing l) {
+        Sale s = new Sale(l);
+        em.persist(s);
     }
 
     private void splitProfits(double amount) {
@@ -78,23 +90,16 @@ public class AccountService {
                 .getResultList();
     }
 
-    private void finalizeCart(Cart cart) {
-        for (Listing l : cart.getItems()) {
-            subtractQuantity(l);
-            em.merge(l);
+    private void subtractQuantity(Listing l) {
+        l.setListingQuantity(l.getListingQuantity() - l.getCartQuantity());
+        if (l.getListingQuantity() < 1) {
+            l.setStatusByStatusId(em.find(Status.class, 3));
         }
     }
 
-    private void subtractQuantity(Listing l) {
-        l.setListingQuantity(l.getListingQuantity() - l.getCartQuantity());
-    }
-
-    public double getBalance(HttpSession session) {
-        return getUserAccount((User) session.getAttribute("user")).getBalance();
-    }
-
     @Transactional
-    public void transferBalance(Account from, Account to, double amount) {
+    public void transferBalance(Account from, Account to, double amount) throws InsufficientBalanceException {
+        if (from.getBalance() - amount < 0) throw new InsufficientBalanceException();
         subtractBalance(from, amount);
         addBalance(to, amount);
     }
@@ -107,6 +112,10 @@ public class AccountService {
     private void addBalance(Account to, double amount) {
         to.setBalance(to.getBalance() + amount);
         em.merge(to);
+    }
+
+    public double getBalance(HttpSession session) {
+        return getUserAccount((User) session.getAttribute("user")).getBalance();
     }
 
     private Account getUserAccount(User u) {

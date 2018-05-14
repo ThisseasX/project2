@@ -1,12 +1,14 @@
 package controllers;
 
 import entities.Category;
+import exceptions.InsufficientBalanceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import services.AccountService;
 import services.CartService;
 import services.GenericService;
@@ -44,13 +46,18 @@ public class CartController {
     }
 
     @GetMapping("/checkout")
-    public String checkout(HttpSession session, Model m) {
+    public String checkout(HttpSession session, Model m, RedirectAttributes redirectAttributes) {
 
         if (session.getAttribute("user") == null) return "redirect:/users/login";
         if (session.getAttribute("cart") == null) return "redirect:/listings";
 
         m.addAttribute("checked_out_cart", session.getAttribute("cart"));
-        accountService.checkoutAsClient(session);
+        try {
+            accountService.checkoutAsClient(session);
+        } catch (InsufficientBalanceException e) {
+            redirectAttributes.addFlashAttribute("error", "Insufficient Balance");
+            return "redirect:/cart";
+        }
         return "checkout";
     }
 
