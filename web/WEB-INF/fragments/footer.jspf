@@ -174,11 +174,11 @@
         if (window.pageYOffset >= sticky) {
             // navbar.classList.add("sticky");
             $('.navigation-agileits').addClass('sticky');
-            $('.navbar-default .navbar-nav li a').addClass('sticky');
+            $('.navbar-default .navbar-nav.extra li a').addClass('sticky');
         } else {
             // navbar.classList.remove("sticky");
             $('.navigation-agileits').removeClass('sticky');
-            $('.navbar-default .navbar-nav li a').removeClass('sticky');
+            $('.navbar-default .navbar-nav.extra li a').removeClass('sticky');
         }
     }
 </script>

@@ -263,9 +263,14 @@ button.w3view-cart:focus {
 }
 
 .logo_left {
+    font-family: 'Raleway', sans-serif;
+    font-weight:700;
+    font-size: 20px;
+    margin-bottom:7px;
+    padding:0;
     float: left;
     margin-top: 0.6em;
-    width: 33.33%;
+    width: 32.33%;
 }
 
 .logo_left ul.phone_email li {
@@ -296,12 +301,10 @@ button.w3view-cart:focus {
 
 .navbar-default .navbar-nav li a:hover {
     color: #333333 !important;
-    font-size: 20px;
 }
 
 .navbar-default .navbar-nav li a.sticky:hover {
     color: #fe9126 !important;
-    font-size: 17px;
 }
 
 .logo-nav-left1 ul li.active a.act {
