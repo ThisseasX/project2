@@ -7,7 +7,9 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @SuppressWarnings("RedundantIfStatement")
 @NamedQueries({
@@ -23,11 +25,11 @@ public class User implements Serializable {
     private String password;
     private String name;
     private String surname;
-    private Collection<Account> accountsByUserId;
-    private Collection<Contact> contactsByUserId;
     private Collection<Listing> listingsByUserId;
     private Collection<Wish> wishesByUserId;
     private Role role;
+    private Contact contact;
+    private Account account;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -114,24 +116,6 @@ public class User implements Serializable {
         return result;
     }
 
-    @OneToMany(mappedBy = "userByUserId", fetch = FetchType.EAGER)
-    public Collection<Account> getAccountsByUserId() {
-        return accountsByUserId;
-    }
-
-    public void setAccountsByUserId(Collection<Account> accountsByUserId) {
-        this.accountsByUserId = accountsByUserId;
-    }
-
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<Contact> getContactsByUserId() {
-        return contactsByUserId;
-    }
-
-    public void setContactsByUserId(Collection<Contact> contactsByUserId) {
-        this.contactsByUserId = contactsByUserId;
-    }
-
     @OneToMany(mappedBy = "userByUserId")
     public Collection<Listing> getListingsByUserId() {
         return listingsByUserId;
@@ -164,5 +148,24 @@ public class User implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Transient
+    @OneToOne(mappedBy = "userByUserId")
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    @OneToOne(mappedBy = "userByUserId")
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

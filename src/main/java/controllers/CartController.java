@@ -2,6 +2,7 @@ package controllers;
 
 import entities.Category;
 import exceptions.InsufficientBalanceException;
+import model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,11 +39,12 @@ public class CartController {
     }
 
     @PostMapping("/{action}/{id}")
-    public ResponseEntity addToCart(HttpSession session,
-                                    @PathVariable String action,
-                                    @PathVariable int id) {
+    public ResponseEntity<Integer> addToCart(HttpSession session,
+                                             @PathVariable String action,
+                                             @PathVariable int id) {
         cartService.modify(session, action, id);
-        return new ResponseEntity(HttpStatus.OK);
+        Cart c = (Cart) session.getAttribute("cart");
+        return new ResponseEntity<>(c.getTotalQuantity(), HttpStatus.OK);
     }
 
     @GetMapping("/checkout")

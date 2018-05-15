@@ -1,16 +1,14 @@
 package controllers;
 
 import entities.Category;
+import entities.Contact;
 import entities.Role;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import services.GenericService;
 import services.UserService;
 
@@ -32,7 +30,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    // TODO: Might have to reposition this
     @GetMapping("/all")
     public String getAll(Model m) {
         m.addAttribute("list", userService.getAll());
@@ -40,23 +37,56 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String registerForm(@ModelAttribute User user) {
+    public String registerChoice() {
+        return "register-choice";
+    }
+
+    @GetMapping("/register/{type}")
+    public String registerForm(@ModelAttribute("user") User user,
+                               @PathVariable int type,
+                               Model m) {
+
+        m.addAttribute("type", type);
         return "register";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/register/{type}")
     public String register(@Valid @ModelAttribute("user") User user,
                            BindingResult result,
+                           @PathVariable int type,
                            HttpSession session) {
+
+        switch (type) {
+            case 2:
+            case 3:
+                user.setRole(genericService.getById(Role.class, type));
+                break;
+            default:
+                return "redirect:/users/register";
+        }
 
         if (userService.exists(user) != null)
             result.rejectValue("email", "email.exists", "email already exists!");
+
+        Contact c = null;
+        if (type == 2) {
+            c = user.getContact();
+            if (c.getCity().isEmpty()) result.rejectValue("contact.city", "city.empty", "Must not be empty!");
+            if (c.getRegion().isEmpty()) result.rejectValue("contact.region", "region.empty", "Must not be empty!");
+            if (c.getAddress().isEmpty()) result.rejectValue("contact.address", "address.empty", "Must not be empty!");
+            if (c.getSsn().isEmpty()) result.rejectValue("contact.ssn", "ssn.empty", "Must not be empty!");
+        }
 
         if (result.hasErrors()) return "register";
 
         userService.register(user);
 
-        session.setAttribute("user", user);
+        if (type == 2) {
+            c.setUserByUserId(user);
+            userService.insertContact(c);
+        }
+
+        session.setAttribute("user", genericService.getById(User.class, user.getUserId()));
 
         return "redirect:/";
     }

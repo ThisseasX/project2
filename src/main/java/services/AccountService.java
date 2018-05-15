@@ -28,7 +28,7 @@ public class AccountService {
     @Transactional
     public void buyAsCoop(HttpSession session, Listing listing) throws InsufficientBalanceException {
         Account coop = em.find(Account.class, 1);
-        Account vendor = getUserAccount(listing.getUserByUserId());
+        Account vendor = listing.getUserByUserId().getAccount();
 
         double amount = listing.getPricePerUnit() * listing.getListingQuantity();
 
@@ -44,7 +44,7 @@ public class AccountService {
 
         double amount = cart.getTotalPrice();
 
-        Account client = getUserAccount(u);
+        Account client = u.getAccount();
         Account coop = em.find(Account.class, 1);
 
         transferBalance(client, coop, amount);
@@ -71,7 +71,7 @@ public class AccountService {
 
     private void splitProfits(double amount) {
         List<Account> vendorAccounts = getAllVendorAccounts();
-        int vendors = vendorAccounts.size();
+        int vendors = vendorAccounts.size() > 1 ? vendorAccounts.size() : 1;
 
         double half = amount / 2;
         double share = half / vendors;
@@ -115,14 +115,6 @@ public class AccountService {
     }
 
     public double getBalance(HttpSession session) {
-        return getUserAccount((User) session.getAttribute("user")).getBalance();
-    }
-
-    private Account getUserAccount(User u) {
-        return em
-                .createNamedQuery("Account.getByUser", Account.class)
-                .setParameter("user", u)
-                .getResultList()
-                .get(0);
+        return ((User) session.getAttribute("user")).getAccount().getBalance();
     }
 }

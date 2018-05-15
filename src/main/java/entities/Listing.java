@@ -21,6 +21,7 @@ public class Listing {
     private Integer listingQuantity;
     private Integer pricePerUnit;
     private String listingName;
+    private String imagePath;
     private Timestamp listingDate;
     private Product productByProductId;
     private User userByUserId;
@@ -69,6 +70,16 @@ public class Listing {
 
     public void setListingName(String listingName) {
         this.listingName = listingName;
+    }
+
+    @Basic
+    @Column(name = "image_path", nullable = false, length = -1)
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     @Basic

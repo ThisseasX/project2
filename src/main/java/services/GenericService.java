@@ -26,4 +26,8 @@ public class GenericService {
                 .setParameter("id", id)
                 .getResultList();
     }
+
+    public <T> T getById(Class<T> c, int id) {
+        return em.find(c, id);
+    }
 }

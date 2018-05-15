@@ -1,5 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
@@ -16,7 +16,8 @@
 <%@include file="../fragments/topbar.jspf" %>
 
 <%
-  List<String> path = new ArrayList<>(Collections.singletonList("Register"));
+  String type = ((int) pageContext.findAttribute("type")) == 2 ? "Vendor" : "Client";
+  List<String> path = new ArrayList<>(Arrays.asList("Register", type));
   pageContext.setAttribute("path", path);
 %>
 
@@ -33,6 +34,8 @@
     <div class="login-form-grids">
 
       <form:form method="post" modelAttribute="user">
+
+        <h6>Login information</h6>
 
         <div class="row">
           <div class="col-xs-12">
@@ -83,18 +86,51 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <form:label path="role.roleId">Role</form:label>
-            <form:errors cssClass="error" path="role.roleId"/>
-            <div class="form-group">
-              <form:select path="role.roleId">
-                <form:option value="0" label="Select an Option"/>
-                <form:options title="role" items="${all_roles}" itemValue="roleId" itemLabel="roleName"/>
-              </form:select>
+        <c:if test="${type eq 2}">
+
+          <h6>Contact information</h6>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <form:label path="contact.city">Name</form:label>
+              <form:errors cssClass="error" path="contact.city"/>
+              <div class="form-group">
+                <form:input cssClass="form-control capitalize" path="contact.city" pattern="{1,30}"/>
+              </div>
             </div>
           </div>
-        </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <form:label path="contact.region">Region</form:label>
+              <form:errors cssClass="error" path="contact.region"/>
+              <div class="form-group">
+                <form:input cssClass="form-control capitalize" path="contact.region" pattern="{1,30}"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <form:label path="contact.address">Address</form:label>
+              <form:errors cssClass="error" path="contact.address"/>
+              <div class="form-group">
+                <form:input cssClass="form-control capitalize" path="contact.address" pattern="{1,30}"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <form:label path="contact.ssn">SSN</form:label>
+              <form:errors cssClass="error" path="contact.ssn"/>
+              <div class="form-group">
+                <form:input cssClass="form-control no-space capitalize" path="contact.ssn" pattern="[0-9]{1,30}"/>
+              </div>
+            </div>
+          </div>
+
+        </c:if>
 
         <div class="row">
           <div class="col-xs-12">

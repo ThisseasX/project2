@@ -5,8 +5,7 @@ import javax.persistence.*;
 @SuppressWarnings({"DefaultAnnotationParam", "RedundantIfStatement"})
 @NamedQueries({
         @NamedQuery(name = "Account.getAll", query = "SELECT a FROM Account a"),
-        @NamedQuery(name = "Account.getAllVendors", query = "SELECT a FROM Account a WHERE a.userByUserId.role.roleId = 2"),
-        @NamedQuery(name = "Account.getByUser", query = "SELECT a FROM Account a WHERE a.userByUserId = :user")
+        @NamedQuery(name = "Account.getAllVendors", query = "SELECT a FROM Account a JOIN User u ON a.userByUserId = u AND u.role.roleId = 2")
 })
 @Entity
 public class Account {
@@ -52,8 +51,8 @@ public class Account {
         return accountId != null ? accountId.hashCode() : 0;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     public User getUserByUserId() {
         return userByUserId;
     }

@@ -14,7 +14,19 @@ public class Contact {
     private String ssn;
     private User userByUserId;
 
+    public Contact() {
+    }
+
+    public Contact(User userByUserId, String city, String region, String address, String ssn) {
+        this.userByUserId = userByUserId;
+        this.city = city;
+        this.region = region;
+        this.address = address;
+        this.ssn = ssn;
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contact_id", nullable = false)
     public Integer getContactId() {
         return contactId;
@@ -90,8 +102,8 @@ public class Contact {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     public User getUserByUserId() {
         return userByUserId;
     }

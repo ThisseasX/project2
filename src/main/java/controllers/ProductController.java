@@ -44,10 +44,17 @@ public class ProductController {
         User u = (User) session.getAttribute("user");
         m.addAttribute("wishlist", wishService.getWishListByUser(u));
 
-        List<Product> products = id == null ?
-                genericService.getAll(Product.class, true) :
-                genericService.getByTargetId(Product.class, Category.class, id, true);
+        List<Product> products;
+        String selected;
+        if (id == null) {
+            selected = "All Products";
+            products = genericService.getAll(Product.class, true);
+        } else {
+            selected = genericService.getById(Category.class, id).getCategoryName();
+            products = genericService.getByTargetId(Product.class, Category.class, id, true);
+        }
 
+        m.addAttribute("selected", selected);
         m.addAttribute("products", products);
         return "products";
     }
@@ -61,12 +68,19 @@ public class ProductController {
         boolean isAdmin = false;
         if (u != null) isAdmin = u.isAdmin();
 
-        List<Listing> listings = id == null ?
-                genericService.getAll(Listing.class, isAdmin) :
-                genericService.getByTargetId(Listing.class, Product.class, id, isAdmin);
+        List<Listing> listings;
+        String selected;
+        if (id == null) {
+            selected = "All Products";
+            listings = genericService.getAll(Listing.class, isAdmin);
+        } else {
+            selected = genericService.getById(Product.class, id).getProductName();
+            listings = genericService.getByTargetId(Listing.class, Product.class, id, isAdmin);
+        }
 
+        m.addAttribute("selected", selected);
         m.addAttribute("listings", listings);
-        return "products2";
+        return "products";
     }
 
     @GetMapping("/listings/new")
