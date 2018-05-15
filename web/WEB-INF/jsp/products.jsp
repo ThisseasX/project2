@@ -6,7 +6,7 @@
 <html>
 <head>
   <%@include file="../fragments/head.jspf" %>
-  <title>Products2</title>
+  <title>Products</title>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
     <div class="col-md-8 products-right">
       <div class="products-right-grid">
         <div class="products-right-grids">
-          <h2>${selected}</h2>
+          <div class="product-title">${selected}</div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -79,7 +79,7 @@
                                 ${pageContext.request.contextPath}/${listings[i].productByProductId.imagePath}
                               </c:otherwise>
                             </c:choose>"></a>
-                          <p>${listings[i].listingName}</p>
+                          <div class="product-name">${listings[i].listingName}</div>
                           <h4>${listings[i].pricePerUnit}&euro;</h4>
                         </div>
                         <div class="snipcart-details top_brand_home_details">
@@ -95,8 +95,11 @@
                               <input type="hidden" name="unit" value="${listings[i].unitByUnitId.unitId}">
                               <input type="hidden" name="return" value=" ">
                               <input type="hidden" name="cancel_return" value=" ">
-                              <input onclick="addToCart(${listings[i].listingId})" name="submit"
-                                     value="Add to cart" class="button">
+                              <input type="button" onclick="addToCart(${listings[i].listingId})" name="submit"
+                                     value="cart" class="button">
+                              <form action="#">
+                                <input type="button" class="button2" value="wishlist">
+                              </form>
                             </fieldset>
                           </form>
                         </div>
@@ -130,7 +133,7 @@
                           <a href="${pageContext.request.contextPath}/listings/${products[i].productId}"><img title=" "
                                                                                                               alt=" "
                                                                                                               src="${pageContext.request.contextPath}/${products[i].imagePath}"></a>
-                          <p>${products[i].productName}</p>
+                          <div class="product-name">${products[i].productName}</div>
                         </div>
                       </div>
                     </figure>

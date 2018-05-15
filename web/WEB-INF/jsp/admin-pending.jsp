@@ -26,11 +26,26 @@
 <div class="checkout">
   <div class="container">
 
-    <button><a href="${pageContext.request.contextPath}/admin/listings/all">All</a></button>
-    <button><a href="${pageContext.request.contextPath}/admin/listings/available">Active</a></button>
-    <button><a href="${pageContext.request.contextPath}/admin/listings/inactive">Inactive</a></button>
-    <button><a href="${pageContext.request.contextPath}/admin/listings/depleted">Depleted</a></button>
-    <button><a href="${pageContext.request.contextPath}/admin/listings/pending">Pending</a></button>
+    <div class="btn-group btn-group-justified">
+      <a href="${pageContext.request.contextPath}/admin/listings/all" class="btn btn-primary">All</a>
+      <a href="${pageContext.request.contextPath}/admin/listings/available" class="btn btn-primary">Active</a>
+      <a href="${pageContext.request.contextPath}/admin/listings/inactive" class="btn btn-primary">Inactive</a>
+      <a href="${pageContext.request.contextPath}/admin/listings/depleted" class="btn btn-primary">Depleted</a>
+      <a href="${pageContext.request.contextPath}/admin/listings/pending" class="btn btn-primary">Pending</a>
+    </div>
+
+    <div class="btn-group-justified">
+      <a href="${pageContext.request.contextPath}/admin/listings/all" class="button-admin-choice-middle"
+         style="border-radius: 10px 0 0 0">All</a>
+      <a href="${pageContext.request.contextPath}/admin/listings/available"
+         class="button-admin-choice-middle">Active</a>
+      <a href="${pageContext.request.contextPath}/admin/listings/inactive"
+         class="button-admin-choice-middle">Inactive</a>
+      <a href="${pageContext.request.contextPath}/admin/listings/depleted"
+         class="button-admin-choice-middle">Depleted</a>
+      <a href="${pageContext.request.contextPath}/admin/listings/pending" class="button-admin-choice-middle"
+         style="border-radius: 0 10px 0 0">Pending</a>
+    </div>
 
     <div class="checkout-right">
 
@@ -63,7 +78,7 @@
             <td>${l.listingDate}</td>
             <td>${l.pricePerUnit * l.listingQuantity}&euro;</td>
             <td>
-              <button onclick="changeStatusId(${l.listingId})" id="status_${l.listingId}">
+              <button class="btn btn-info" onclick="changeStatusId(${l.listingId})" id="status_${l.listingId}">
                   ${l.statusByStatusId.statusName}
               </button>
             </td>
