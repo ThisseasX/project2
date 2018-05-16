@@ -1841,7 +1841,7 @@ ul.paging {
     font-weight: 700;
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 .filter-price h3 {

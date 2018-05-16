@@ -83,8 +83,10 @@
                                 ${pageContext.request.contextPath}/${listings[i].productByProductId.imagePath}
                               </c:otherwise>
                             </c:choose>"></a>
-                          <div class="product-name">${listings[i].listingName}</div>
+                          <div class="product-name">${listings[i].listingName}<br>
+                            <div style="color: #3399cc"> by ${listings[i].userByUserId.name}</div></div>
                           <h4>${listings[i].pricePerUnit}&euro;</h4>
+
                         </div>
                         <div class="snipcart-details top_brand_home_details">
                           <form action="${pageContext.request.contextPath}/cart/add/${listings[i].listingId}"
