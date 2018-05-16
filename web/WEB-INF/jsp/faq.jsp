@@ -50,7 +50,7 @@
       <li class="item5"><a href="#" title="click here"><h4 style="color: #3399cc">How can i contact you?</h4></a>
         <ul>
           <li class="subitem1"><p> Complaints? Feedback? Or just saying a quick hello?
-            <br>Whatever it is, let u know <a href="#" style="text-decoration:none">here</a>!
+            <br>Whatever it is, let u know <a href="${pageContext.request.contextPath}/contact" style="text-decoration:none">here</a>!
             <br> Please insert your name, your email, and whatever you want to tell us!</p></li>
         </ul>
       </li>

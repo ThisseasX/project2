@@ -101,7 +101,7 @@
             <a href="${pageContext.request.contextPath}/faq">FAQ</a>
           </li>
           <li class="col-sm-2">
-            <a href="#">Contact</a>
+            <a href="${pageContext.request.contextPath}/contact">Contact</a>
           </li>
         </ul>
       </div>

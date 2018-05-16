@@ -35,7 +35,8 @@ public class HomeController {
     }
 
     @GetMapping("/faq")
-    public String faq() {
-        return "faq";
-    }
+    public String faq() { return "faq"; }
+
+    @GetMapping("/contact")
+    public String contact() { return "contact"; }
 }
