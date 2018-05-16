@@ -4,12 +4,10 @@ import entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import services.GenericService;
 import services.ListingService;
+import services.ProductService;
 import services.WishService;
 
 import javax.servlet.http.HttpSession;
@@ -21,13 +19,15 @@ public class ProductController {
 
     private final GenericService genericService;
     private final ListingService listingService;
+    private final ProductService productService;
     private final WishService wishService;
 
     @Autowired
     public ProductController(GenericService genericService,
-                             ListingService listingService, WishService wishService) {
+                             ListingService listingService, ProductService productService, WishService wishService) {
         this.genericService = genericService;
         this.listingService = listingService;
+        this.productService = productService;
         this.wishService = wishService;
     }
 
@@ -84,22 +84,80 @@ public class ProductController {
     }
 
     @GetMapping("/listings/new")
-    public String newListingForm(@ModelAttribute("listing") Listing listing,
-                                 Model m) {
+    public String newListingChoice(Model m) {
         List<Product> products = genericService.getAll(Product.class, true);
-        List<Unit> units = genericService.getAll(Unit.class, true);
-        m.addAttribute("all_units", units);
         m.addAttribute("all_products", products);
+        return "new-listing-choice";
+    }
+
+    @GetMapping("/listings/new/{id}")
+    public String newListingForm(@PathVariable int id,
+                                 Model m) {
+        Product selected = genericService.getById(Product.class, id);
+        Listing listing = new Listing();
+        listing.setPricePerUnit(selected.getBasePriceIn());
+        listing.setProductByProductId(selected);
+        m.addAttribute("listing", listing);
+        m.addAttribute("selected", selected);
         return "new-listing";
     }
 
-    @PostMapping("/listings/new")
-    public String newListing(@ModelAttribute("listing") Listing listing,
+    @PostMapping("/listings/new/{id}")
+    public String newListing(@RequestParam String listingName,
+                             @RequestParam int listingQuantity,
+                             @PathVariable int id,
                              HttpSession session) {
+        Product selected = genericService.getById(Product.class, id);
         User u = (User) session.getAttribute("user");
+
+        Listing listing = new Listing();
+        listing.setListingName(listingName);
+        listing.setListingQuantity(listingQuantity);
+        listing.setPricePerUnit(selected.getBasePriceIn());
+        listing.setProductByProductId(selected);
         listing.setUserByUserId(u);
+
         listingService.addNewListing(listing);
-        return "redirect:/";
+        return "redirect:/listings/" + id;
+    }
+
+    @GetMapping("/products/new")
+    public String newProductChoice(Model m) {
+        List<Category> categories = genericService.getAll(Category.class, true);
+        m.addAttribute("all_categories", categories);
+        return "new-product-choice";
+    }
+
+    @GetMapping("/products/new/{id}")
+    public String newProductForm(@PathVariable int id,
+                                 Model m) {
+        Category selected = genericService.getById(Category.class, id);
+        List<Unit> units = genericService.getAll(Unit.class, true);
+
+        m.addAttribute("all_units", units);
+        m.addAttribute("selected", selected);
+        return "new-product";
+    }
+
+    @PostMapping("/products/new/{id}")
+    public String newProduct(@RequestParam String productType,
+                             @RequestParam double pricePerUnit,
+                             @RequestParam int unitId,
+                             @PathVariable int id) {
+        Category selected = genericService.getById(Category.class, id);
+        Unit unit = genericService.getById(Unit.class, unitId);
+
+        Product product = new Product();
+        product.setBasePriceIn(pricePerUnit);
+        product.setBasePriceOut(pricePerUnit * 3);
+        product.setCategoryByCategoryId(selected);
+        product.setUnitByUnitId(unit);
+        product.setProductName(productType);
+        product.setDiscount(0);
+        product.setImagePath("images/no-image.png");
+
+        productService.addNewProduct(product);
+        return "redirect:/products/" + id;
     }
 
     @ModelAttribute("categories")

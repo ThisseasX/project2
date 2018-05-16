@@ -70,7 +70,7 @@
           <tr>
             <td>${l.listingId}</td>
             <td>${l.userByUserId.email}</td>
-            <td>${l.unitByUnitId.unitName}</td>
+            <td>${l.productByProductId.unitByUnitId.unitName}</td>
             <td>${l.listingQuantity}</td>
             <td>${l.pricePerUnit}&euro;</td>
             <td>${l.productByProductId.basePriceIn}&euro;</td>
@@ -78,7 +78,7 @@
             <td>${l.listingDate}</td>
             <td>${l.pricePerUnit * l.listingQuantity}&euro;</td>
             <td>
-              <button class="btn btn-info" onclick="changeStatusId(${l.listingId})" id="status_${l.listingId}">
+              <button style="width: 100%" class="btn btn-info" onclick="changeStatusId(${l.listingId})" id="status_${l.listingId}">
                   ${l.statusByStatusId.statusName}
               </button>
             </td>

@@ -67,6 +67,12 @@
                       <a href="${pageContext.request.contextPath}/admin/listings/all">Manage</a>
                     </li>
                     <li>
+                      <a href="${pageContext.request.contextPath}/listings/new">New Listing</a>
+                    </li>
+                    <li>
+                      <a href="${pageContext.request.contextPath}/products/new">New Product Type</a>
+                    </li>
+                    <li>
                       <a href="${pageContext.request.contextPath}/cart">My Cart</a>
                     </li>
                     <c:choose>

@@ -53,10 +53,10 @@ public class Cart {
         items.remove(l);
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return items
                 .stream()
-                .mapToInt((a) -> a.getCartQuantity() * a.getPricePerUnit())
+                .mapToDouble(a -> a.getCartQuantity() * a.getPricePerUnit())
                 .sum();
     }
 

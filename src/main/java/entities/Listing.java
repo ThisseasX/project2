@@ -19,14 +19,13 @@ public class Listing {
 
     private Integer listingId;
     private Integer listingQuantity;
-    private Integer pricePerUnit;
+    private Double pricePerUnit;
     private String listingName;
     private String imagePath;
     private Timestamp listingDate;
     private Product productByProductId;
     private User userByUserId;
     private Status statusByStatusId;
-    private Unit unitByUnitId;
     private Collection<Sale> salesByListingId;
 
     private int cartQuantity;
@@ -54,11 +53,11 @@ public class Listing {
 
     @Basic
     @Column(name = "price_per_unit", nullable = false)
-    public Integer getPricePerUnit() {
+    public Double getPricePerUnit() {
         return pricePerUnit;
     }
 
-    public void setPricePerUnit(Integer pricePerUnit) {
+    public void setPricePerUnit(Double pricePerUnit) {
         this.pricePerUnit = pricePerUnit;
     }
 
@@ -146,16 +145,6 @@ public class Listing {
 
     public void setStatusByStatusId(Status statusByStatusId) {
         this.statusByStatusId = statusByStatusId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "unit_id", referencedColumnName = "unit_id", nullable = false)
-    public Unit getUnitByUnitId() {
-        return unitByUnitId;
-    }
-
-    public void setUnitByUnitId(Unit unitByUnitId) {
-        this.unitByUnitId = unitByUnitId;
     }
 
     @OneToMany(mappedBy = "listingByListingId")

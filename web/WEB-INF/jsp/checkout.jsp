@@ -2,6 +2,7 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html>
 <head>
@@ -74,23 +75,15 @@
     <br>
     <h2 style="font-size:20px">Total Quantity: ${checked_out_cart.totalQuantity}
     <br>
-    Total Price: ${checked_out_cart.totalPrice}&euro;</h2>
+    <fmt:formatNumber var="totalPrice" minFractionDigits="0" maxFractionDigits="2"
+                      value="${checked_out_cart.totalPrice}"/>
+    <h2>Total Price: ${totalPrice}&euro;</h2>
   </div>
 </div>
 <!-- //checkout -->
 
 <%--Footer--%>
 <%@include file="../fragments/footer.jspf" %>
-
-<script>
-
-    function modifyCart(action, id) {
-        $
-            .post("${pageContext.request.contextPath}/cart/" + action + "/" + id)
-            .always(location.reload())
-    }
-
-</script>
 
 </body>
 </html>

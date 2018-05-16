@@ -10,7 +10,7 @@ public class Unit {
 
     private Integer unitId;
     private String unitName;
-    private Collection<Listing> listingsByUnitId;
+    private Collection<Product> productsByUnitId;
 
     @Id
     @Column(name = "unit_id", nullable = false)
@@ -53,11 +53,11 @@ public class Unit {
     }
 
     @OneToMany(mappedBy = "unitByUnitId")
-    public Collection<Listing> getListingsByUnitId() {
-        return listingsByUnitId;
+    public Collection<Product> getProductsByUnitId() {
+        return productsByUnitId;
     }
 
-    public void setListingsByUnitId(Collection<Listing> listingsByUnitId) {
-        this.listingsByUnitId = listingsByUnitId;
+    public void setProductsByUnitId(Collection<Product> productsByUnitId) {
+        this.productsByUnitId = productsByUnitId;
     }
 }

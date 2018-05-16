@@ -19,11 +19,13 @@ public class Product {
     private Double basePriceIn;
     private Double basePriceOut;
     private Integer discount;
+    private Unit unitByUnitId;
     private Collection<Listing> listingsByProductId;
     private Collection<Wish> wishesByProductId;
     private Category categoryByCategoryId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", nullable = false)
     public Integer getProductId() {
         return productId;
@@ -44,7 +46,7 @@ public class Product {
     }
 
     @Basic
-    @Column(name = "image_path", nullable = false, length = -1)
+    @Column(name = "image_path")
     public String getImagePath() {
         return imagePath;
     }
@@ -74,7 +76,7 @@ public class Product {
     }
 
     @Basic
-    @Column(name = "discount", nullable = false)
+    @Column(name = "discount")
     public Integer getDiscount() {
         return discount;
     }
@@ -96,6 +98,16 @@ public class Product {
     @Override
     public int hashCode() {
         return productId != null ? productId.hashCode() : 0;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "unit_id", referencedColumnName = "unit_id", nullable = false)
+    public Unit getUnitByUnitId() {
+        return unitByUnitId;
+    }
+
+    public void setUnitByUnitId(Unit unitByUnitId) {
+        this.unitByUnitId = unitByUnitId;
     }
 
     @OneToMany(mappedBy = "productByProductId")
