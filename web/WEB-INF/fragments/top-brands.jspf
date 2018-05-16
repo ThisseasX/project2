@@ -8,38 +8,40 @@
         <div id="myTabContent" class="tab-content">
           <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
 
-            <c:forEach var="i" begin="0" end="${discounts.size() - 1}">
-              <c:if test="${i eq 0 or i mod 3 eq 0}">
-                <div class="agile_top_brands_grids">
-              </c:if>
-              <div class="col-md-4 top_brand_left">
-                <div class="hover14 column">
-                  <div class="agile_top_brand_left_grid">
-                    <div class="agile_top_brand_left_grid_pos">
-                      <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
-                    </div>
-                    <div class="agile_top_brand_left_grid1">
-                      <figure>
-                        <div class="snipcart-item block">
-                          <div class="snipcart-thumb">
-                            <a href="${pageContext.request.contextPath}/listings/${discounts[i].productId}">
-                              <img title=" " alt=" "
-                                   src="${pageContext.request.contextPath}/${discounts[i].imagePath}"/>
-                            </a>
-                            <div class="product-name">${discounts[i].productName}</div>
-                            <h1 style="text-align: center">-${discounts[i].discount}%</h1>
+            <c:if test="${discounts.size() > 0}">
+              <c:forEach var="i" begin="0" end="${discounts.size() - 1}">
+                <c:if test="${i eq 0 or i mod 3 eq 0}">
+                  <div class="agile_top_brands_grids">
+                </c:if>
+                <div class="col-md-4 top_brand_left">
+                  <div class="hover14 column">
+                    <div class="agile_top_brand_left_grid">
+                      <div class="agile_top_brand_left_grid_pos">
+                        <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
+                      </div>
+                      <div class="agile_top_brand_left_grid1">
+                        <figure>
+                          <div class="snipcart-item block">
+                            <div class="snipcart-thumb">
+                              <a href="${pageContext.request.contextPath}/listings/${discounts[i].productId}">
+                                <img title=" " alt=" "
+                                     src="${pageContext.request.contextPath}/${discounts[i].imagePath}"/>
+                              </a>
+                              <div class="product-name">${discounts[i].productName}</div>
+                              <h1 style="text-align: center">-${discounts[i].discount}%</h1>
+                            </div>
                           </div>
-                        </div>
-                      </figure>
+                        </figure>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <c:if test="${i eq discounts.size() - 1 or i mod 3 eq 2}">
-                <div class="clearfix"></div>
-                </div>
-              </c:if>
-            </c:forEach>
+                <c:if test="${i eq discounts.size() - 1 or i mod 3 eq 2}">
+                  <div class="clearfix"></div>
+                  </div>
+                </c:if>
+              </c:forEach>
+            </c:if>
 
           </div>
         </div>

@@ -66,9 +66,11 @@
             <div class="col-md-4 top_brand_left">
               <div class="hover14 column">
                 <div class="agile_top_brand_left_grid">
-                  <div class="agile_top_brand_left_grid_pos">
-                    <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
-                  </div>
+                  <c:if test="${listings[i].productByProductId.discount > 1}">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
+                    </div>
+                  </c:if>
                   <div class="agile_top_brand_left_grid1">
                     <figure>
                       <div class="snipcart-item block">
@@ -88,19 +90,10 @@
                           <form action="${pageContext.request.contextPath}/cart/add/${listings[i].listingId}"
                                 method="post">
                             <fieldset>
-                              <input type="hidden" name="cmd" value="_cart">
-                              <input type="hidden" name="add" value="1">
-                              <input type="hidden" name="business" value=" ">
-                              <input type="hidden" name="item_name" value="${listings[i].listingName}">
-                              <input type="hidden" name="amount" value="${listings[i].pricePerUnit}">
-                              <input type="hidden" name="discount_amount" value="0.00">
-                              <input type="hidden" name="unit" value="${listings[i].unitByUnitId.unitId}">
-                              <input type="hidden" name="return" value=" ">
-                              <input type="hidden" name="cancel_return" value=" ">
                               <input type="button" onclick="addToCart(${listings[i].listingId})" name="submit"
                                      value="cart" class="button">
                               <form action="#">
-                                <input type="button" class="button2" value="wishlist">
+                                <input type="button" onclick="toggleWish(${listings[i].productByProductId.productId})" class="button2" value="wishlist">
                               </form>
                             </fieldset>
                           </form>
@@ -125,9 +118,11 @@
             <div class="col-md-4 top_brand_left">
               <div class="hover14 column">
                 <div class="agile_top_brand_left_grid">
-                  <div class="agile_top_brand_left_grid_pos">
-                    <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
-                  </div>
+                  <c:if test="${products[i].discount > 1}">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
+                    </div>
+                  </c:if>
                   <div class="agile_top_brand_left_grid1">
                     <figure>
                       <div class="snipcart-item block">
@@ -168,6 +163,15 @@
         $.post("${pageContext.request.contextPath}/cart/add/" + id, (data) => {
             $("#cart_quantity").text(data);
         });
+    }
+
+    function toggleWish(productId) {
+        // Stop Event Propagation
+        let e = window.event;
+        e.cancelBubble = true;
+        if (e.stopPropagation) e.stopPropagation();
+
+        $.post("${pageContext.request.contextPath}/wishlist/" + productId)
     }
 
 </script>

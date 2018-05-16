@@ -30,7 +30,7 @@ public class AccountService {
         Account coop = em.find(Account.class, 1);
         Account vendor = listing.getUserByUserId().getAccount();
 
-        double amount = listing.getPricePerUnit() * listing.getListingQuantity();
+        double amount = listing.getProductByProductId().getBasePriceIn() * listing.getListingQuantity();
 
         transferBalance(coop, vendor, amount);
 
@@ -112,9 +112,5 @@ public class AccountService {
     private void addBalance(Account to, double amount) {
         to.setBalance(to.getBalance() + amount);
         em.merge(to);
-    }
-
-    public double getBalance(HttpSession session) {
-        return ((User) session.getAttribute("user")).getAccount().getBalance();
     }
 }

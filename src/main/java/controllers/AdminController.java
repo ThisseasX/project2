@@ -20,13 +20,11 @@ import java.util.List;
 public class AdminController {
 
     private final GenericService genericService;
-    private final AccountService accountService;
     private final ListingService listingService;
 
     @Autowired
-    public AdminController(GenericService genericService, AccountService accountService, ListingService listingService) {
+    public AdminController(GenericService genericService, ListingService listingService) {
         this.genericService = genericService;
-        this.accountService = accountService;
         this.listingService = listingService;
     }
 
@@ -34,12 +32,6 @@ public class AdminController {
     public @ResponseBody
     String changeListingStatus(HttpSession session, @PathVariable int id) {
         return listingService.changeListingStatus(session, id);
-    }
-
-    @PostMapping("/balance")
-    public @ResponseBody
-    String getBalance(HttpSession session) {
-        return String.valueOf(accountService.getBalance(session));
     }
 
     @GetMapping("/listings/{query}")
