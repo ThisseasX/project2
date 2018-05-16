@@ -98,7 +98,7 @@
             <a href="${pageContext.request.contextPath}/about">About Us</a>
           </li>
           <li class="col-sm-2">
-            <a href="#">FAQ</a>
+            <a href="${pageContext.request.contextPath}/faq">FAQ</a>
           </li>
           <li class="col-sm-2">
             <a href="#">Contact</a>

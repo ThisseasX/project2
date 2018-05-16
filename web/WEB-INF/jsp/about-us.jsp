@@ -23,25 +23,25 @@
     <div class="about-agileinfo w3layouts">
       <div class="col-md-8 about-wthree-grids grid-top">
         <h4>We are a big cooperation of smaller sellers. </h4>
-        <p class="top"><br>Our clients can choose from a big variety of quality <a href="#"
+        <p class="top"><br>Our clients can choose from a big variety of quality <a href="${pageContext.request.contextPath}/listings"
                                                                                    style="text-decoration:none">products</a>,
           including fruits, vegetables, dry nuts, cereals, and even dairy products.<br><br>
-          Become a <a href="#" style="text-decoration:none; color:#fe9126">vendor</a> and have a chance to sell your
+          Become a <a href="${pageContext.request.contextPath}/users/register" style="text-decoration:none; color:#fe9126">vendor</a> and have a chance to sell your
           products
           in a wider audience, as well as having a share in our profit, using a state-of-the-art algorithm without any
           human interaction!</p>
-        <p>As a <a href="#" style="text-decoration:none; color:#3399cc">client</a>, you can create an account
+        <p>As a <a href="${pageContext.request.contextPath}/users/register" style="text-decoration:none; color:#3399cc">client</a>, you can create an account
           to stay informed about our sales and offers, and manage your very own cart and wishlist!<br><br>
-          Please refer to our <a href="#" style="text-decoration:none">FAQ</a> section, for more details. </p>
+          Please refer to our <a href="${pageContext.request.contextPath}/faq" style="text-decoration:none">FAQ</a> section, for more details. </p>
         <div class="about-w3agilerow">
           <div class="col-md-4 about-w3imgs">
-            <img src="images/pvs1.jpg" alt="" class="img-responsive zoom-img"/>
+            <img src="${pageContext.request.contextPath}/images/pvs1.jpg" alt="vegetables" class="img-responsive zoom-img"/>
           </div>
           <div class="col-md-4 about-w3imgs">
-            <img src="images/pfs1.jpg" alt="" class="img-responsive zoom-img"/>
+            <img src="${pageContext.request.contextPath}/images/pfs1.jpg" alt="fruits" class="img-responsive zoom-img"/>
           </div>
           <div class="col-md-4 about-w3imgs">
-            <img src="images/pds1.jpg" alt="" class="img-responsive zoom-img"/>
+            <img src="${pageContext.request.contextPath}/images/pds1.jpg" alt="dairy" class="img-responsive zoom-img"/>
           </div>
           <div class="clearfix"></div>
         </div>

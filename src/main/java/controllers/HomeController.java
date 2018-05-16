@@ -33,4 +33,9 @@ public class HomeController {
     public String aboutUs() {
         return "about-us";
     }
+
+    @GetMapping("/faq")
+    public String faq() {
+        return "faq";
+    }
 }
