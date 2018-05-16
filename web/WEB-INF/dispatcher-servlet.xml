@@ -33,6 +33,7 @@
     <bean id="genericService" class="services.GenericService"/>
     <bean id="cartService" class="services.CartService"/>
     <bean id="accountService" class="services.AccountService"/>
+    <bean id="productService" class="services.ProductService"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>

@@ -56,17 +56,13 @@
       </li>
 
     </ul>
-    <!-- script for tabs -->
-
-    <!-- script for tabs -->
   </div>
 </div>
-
-
 
 <%--Footer--%>
 <%@include file="../fragments/footer.jspf" %>
 
+<!-- script for tabs -->
 <script type="text/javascript">
     $(function() {
 
@@ -89,6 +85,7 @@
 
     });
 </script>
+<!-- script for tabs -->
 
 </body>
 </html>
