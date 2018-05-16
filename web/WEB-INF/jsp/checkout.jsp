@@ -26,13 +26,12 @@
 
 <!-- checkout -->
 <div class="faq-w3agile">
-  <div class="container" style="background-color:#f5f5f5; padding:20px 40px;
+  <h3>Checkout</h3>
+  <div class="container" style="background-color:#f5f5f5; margin-top:30px; padding:0px 40px;
     border: 1px solid rgba(153, 153, 153, 0.144); text-align: center">
-    <h3>Checkout</h3>
-    <h2 style="padding-top: 20px">Congratulations!<br>You just bought the following products:</h2>
-    <p>Total Quantity: ${checked_out_cart.totalQuantity}</p>
-    <p>Total Total Price: ${checked_out_cart.totalPrice}</p>
-    <p>Items:</p>
+
+    <h2 style="padding-top: 20px">Congratulations!<br>you just purchased the following products:</h2>
+
     <c:forEach var="i" begin="0" end="${checked_out_cart.items.size() - 1}">
       <c:if test="${i eq 0 or i mod 3 eq 0}">
         <div class="agile_top_brands_grids">
@@ -67,15 +66,16 @@
                         <input type="hidden" name="business" value=" ">
                         <input type="hidden" name="item_name" value="${checked_out_cart.items[i].listingName}">
                         <input type="hidden" name="amount" value="${checked_out_cart.items[i].pricePerUnit}">
+                        <input type="hidden" name="amount" value="${checked_out_cart.items[i].cartQuantity}">
                         <input type="hidden" name="discount_amount" value="0.00">
                         <input type="hidden" name="unit" value="${checked_out_cart.items[i].unitByUnitId.unitId}">
                         <input type="hidden" name="return" value=" ">
                         <input type="hidden" name="cancel_return" value=" ">
-                        <input type="button" onclick="addToCart(${checked_out_cart.items[i].listingId})" name="submit"
-                               value="cart" class="button">
-                        <form action="#">
-                          <input type="button" class="button2" value="wishlist">
-                        </form>
+                        <%--<input type="button" onclick="addToCart(${checked_out_cart.items[i].listingId})" name="submit"--%>
+                               <%--value="cart" class="button">--%>
+                        <%--<form action="#">--%>
+                          <%--<input type="button" class="button2" value="wishlist">--%>
+                        <%--</form>--%>
                       </fieldset>
                     </form>
                   </div>
@@ -90,6 +90,10 @@
         </div>
       </c:if>
     </c:forEach>
+    <br>
+    <h2>Total Quantity: ${checked_out_cart.totalQuantity}</h2>
+    <br>
+    <h2>Total Price: ${checked_out_cart.totalPrice}&euro;</h2>
   </div>
 </div>
 <!-- //checkout -->
