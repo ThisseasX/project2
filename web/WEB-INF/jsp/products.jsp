@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
@@ -72,11 +73,6 @@
                       <img src="${pageContext.request.contextPath}/images/offer.png" alt="offer" class="img-responsive">
                     </div>
                   </c:if>
-                  <input class="heart" style="padding:0; margin:0;" type="button" onclick="toggleWish(${listings[i].productByProductId.productId})" value="">
-
-                  <%--<div class="heart-checkbox">--%>
-                  <%--<label class="heart" onclick="toggleWish(${listings[i].productByProductId.productId})">❤</label>--%>
-                  <%--</div>--%>
                   <div class="agile_top_brand_left_grid1">
                     <figure>
                       <div class="snipcart-item block">
@@ -90,7 +86,8 @@
                               </c:otherwise>
                             </c:choose>"></a>
                           <div style="color:#fe9126" class="product-name">${listings[i].listingName}<br>
-                            <div style="color: #3399cc"> by ${listings[i].userByUserId.name}</div></div>
+                            <div style="color: #3399cc"> by ${listings[i].userByUserId.name}</div>
+                          </div>
                           <h4>${listings[i].pricePerUnit}&euro;</h4>
                         </div>
                         <div class="snipcart-details top_brand_home_details">
@@ -99,9 +96,9 @@
                             <fieldset>
                               <input type="button" onclick="addToCart(${listings[i].listingId})" name="submit"
                                      value="add to cart" class="button">
-                              <%--<form action="#">--%>
+                                <%--<form action="#">--%>
                                 <%--<input type="button" onclick="toggleWish(${listings[i].productByProductId.productId})" class="button2" value="wishlist">--%>
-                              <%--</form>--%>
+                                <%--</form>--%>
                             </fieldset>
                           </form>
                         </div>
@@ -129,6 +126,14 @@
                     <div class="agile_top_brand_left_grid_pos">
                       <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
                     </div>
+                  </c:if>
+                  <c:if test="${sessionScope.user ne null}">
+                    <input id="_${products[i].productId}" class="heart-checkbox" type="checkbox"
+                        <c:if test="${wishlist.contains(products[i])}">
+                          checked
+                        </c:if>
+                    />
+                    <label for="_${products[i].productId}" class="heart" onclick="toggleWish(${products[i].productId})">❤</label>
                   </c:if>
                   <div class="agile_top_brand_left_grid1">
                     <figure>

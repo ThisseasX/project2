@@ -24,145 +24,63 @@
 
 <div class="checkout">
   <div class="container">
-    <h2>Your wishlist contains: <span>0 Categories</span></h2>
+    <h2>Your wishlist contains: <span>${wishlist.size()} Categories</span></h2>
     <div class="checkout-right">
 
+      <table class="timetable_sub">
 
-      <%--<tbody>--%>
+        <thead>
+        <tr>
+          <th>SL No.</th>
+          <th>Image</th>
+          <th>Category Name</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
 
-      <c:choose>
-
-        <c:when test="${wishlist ne null and wishlist.size() > 0}">
-          <table class="timetable_sub">
-
-            <thead>
+        <tbody>
+        <c:if test="${wishlist ne null and wishlist.size() > 0}">
+          <c:forEach items="${wishlist}" var="p">
             <tr>
-              <th>SL No.</th>
-              <th>Image</th>
-              <th>Category Name</th>
-              <th>Remove</th>
-            </tr>
-            </thead>
-              <%--<table class="table table-bordered table-hover table-striped">--%>
-              <%--<thead>--%>
-              <%--<tr>--%>
-              <%--<th>ID</th>--%>
-              <%--<th>Product</th>--%>
-              <%--<th>Action</th>--%>
-              <%--</tr>--%>
-              <%--</thead>--%>
-            <tbody>
-            <c:forEach items="${wishlist}" var="p">
-              <tr>
-                <td><div class="common">${p.productId}</div></td>
-                <%--<td>${p.imagePath.}</td>--%>
-                <td class="invert-image">
-                  <a href="${pageContext.request.contextPath}/products/${p.productId}"><img
+              <td>
+                <div class="common">${p.productId}</div>
+              </td>
+              <td class="invert-image">
+                <a href="${pageContext.request.contextPath}/products/${p.productId}"><img
                     src="${p.imagePath}" alt=" " class="img-responsive"/></a>
-                </td>
-                <td><div class="common">${p.productName}</div></td>
-                <td>
-                  <input id="_${p.productId}" class="heart-checkbox" type="checkbox"
-                      <c:if test="${wishlist.contains(p)}">
-                        checked
-                      </c:if>
-                  />
-                  <label for="_${p.productId}" class="heart" onclick="toggleWish(${p.productId})">❤</label>
-                </td>
-              </tr>
-            </c:forEach>
-            </tbody>
-          </table>
-          <%--</table>--%>
-        </c:when>
-
-        <c:otherwise>
-
-          <table class="timetable_sub">
-
-            <thead>
-            <tr>
-              <th>SL No.</th>
-              <th>Image</th>
-              <th>Category Name</th>
-              <th>Remove</th>
+              </td>
+              <td>
+                <div class="common">${p.productName}</div>
+              </td>
+              <td>
+                <input id="_${p.productId}" class="heart-checkbox" type="checkbox"
+                    <c:if test="${wishlist.contains(p)}">
+                      checked
+                    </c:if>
+                />
+                <label for="_${p.productId}" class="heart" onclick="toggleWish(${p.productId})">❤</label>
+              </td>
             </tr>
-            </thead>
-            <tbody>
-            <tr>
+          </c:forEach>
+        </c:if>
 
-            </tr>
-            </tbody>
-          </table>
+        </tbody>
+
+      </table>
+
+        <c:if test="${wishlist eq null or wishlist.size() < 1}">
           <div style="text-align:center; font-size:22px; border-bottom:1px solid rgba(0,0,0,0.15);
             border-left:1px solid rgba(0,0,0,0.16); border-right:1px solid rgba(0,0,0,0.16); padding: 5px 0">
             You have no items in your wishlist. <br>Go add some!
           </div>
-
-        </c:otherwise>
-
-      </c:choose>
+        </c:if>
 
     </div>
   </div>
 </div>
 
-
-<%--</div>--%>
-<%--</div>--%>
-
-
-<%--<div class="container">--%>
-
-
-<%--<div class="row">--%>
-<%--<div class="col-md-6 col-md-offset-3">--%>
-
-<%--<c:choose>--%>
-
-<%--<c:when test="${wishlist ne null and wishlist.size() > 0}">--%>
-<%--<table class="table table-bordered table-hover table-striped">--%>
-<%--<thead>--%>
-<%--<tr>--%>
-<%--<th>ID</th>--%>
-<%--<th>Product</th>--%>
-<%--<th>Action</th>--%>
-<%--</tr>--%>
-<%--</thead>--%>
-<%--<tbody>--%>
-<%--<c:forEach items="${wishlist}" var="p">--%>
-<%--<tr>--%>
-<%--<td>${p.productId}</td>--%>
-<%--<td>${p.productName}</td>--%>
-<%--<td>--%>
-<%--<input id="_${p.productId}" class="heart-checkbox" type="checkbox"--%>
-<%--<c:if test="${wishlist.contains(p)}">--%>
-<%--checked--%>
-<%--</c:if>--%>
-<%--/>--%>
-<%--<label for="_${p.productId}" class="heart" onclick="toggleWish(${p.productId})">❤</label>--%>
-<%--</td>--%>
-<%--</tr>--%>
-<%--</c:forEach>--%>
-<%--</tbody>--%>
-<%--</table>--%>
-<%--</c:when>--%>
-
-<%--<c:otherwise>--%>
-<%--<h1 style="background-color: #f00">--%>
-<%--You have no items in your wishlist! Go add some!--%>
-<%--</h1>--%>
-<%--</c:otherwise>--%>
-
-<%--</c:choose>--%>
-
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-
 <%--Footer--%>
 <%@include file="../fragments/footer.jspf" %>
-<%--<%@include file="../fragments/footer_scripts.jspf" %>--%>
 
 <script>
 
