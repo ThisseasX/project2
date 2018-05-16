@@ -72,11 +72,11 @@
                       <img src="${pageContext.request.contextPath}/images/offer.png" alt="offer" class="img-responsive">
                     </div>
                   </c:if>
-                  <%--<input class="heart" style="padding:0; margin:0;" type="button" onclick="toggleWish(${listings[i].productByProductId.productId})" value="">--%>
+                  <input class="heart" style="padding:0; margin:0;" type="button" onclick="toggleWish(${listings[i].productByProductId.productId})" value="">
 
-                  <div class="heart-checkbox">
-                  <label class="heart" onclick="toggleWish(${listings[i].productByProductId.productId})">❤</label>
-                  </div>
+                  <%--<div class="heart-checkbox">--%>
+                  <%--<label class="heart" onclick="toggleWish(${listings[i].productByProductId.productId})">❤</label>--%>
+                  <%--</div>--%>
                   <div class="agile_top_brand_left_grid1">
                     <figure>
                       <div class="snipcart-item block">
@@ -89,8 +89,8 @@
                                 ${pageContext.request.contextPath}/${listings[i].productByProductId.imagePath}
                               </c:otherwise>
                             </c:choose>"></a>
-                          <div class="product-name">${listings[i].listingName}<br>
-                            <div style="color: #3399cc">by ${listings[i].userByUserId.name}</div></div>
+                          <div style="color:#fe9126" class="product-name">${listings[i].listingName}<br>
+                            <div style="color: #3399cc"> by ${listings[i].userByUserId.name}</div></div>
                           <h4>${listings[i].pricePerUnit}&euro;</h4>
                         </div>
                         <div class="snipcart-details top_brand_home_details">

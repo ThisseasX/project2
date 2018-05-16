@@ -24,105 +24,43 @@
 
 <div class="checkout">
   <div class="container">
-    <h2>Your wishlist contains: <span>0 Products</span></h2>
+    <h2>Your wishlist contains: <span>0 Categories</span></h2>
     <div class="checkout-right">
 
-      <table class="timetable_sub">
 
-        <thead>
-        <tr>
-          <th>SL No.</th>
-          <th>Image</th>
-          <th>Product Name</th>
-          <th>Vendor</th>
-          <th>Available</th>
-          <th>Quantity</th>
-          <th>PPU</th>
-          <th>Price</th>
-          <th>Remove</th>
-        </tr>
-        </thead>
-
-        <tbody>
-
-        <c:choose>
-
-          <c:when test="${wishlist ne null and wishlist.size() > 0}">
-            <table class="table table-bordered table-hover table-striped">
-              <thead>
-              <tr>
-                <th>ID</th>
-                <th>Product</th>
-                <th>Action</th>
-              </tr>
-              </thead>
-              <tbody>
-              <c:forEach items="${wishlist}" var="p">
-                <tr>
-                  <td>${p.productId}</td>
-                  <td>${p.productName}</td>
-                  <td>
-                    <input id="_${p.productId}" class="heart-checkbox" type="checkbox"
-                        <c:if test="${wishlist.contains(p)}">
-                          checked
-                        </c:if>
-                    />
-                    <label for="_${p.productId}" class="heart" onclick="toggleWish(${p.productId})">❤</label>
-                  </td>
-                </tr>
-              </c:forEach>
-              </tbody>
-            </table>
-          </c:when>
-
-          <c:otherwise>
-            <h1 style="background-color: #f00">
-              You have no items in your wishlist! Go add some!
-            </h1>
-          </c:otherwise>
-
-        </c:choose>
-
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  </div>>
-</div>
-
-
-
-
-
-
-<div class="container">
-
-
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+      <%--<tbody>--%>
 
       <c:choose>
 
         <c:when test="${wishlist ne null and wishlist.size() > 0}">
-          <table class="table table-bordered table-hover table-striped">
+          <table class="timetable_sub">
+
             <thead>
             <tr>
-              <th>ID</th>
-              <th>Product</th>
-              <th>Action</th>
+              <th>SL No.</th>
+              <th>Image</th>
+              <th>Category Name</th>
+              <th>Remove</th>
             </tr>
             </thead>
+              <%--<table class="table table-bordered table-hover table-striped">--%>
+              <%--<thead>--%>
+              <%--<tr>--%>
+              <%--<th>ID</th>--%>
+              <%--<th>Product</th>--%>
+              <%--<th>Action</th>--%>
+              <%--</tr>--%>
+              <%--</thead>--%>
             <tbody>
             <c:forEach items="${wishlist}" var="p">
               <tr>
-                <td>${p.productId}</td>
-                <td>${p.productName}</td>
+                <td><div class="common">${p.productId}</div></td>
+                <%--<td>${p.imagePath.}</td>--%>
+                <td class="invert-image">
+                  <a href="${pageContext.request.contextPath}/products/${p.productId}"><img
+                    src="${p.imagePath}" alt=" " class="img-responsive"/></a>
+                </td>
+                <td><div class="common">${p.productName}</div></td>
                 <td>
                   <input id="_${p.productId}" class="heart-checkbox" type="checkbox"
                       <c:if test="${wishlist.contains(p)}">
@@ -135,12 +73,32 @@
             </c:forEach>
             </tbody>
           </table>
+          <%--</table>--%>
         </c:when>
 
         <c:otherwise>
-          <h1 style="background-color: #f00">
-            You have no items in your wishlist! Go add some!
-          </h1>
+
+          <table class="timetable_sub">
+
+            <thead>
+            <tr>
+              <th>SL No.</th>
+              <th>Image</th>
+              <th>Category Name</th>
+              <th>Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+            </tr>
+            </tbody>
+          </table>
+          <div style="text-align:center; font-size:22px; border-bottom:1px solid rgba(0,0,0,0.15);
+            border-left:1px solid rgba(0,0,0,0.16); border-right:1px solid rgba(0,0,0,0.16); padding: 5px 0">
+            You have no items in your wishlist. <br>Go add some!
+          </div>
+
         </c:otherwise>
 
       </c:choose>
@@ -149,9 +107,62 @@
   </div>
 </div>
 
+
+<%--</div>--%>
+<%--</div>--%>
+
+
+<%--<div class="container">--%>
+
+
+<%--<div class="row">--%>
+<%--<div class="col-md-6 col-md-offset-3">--%>
+
+<%--<c:choose>--%>
+
+<%--<c:when test="${wishlist ne null and wishlist.size() > 0}">--%>
+<%--<table class="table table-bordered table-hover table-striped">--%>
+<%--<thead>--%>
+<%--<tr>--%>
+<%--<th>ID</th>--%>
+<%--<th>Product</th>--%>
+<%--<th>Action</th>--%>
+<%--</tr>--%>
+<%--</thead>--%>
+<%--<tbody>--%>
+<%--<c:forEach items="${wishlist}" var="p">--%>
+<%--<tr>--%>
+<%--<td>${p.productId}</td>--%>
+<%--<td>${p.productName}</td>--%>
+<%--<td>--%>
+<%--<input id="_${p.productId}" class="heart-checkbox" type="checkbox"--%>
+<%--<c:if test="${wishlist.contains(p)}">--%>
+<%--checked--%>
+<%--</c:if>--%>
+<%--/>--%>
+<%--<label for="_${p.productId}" class="heart" onclick="toggleWish(${p.productId})">❤</label>--%>
+<%--</td>--%>
+<%--</tr>--%>
+<%--</c:forEach>--%>
+<%--</tbody>--%>
+<%--</table>--%>
+<%--</c:when>--%>
+
+<%--<c:otherwise>--%>
+<%--<h1 style="background-color: #f00">--%>
+<%--You have no items in your wishlist! Go add some!--%>
+<%--</h1>--%>
+<%--</c:otherwise>--%>
+
+<%--</c:choose>--%>
+
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
+
 <%--Footer--%>
 <%@include file="../fragments/footer.jspf" %>
-<%@include file="../fragments/footer_scripts.jspf" %>
+<%--<%@include file="../fragments/footer_scripts.jspf" %>--%>
 
 <script>
 

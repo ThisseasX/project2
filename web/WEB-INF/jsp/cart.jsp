@@ -53,14 +53,14 @@
         <tbody>
         <c:forEach items="${cart.items}" var="l">
           <tr id="row_${l.listingId}" class="rem1">
-            <td class="invert">${l.listingId}</td>
+            <td class="invert"><div class="common">${l.listingId}</div></td>
             <td class="invert-image"><a
                 href="${pageContext.request.contextPath}/listings/${l.productByProductId.productId}"><img
                 src="${l.productByProductId.imagePath}" alt=" " class="img-responsive"/></a>
             </td>
-            <td class="invert">${l.listingName}</td>
-            <td class="invert">${l.userByUserId.name}</td>
-            <td class="invert">${l.listingQuantity}</td>
+            <td class="invert"><div class="common">${l.listingName}</div></td>
+            <td class="invert"><div class="common">${l.userByUserId.name}</div></td>
+            <td class="invert"><div class="common">${l.listingQuantity}</div></td>
             <td id="cart_${l.listingId}" class="invert">
               <div class="btn-group mybtn">
                   <button type="button" class="btn btn-default btn-danger"
@@ -68,15 +68,15 @@
                     <span style="color: white" class="glyphicon glyphicon-minus"></span>
                   </button>
 
-                  <button style="cursor: text" class="btn disabled"><span>${l.cartQuantity}</span></button>
+                <button style="cursor: text" class="btn disabled"><span><div class="common">${l.cartQuantity}</div></span></button>
                   <button type="button" class="btn btn-default btn-success"
                        onclick="modifyCart('add',${l.listingId})">
                     <span style="color: white" class="glyphicon glyphicon-plus"></span>
                   </button>
               </div>
             </td>
-            <td id="price_${l.listingId}" class="invert">${l.pricePerUnit}&euro;</td>
-            <td id="total_${l.listingId}" class="invert">${l.cartQuantity * l.pricePerUnit}&euro;</td>
+            <td id="price_${l.listingId}" class="invert"><div class="common">${l.pricePerUnit}&euro;</div></td>
+            <td id="total_${l.listingId}" class="invert"><div class="common">${l.cartQuantity * l.pricePerUnit}&euro;</div></td>
             <td class="invert">
               <div class="rem">
                 <button type="button"

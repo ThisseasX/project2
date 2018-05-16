@@ -4473,3 +4473,10 @@ section {
     top: 1px;
 }
 
+.common {
+    font-size: 15px;
+    color: #1e1e1e;
+    font-weight: 100;
+    font-family: Verdana;
+}
+
