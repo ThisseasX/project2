@@ -95,7 +95,7 @@
             </ul>
           </li>
           <li class="col-sm-2">
-            <a href="#">About Us</a>
+            <a href="${pageContext.request.contextPath}/about">About Us</a>
           </li>
           <li class="col-sm-2">
             <a href="#">FAQ</a>

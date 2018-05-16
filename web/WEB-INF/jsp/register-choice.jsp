@@ -13,6 +13,7 @@
       transition: 0.3s;
       margin-top: 5px;
       padding: 10px 10px;
+      cursor: pointer;
       /* width: 40%; */
     }
 

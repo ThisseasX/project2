@@ -28,4 +28,9 @@ public class HomeController {
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
     }
+
+    @GetMapping("/about")
+    public String aboutUs() {
+        return "about-us";
+    }
 }
