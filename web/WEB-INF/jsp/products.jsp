@@ -32,13 +32,15 @@
         <h2>Categories</h2>
         <ul class="cate">
           <c:forEach items="${categories}" var="c">
-            <li><a href="${pageContext.request.contextPath}/products/${c.categoryId}"><i class="fa fa-arrow-right"
-                                                                                         aria-hidden="true"></i>${c.categoryName}
+            <li><a href="${pageContext.request.contextPath}/products/${c.categoryId}">
+              <i class="fa fa-arrow-right"
+                 aria-hidden="true"></i>${c.categoryName}
             </a></li>
             <ul>
               <c:forEach items="${c.productsByCategoryId}" var="p">
-                <li><a href="${pageContext.request.contextPath}/listings/${p.productId}"><i class="fa fa-arrow-right"
-                                                                                            aria-hidden="true"></i>${p.productName}
+                <li><a href="${pageContext.request.contextPath}/listings/${p.productId}">
+                  <i class="fa fa-arrow-right"
+                     aria-hidden="true"></i>${p.productName}
                 </a></li>
               </c:forEach>
             </ul>
@@ -109,7 +111,7 @@
                 </div>
               </div>
             </div>
-            <c:if test="${i eq listings.size() -1 or i mod 3 eq 2}">
+            <c:if test="${i eq listings.size() - 1 or i mod 3 eq 2}">
               <div class="clearfix"></div>
               </div>
             </c:if>
@@ -130,9 +132,10 @@
                     <figure>
                       <div class="snipcart-item block">
                         <div class="snipcart-thumb">
-                          <a href="${pageContext.request.contextPath}/listings/${products[i].productId}"><img title=" "
-                                                                                                              alt=" "
-                                                                                                              src="${pageContext.request.contextPath}/${products[i].imagePath}"></a>
+                          <a href="${pageContext.request.contextPath}/listings/${products[i].productId}">
+                            <img title=" " alt=" "
+                                 src="${pageContext.request.contextPath}/${products[i].imagePath}">
+                          </a>
                           <div class="product-name">${products[i].productName}</div>
                         </div>
                       </div>
@@ -141,7 +144,7 @@
                 </div>
               </div>
             </div>
-            <c:if test="${i eq products.size() -1 or i mod 3 eq 2}">
+            <c:if test="${i eq products.size() - 1 or i mod 3 eq 2}">
               <div class="clearfix"></div>
               </div>
             </c:if>

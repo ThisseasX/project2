@@ -5,6 +5,7 @@ import java.util.Collection;
 
 @NamedQueries({
         @NamedQuery(name = "Product.getAll", query = "SELECT p FROM Product p"),
+        @NamedQuery(name = "Product.getAllDiscounts", query = "SELECT p FROM Product p WHERE p.discount >= 1"),
         @NamedQuery(name = "Product.getByProductName", query = "SELECT p FROM Product p WHERE p.productName = :name"),
         @NamedQuery(name = "Product.getByCategoryId", query = "SELECT p FROM Product p WHERE p.categoryByCategoryId.categoryId = :id"),
         @NamedQuery(name = "Product.getWishlistByUser", query = "SELECT p FROM Product p JOIN Wish w ON w.productByProductId = p AND w.userByUserId = :user")

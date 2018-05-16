@@ -59,9 +59,7 @@
         </div>
         <div class="testi">
           <h3 class="w3_agile_header" style="font-size:25px; padding-top: 14px">TESTIMONIALS </h3>
-          <%--End-slider-script--%>
           <script src="${pageContext.request.contextPath}/js/responsiveslides.min.js"></script>
-          <%--todo--%>
           <div id="top" class="callbacks_container">
             <ul class="rslides" id="slider5">
               <li>
@@ -107,11 +105,9 @@
     </div>
   </div>
 </div>
-
-<%--About--%>
+<%--//About--%>
 
 <%--About-slid--%>
-
 <div class="about-slid agileits-w3layouts">
   <div class="container">
     <div class="about-slid-info">
@@ -124,12 +120,12 @@
     </div>
   </div>
 </div>
-
-<%--About-slid--%>
+<%--//About-slid--%>
 
 <%--Footer--%>
 <%@include file="../fragments/footer.jspf" %>
 
+<%--slider-script--%>
 <script>
     // You can also use "$(window).load(function() {"
     $(function () {
@@ -147,9 +143,9 @@
                 $('.events').append("<li>after event fired.</li>");
             }
         });
-
     });
 </script>
+<%--//slider-script--%>
 
 </body>
 </html>
