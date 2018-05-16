@@ -61,26 +61,7 @@
           <h3 class="w3_agile_header" style="font-size:25px; padding-top: 14px">TESTIMONIALS </h3>
           <%--End-slider-script--%>
           <script src="${pageContext.request.contextPath}/js/responsiveslides.min.js"></script>
-          <script>
-              // You can also use "$(window).load(function() {"
-              $(function () {
-                  // Slideshow 5
-                  $("#slider5").responsiveSlides({
-                      auto: true,
-                      pager: false,
-                      nav: true,
-                      speed: 500,
-                      namespace: "callbacks",
-                      before: function () {
-                          $('.events').append("<li>before event fired</li>");
-                      },
-                      after: function () {
-                          $('.events').append("<li>after event fired.</li>");
-                      }
-                  });
-
-              });
-          </script>
+          <%--todo--%>
           <div id="top" class="callbacks_container">
             <ul class="rslides" id="slider5">
               <li>
@@ -148,6 +129,27 @@
 
 <%--Footer--%>
 <%@include file="../fragments/footer.jspf" %>
+
+<script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+        // Slideshow 5
+        $("#slider5").responsiveSlides({
+            auto: true,
+            pager: false,
+            nav: true,
+            speed: 500,
+            namespace: "callbacks",
+            before: function () {
+                $('.events').append("<li>before event fired</li>");
+            },
+            after: function () {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+
+    });
+</script>
 
 </body>
 </html>
