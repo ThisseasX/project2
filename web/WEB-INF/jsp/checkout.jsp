@@ -72,9 +72,9 @@
       </c:if>
     </c:forEach>
     <br>
-    <h2>Total Quantity: ${checked_out_cart.totalQuantity}</h2>
+    <h2 style="font-size:20px">Total Quantity: ${checked_out_cart.totalQuantity}
     <br>
-    <h2>Total Price: ${checked_out_cart.totalPrice}&euro;</h2>
+    Total Price: ${checked_out_cart.totalPrice}&euro;</h2>
   </div>
 </div>
 <!-- //checkout -->

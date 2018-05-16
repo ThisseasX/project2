@@ -6,6 +6,7 @@
 <html>
 <head>
   <%@include file="../fragments/head.jspf" %>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/heart.css">
   <title>Products</title>
 </head>
 
@@ -68,9 +69,14 @@
                 <div class="agile_top_brand_left_grid">
                   <c:if test="${listings[i].productByProductId.discount > 1}">
                     <div class="agile_top_brand_left_grid_pos">
-                      <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
+                      <img src="${pageContext.request.contextPath}/images/offer.png" alt="offer" class="img-responsive">
                     </div>
                   </c:if>
+                  <%--<input class="heart" style="padding:0; margin:0;" type="button" onclick="toggleWish(${listings[i].productByProductId.productId})" value="">--%>
+
+                  <div class="heart-checkbox">
+                  <label class="heart" onclick="toggleWish(${listings[i].productByProductId.productId})">❤</label>
+                  </div>
                   <div class="agile_top_brand_left_grid1">
                     <figure>
                       <div class="snipcart-item block">
@@ -93,10 +99,10 @@
                                 method="post">
                             <fieldset>
                               <input type="button" onclick="addToCart(${listings[i].listingId})" name="submit"
-                                     value="cart" class="button">
-                              <form action="#">
-                                <input type="button" onclick="toggleWish(${listings[i].productByProductId.productId})" class="button2" value="wishlist">
-                              </form>
+                                     value="add to cart" class="button">
+                              <%--<form action="#">--%>
+                                <%--<input type="button" onclick="toggleWish(${listings[i].productByProductId.productId})" class="button2" value="wishlist">--%>
+                              <%--</form>--%>
                             </fieldset>
                           </form>
                         </div>
