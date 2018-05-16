@@ -52,7 +52,7 @@ public class AccountService {
         finalizeCart(cart);
         splitProfits(amount);
 
-        session.setAttribute("cart", null);
+//        session.setAttribute("cart", null);
         session.setAttribute("user", em.find(User.class, u.getUserId()));
     }
 

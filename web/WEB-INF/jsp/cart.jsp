@@ -62,28 +62,27 @@
             <td class="invert">${l.userByUserId.name}</td>
             <td class="invert">${l.listingQuantity}</td>
             <td id="cart_${l.listingId}" class="invert">
-              <div class="quantity">
-                <div class="quantity-select">
-                  <div class="entry value-minus"
+              <div class="btn-group mybtn">
+                  <button type="button" class="btn btn-default btn-danger"
                        onclick="modifyCart('subtract',${l.listingId})">
-                    &nbsp;
-                  </div>
-                  <div class="entry value"><span>${l.cartQuantity}</span></div>
-                  <div class="entry value-plus active"
+                    <span style="color: white" class="glyphicon glyphicon-minus"></span>
+                  </button>
+
+                  <button style="cursor: text" class="btn disabled"><span>${l.cartQuantity}</span></button>
+                  <button type="button" class="btn btn-default btn-success"
                        onclick="modifyCart('add',${l.listingId})">
-                    &nbsp;
-                  </div>
-                </div>
+                    <span style="color: white" class="glyphicon glyphicon-plus"></span>
+                  </button>
               </div>
             </td>
-            <td id="price_${l.listingId}" class="invert">$${l.pricePerUnit}</td>
-            <td id="total_${l.listingId}" class="invert">$${l.cartQuantity * l.pricePerUnit}</td>
+            <td id="price_${l.listingId}" class="invert">${l.pricePerUnit}&euro;</td>
+            <td id="total_${l.listingId}" class="invert">${l.cartQuantity * l.pricePerUnit}&euro;</td>
             <td class="invert">
               <div class="rem">
                 <button type="button"
-                        class="btn btn-danger btn-number"
+                        class="btn btn-primary"
                         onclick="modifyCart('remove',${l.listingId})">
-                  <span class="glyphicon glyphicon-minus"></span>
+                  <span style="color: #ffffff" class="glyphicon glyphicon-minus"></span>
                 </button>
               </div>
             </td>
