@@ -78,11 +78,11 @@
                       <div class="snipcart-item block">
                         <div class="snipcart-thumb">
                           <a href="#"><img title=" " alt=" " src="<c:choose>
-                              <c:when test="${listings[i].imagePath ne null and listings[i].imagePath.length() > 0}">
-                                ${pageContext.request.contextPath}/${listings[i].imagePath}
+                              <c:when test="${listings[i].image ne null and listings[i].image.length() > 0}">
+                                ${pageContext.request.contextPath}/listings/image/${listings[i].listingId}
                               </c:when>
                               <c:otherwise>
-                                ${pageContext.request.contextPath}/${listings[i].productByProductId.imagePath}
+                                ${pageContext.request.contextPath}/products/image/${listings[i].productByProductId.productId}
                               </c:otherwise>
                             </c:choose>"></a>
                           <div style="color:#fe9126" class="product-name">${listings[i].listingName}<br>
@@ -141,9 +141,8 @@
                         <div class="snipcart-thumb">
                           <a href="${pageContext.request.contextPath}/listings/${products[i].productId}">
                             <img title=" " alt=" "
-                                 src="${pageContext.request.contextPath}/${products[i].imagePath}">
+                                 src="${pageContext.request.contextPath}/products/image/${products[i].productId}">
                           </a>
-                            ${products[i].imagePath}
                           <div class="product-name">${products[i].productName}</div>
                         </div>
                       </div>

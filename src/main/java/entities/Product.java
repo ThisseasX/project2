@@ -15,7 +15,7 @@ public class Product {
 
     private Integer productId;
     private String productName;
-    private String imagePath;
+    private byte[] image;
     private Double basePriceIn;
     private Double basePriceOut;
     private Integer discount;
@@ -46,13 +46,14 @@ public class Product {
     }
 
     @Basic
-    @Column(name = "image_path")
-    public String getImagePath() {
-        return imagePath;
+    @Lob
+    @Column(name = "image")
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Basic

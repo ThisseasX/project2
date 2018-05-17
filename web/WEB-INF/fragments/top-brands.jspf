@@ -25,7 +25,7 @@
                             <div class="snipcart-thumb">
                               <a href="${pageContext.request.contextPath}/listings/${discounts[i].productId}">
                                 <img title=" " alt=" "
-                                     src="${pageContext.request.contextPath}/${discounts[i].imagePath}"/>
+                                     src="${pageContext.request.contextPath}/products/image/${discounts[i].productId}"/>
                               </a>
                               <div class="product-name">${discounts[i].productName}</div>
                               <h1 style="text-align: center">-${discounts[i].discount}%</h1>

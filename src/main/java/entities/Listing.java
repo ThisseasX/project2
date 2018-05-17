@@ -21,7 +21,7 @@ public class Listing {
     private Integer listingQuantity;
     private Double pricePerUnit;
     private String listingName;
-    private String imagePath;
+    private byte[] image;
     private Timestamp listingDate;
     private Product productByProductId;
     private User userByUserId;
@@ -72,13 +72,14 @@ public class Listing {
     }
 
     @Basic
-    @Column(name = "image_path", nullable = false, length = -1)
-    public String getImagePath() {
-        return imagePath;
+    @Lob
+    @Column(name = "image", nullable = false, length = -1)
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Basic

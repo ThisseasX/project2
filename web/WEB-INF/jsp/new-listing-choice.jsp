@@ -43,7 +43,7 @@
                   <div class="snipcart-thumb">
                     <a href="${pageContext.request.contextPath}/listings/new/${all_products[i].productId}">
                       <img title=" " alt=" "
-                           src="${pageContext.request.contextPath}/${all_products[i].imagePath}">
+                           src="${pageContext.request.contextPath}/products/image/${all_products[i].productId}">
                     </a>
                     <div class="product-name">${all_products[i].productName}</div>
                     <div class="product-name">Accepted at:</div>

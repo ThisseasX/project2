@@ -47,7 +47,7 @@
               </td>
               <td class="invert-image">
                 <a href="${pageContext.request.contextPath}/products/${p.productId}"><img
-                    src="${p.imagePath}" alt=" " class="img-responsive"/></a>
+                    src="${pageContext.request.contextPath}/products/image/${p.productId}" alt=" " class="img-responsive"/></a>
               </td>
               <td>
                 <div class="common">${p.productName}</div>

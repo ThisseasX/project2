@@ -50,11 +50,11 @@
                 <div class="snipcart-item block">
                   <div class="snipcart-thumb">
                     <a href="#"><img title=" " alt=" " src="<c:choose>
-                              <c:when test="${checked_out_cart.items[i].imagePath ne null and checked_out_cart.items[i].imagePath.length() > 0}">
-                                ${pageContext.request.contextPath}/${checked_out_cart.items[i].imagePath}
+                              <c:when test="${checked_out_cart.items[i].image ne null and checked_out_cart.items[i].image.length() > 0}">
+                                ${pageContext.request.contextPath}/listings/image/${checked_out_cart.items[i].listingId}
                               </c:when>
                               <c:otherwise>
-                                ${pageContext.request.contextPath}/${checked_out_cart.items[i].productByProductId.imagePath}
+                                ${pageContext.request.contextPath}/products/image/${checked_out_cart.items[i].productByProductId.productId}
                               </c:otherwise>
                             </c:choose>"></a>
                     <div class="product-name">${checked_out_cart.items[i].listingName}

@@ -56,7 +56,14 @@
             <td class="invert"><div class="common">${l.listingId}</div></td>
             <td class="invert-image"><a
                 href="${pageContext.request.contextPath}/listings/${l.productByProductId.productId}"><img
-                src="${l.productByProductId.imagePath}" alt=" " class="img-responsive"/></a>
+                src="<c:choose>
+                              <c:when test="${l.image ne null and l.image.length() > 0}">
+                                ${pageContext.request.contextPath}/listings/image/${l.listingId}
+                              </c:when>
+                              <c:otherwise>
+                                ${pageContext.request.contextPath}/products/image/${l.productByProductId.productId}
+                              </c:otherwise>
+                            </c:choose>" alt=" " class="img-responsive"/></a>
             </td>
             <td class="invert"><div class="common">${l.listingName}</div></td>
             <td class="invert"><div class="common">${l.userByUserId.name}</div></td>

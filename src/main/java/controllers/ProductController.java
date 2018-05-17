@@ -11,11 +11,13 @@ import services.ListingService;
 import services.ProductService;
 import services.WishService;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 @SuppressWarnings("SameReturnValue")
 @Controller
@@ -152,20 +154,6 @@ public class ProductController {
         Category selected = genericService.getById(Category.class, id);
         Unit unit = genericService.getById(Unit.class, unitId);
 
-        int random = new Random().nextInt(100000);
-
-        String relativePath = "uploaded/";
-        String filePath = "C://projects/project2/web/" + relativePath;
-        String fileName = String.valueOf(random) + ".png";
-
-        File file = new File(filePath, fileName);
-        try {
-            file.mkdirs();
-            image.transferTo(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         Product product = new Product();
         product.setBasePriceIn(pricePerUnit);
         product.setBasePriceOut(pricePerUnit * 3);
@@ -173,14 +161,64 @@ public class ProductController {
         product.setUnitByUnitId(unit);
         product.setProductName(productType);
         product.setDiscount(0);
-        product.setImagePath(relativePath + fileName);
+
+        try {
+            product.setImage(getResizedImage(image));
+        } catch (IOException e) {
+            product.setImage(new byte[]{});
+            e.printStackTrace();
+        }
 
         productService.addNewProduct(product);
         return "redirect:/products/" + id;
     }
 
+    private byte[] getResizedImage(@RequestParam MultipartFile image) throws IOException {
+        BufferedImage buffered = resizeImage(image);
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        ImageIO.write(buffered, "png", byteStream);
+        byteStream.flush();
+
+        byte[] img = byteStream.toByteArray();
+        byteStream.close();
+
+        return img;
+    }
+
+    @GetMapping("/{action}/image/{id}")
+    public void viewImage(HttpServletResponse response,
+                          @PathVariable String action,
+                          @PathVariable int id) throws IOException {
+
+
+        byte[] documentInBytes = getImage(action, id);
+        response.setDateHeader("Expires", -1);
+        response.setContentType("image/png");
+        response.setContentLength(documentInBytes.length);
+        response.getOutputStream().write(documentInBytes);
+    }
+
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
+    }
+
+    private BufferedImage resizeImage(MultipartFile image) throws IOException {
+        BufferedImage originalImage = ImageIO.read(image.getInputStream());
+
+        int height = originalImage.getHeight();
+        int width = originalImage.getWidth();
+
+        if (height <= 150 && width <= 150) return originalImage;
+
+        return originalImage.getSubimage(0, 0, 150, 150);
+    }
+
+    private byte[] getImage(String action, int id) {
+        if (action.equals("products")) {
+            return genericService.getById(Product.class, id).getImage();
+        } else {
+            return genericService.getById(Listing.class, id).getImage();
+        }
     }
 }
