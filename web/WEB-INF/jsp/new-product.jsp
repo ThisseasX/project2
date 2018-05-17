@@ -35,7 +35,7 @@
 
     <div class="login-form-grids">
 
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
 
         <h1>${selected.categoryName}</h1>
 
@@ -67,6 +67,15 @@
                 </option>
               </c:forEach>
             </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <label for="image">Image</label>
+            <div class="form-group">
+              <input type="file" id="image" name="image" class="form-control">
+            </div>
           </div>
         </div>
 

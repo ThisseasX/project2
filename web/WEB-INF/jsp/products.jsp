@@ -143,6 +143,7 @@
                             <img title=" " alt=" "
                                  src="${pageContext.request.contextPath}/${products[i].imagePath}">
                           </a>
+                            ${products[i].imagePath}
                           <div class="product-name">${products[i].productName}</div>
                         </div>
                       </div>

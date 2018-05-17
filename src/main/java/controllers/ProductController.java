@@ -5,13 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import services.GenericService;
 import services.ListingService;
 import services.ProductService;
 import services.WishService;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 @SuppressWarnings("SameReturnValue")
 @Controller
@@ -143,9 +147,24 @@ public class ProductController {
     public String newProduct(@RequestParam String productType,
                              @RequestParam double pricePerUnit,
                              @RequestParam int unitId,
+                             @RequestParam MultipartFile image,
                              @PathVariable int id) {
         Category selected = genericService.getById(Category.class, id);
         Unit unit = genericService.getById(Unit.class, unitId);
+
+        int random = new Random().nextInt(100000);
+
+        String relativePath = "uploaded/";
+        String filePath = "C://projects/project2/web/" + relativePath;
+        String fileName = String.valueOf(random) + ".png";
+
+        File file = new File(filePath, fileName);
+        try {
+            file.mkdirs();
+            image.transferTo(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Product product = new Product();
         product.setBasePriceIn(pricePerUnit);
@@ -154,7 +173,7 @@ public class ProductController {
         product.setUnitByUnitId(unit);
         product.setProductName(productType);
         product.setDiscount(0);
-        product.setImagePath("images/no-image.png");
+        product.setImagePath(relativePath + fileName);
 
         productService.addNewProduct(product);
         return "redirect:/products/" + id;
