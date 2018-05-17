@@ -37,6 +37,22 @@ public class ProductController {
         this.wishService = wishService;
     }
 
+    @GetMapping("/search")
+    public String searchListing(Model m,
+                                HttpSession session,
+                                @RequestParam String query) {
+
+        User u = (User) session.getAttribute("user");
+        m.addAttribute("wishlist", wishService.getWishListByUser(u));
+
+        String selected = "Search Results for: " + query;
+        List<Listing> listings = listingService.search(query);
+
+        m.addAttribute("selected", selected);
+        m.addAttribute("listings", listings);
+        return "products";
+    }
+
     @GetMapping("/categories")
     public String getCategories() {
         return "categories";

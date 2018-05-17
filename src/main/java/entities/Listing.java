@@ -12,7 +12,8 @@ import java.util.Collection;
         @NamedQuery(name = "Listing.getAllDepleted", query = "SELECT l FROM Listing l WHERE l.statusByStatusId.statusId = 3"),
         @NamedQuery(name = "Listing.getAllPending", query = "SELECT l FROM Listing l WHERE l.statusByStatusId.statusId = 4"),
         @NamedQuery(name = "Listing.getByProductId", query = "SELECT l FROM Listing l WHERE l.productByProductId.productId = :id"),
-        @NamedQuery(name = "Listing.getAvailableByProductId", query = "SELECT l FROM Listing l WHERE l.productByProductId.productId = :id AND l.statusByStatusId.statusId = 1")
+        @NamedQuery(name = "Listing.getAvailableByProductId", query = "SELECT l FROM Listing l WHERE l.productByProductId.productId = :id AND l.statusByStatusId.statusId = 1"),
+        @NamedQuery(name = "Listing.search", query = "SELECT l FROM Listing l WHERE l.listingName LIKE :query"),
 })
 @Entity
 public class Listing {

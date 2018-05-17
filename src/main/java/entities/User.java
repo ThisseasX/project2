@@ -150,7 +150,6 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    @Transient
     @OneToOne(mappedBy = "userByUserId")
     public Contact getContact() {
         return contact;

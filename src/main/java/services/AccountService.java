@@ -15,14 +15,16 @@ import java.util.List;
 @Repository
 public class AccountService {
 
-    private UserService userService;
+    private final UserService userService;
+    private final SaleService saleService;
 
     @PersistenceContext
     private EntityManager em;
 
     @Autowired
-    public void setUserService(UserService userService) {
+    public AccountService(UserService userService, SaleService saleService) {
         this.userService = userService;
+        this.saleService = saleService;
     }
 
     @Transactional
@@ -58,15 +60,10 @@ public class AccountService {
 
     private void finalizeCart(Cart cart) {
         for (Listing l : cart.getItems()) {
-            recordSale(l);
+            saleService.recordSale(l);
             subtractQuantity(l);
             em.merge(l);
         }
-    }
-
-    private void recordSale(Listing l) {
-        Sale s = new Sale(l);
-        em.persist(s);
     }
 
     private void splitProfits(double amount) {

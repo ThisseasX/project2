@@ -2,15 +2,21 @@ package entities;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @SuppressWarnings("RedundantIfStatement")
-@NamedQuery(name = "Sale.getAll", query = "SELECT s FROM Sale s")
+@NamedQueries({
+        @NamedQuery(name = "Sale.getAll", query = "SELECT s FROM Sale s"),
+        @NamedQuery(name = "Sale.getAllByUser", query = "SELECT s FROM Sale s WHERE s.listingByListingId.userByUserId = :user"),
+        @NamedQuery(name = "Sale.getAllBetweenDates", query = "SELECT s FROM Sale s WHERE s.saleDate BETWEEN :dateStart AND :dateEnd"),
+        @NamedQuery(name = "Sale.getAllByUserBetweenDates", query = "SELECT s FROM Sale s WHERE s.listingByListingId.userByUserId = :user AND s.saleDate BETWEEN :dateStart AND :dateEnd")
+})
 @Entity
 public class Sale {
 
     private Integer saleId;
     private Integer saleQuantity;
-    private Timestamp saleDate;
+    private Date saleDate;
     private Listing listingByListingId;
 
     public Sale() {
@@ -43,12 +49,13 @@ public class Sale {
     }
 
     @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "sale_date", nullable = false)
-    public Timestamp getSaleDate() {
+    public Date getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(Timestamp saleDate) {
+    public void setSaleDate(Date saleDate) {
         this.saleDate = saleDate;
     }
 

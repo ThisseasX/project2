@@ -31,8 +31,13 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public String getAll(Model m) {
-        m.addAttribute("list", userService.getAll());
+    public String viewUsers(Model m,
+                            HttpSession session) {
+
+        User u = (User) session.getAttribute("user");
+        if (u == null || !u.isAdmin()) return "redirect:/users/login";
+
+        m.addAttribute("users", genericService.getAll(User.class, true));
         return "users";
     }
 
@@ -79,6 +84,7 @@ public class UserController {
 
         if (result.hasErrors()) return "register";
 
+        user.setContact(null);
         userService.register(user);
 
         if (type == 2) {

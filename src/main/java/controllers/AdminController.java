@@ -43,7 +43,7 @@ public class AdminController {
         if (u == null || !u.isAdmin()) return "redirect:/users/login";
 
         m.addAttribute("listings", listingService.getAll(StringUtils.capitalize(query)));
-        return "admin-pending";
+        return "manage-listings";
     }
 
     @ModelAttribute("categories")

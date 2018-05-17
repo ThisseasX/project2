@@ -62,6 +62,13 @@ public class ListingService {
                 .getResultList();
     }
 
+    public List<Listing> search(String query) {
+        return em
+                .createNamedQuery("Listing.search", Listing.class)
+                .setParameter("query", "%" + query + "%")
+                .getResultList();
+    }
+
     @Transactional
     public void addNewListing(Listing l) {
         l.setStatusByStatusId(em.find(Status.class, 4));

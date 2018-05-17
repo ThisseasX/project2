@@ -73,6 +73,12 @@
                       <a href="${pageContext.request.contextPath}/products/new">New Product Type</a>
                     </li>
                     <li>
+                      <a href="${pageContext.request.contextPath}/sales/all">All Sales</a>
+                    </li>
+                    <li>
+                      <a href="${pageContext.request.contextPath}/users/all">All Users</a>
+                    </li>
+                    <li>
                       <a href="${pageContext.request.contextPath}/cart">My Cart</a>
                     </li>
                     <c:choose>
