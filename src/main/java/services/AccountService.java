@@ -54,16 +54,16 @@ public class AccountService {
 
         transferBalance(client, coop, amount);
 
-        finalizeCart(cart);
+        finalizeCart(cart, u);
         splitProfits(amount);
 
         session.setAttribute("cart", null);
         session.setAttribute("user", em.find(User.class, u.getUserId()));
     }
 
-    private void finalizeCart(Cart cart) {
+    private void finalizeCart(Cart cart, User u) {
         for (Listing l : cart.getItems()) {
-            saleService.recordSale(l);
+            saleService.recordSale(l, u);
             subtractQuantity(l);
             em.merge(l);
         }

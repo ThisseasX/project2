@@ -49,8 +49,9 @@ public class SaleService {
     }
 
     @Transactional
-    public void recordSale(Listing l) {
+    public void recordSale(Listing l, User u) {
         Sale s = new Sale(l);
+        s.setBuyer(u);
         em.persist(s);
     }
 }
