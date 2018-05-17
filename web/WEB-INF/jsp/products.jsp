@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html>
 <head>
@@ -88,7 +89,16 @@
                           <div style="color:#fe9126" class="product-name">${listings[i].listingName}<br>
                             <div style="color: #3399cc"> by ${listings[i].userByUserId.name}</div>
                           </div>
-                          <h4>${listings[i].pricePerUnit}&euro;</h4>
+                          <fmt:formatNumber var="ppu" minFractionDigits="0" maxFractionDigits="2"
+                                            value="${listings[i].pricePerUnit}"/>
+                          <fmt:formatNumber var="discounted" minFractionDigits="0" maxFractionDigits="2"
+                                            value="${ppu * ((100 - listings[i].productByProductId.discount) / 100)}"/>
+                          <h4><c:choose><c:when test="${listings[i].productByProductId.discount > 1}">${discounted}</c:when><c:otherwise>${ppu}</c:otherwise></c:choose>&euro; <c:if test="${listings[i].productByProductId.discount > 1}">
+                            <span>
+                              ${ppu}&euro;
+                            </span>
+                          </c:if>
+                          </h4>
                         </div>
                         <div class="snipcart-details top_brand_home_details">
                           <form action="${pageContext.request.contextPath}/cart/add/${listings[i].listingId}"
@@ -96,9 +106,6 @@
                             <fieldset>
                               <input type="button" onclick="addToCart(${listings[i].listingId})" name="submit"
                                      value="add to cart" class="button">
-                                <%--<form action="#">--%>
-                                <%--<input type="button" onclick="toggleWish(${listings[i].productByProductId.productId})" class="button2" value="wishlist">--%>
-                                <%--</form>--%>
                             </fieldset>
                           </form>
                         </div>

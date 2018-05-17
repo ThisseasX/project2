@@ -1,5 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
@@ -15,7 +15,7 @@
 <%@include file="../fragments/topbar.jspf" %>
 
 <%
-  List<String> path = new ArrayList<>(Collections.singletonList("Management"));
+  List<String> path = new ArrayList<>(Arrays.asList("Management", "Sales History"));
   pageContext.setAttribute("path", path);
 %>
 
@@ -27,10 +27,12 @@
   <div class="container">
 
     <div class="btn-group-justified">
-      <a href="${pageContext.request.contextPath}/sales/all" class="button-admin-choice-middle"
-         style="border-radius: 10px 0 0 0">All</a>
-      <a href="${pageContext.request.contextPath}/sales/user"
-         class="button-admin-choice-middle">User</a>
+      <c:if test="${sessionScope.user.admin}">
+        <a href="${pageContext.request.contextPath}/sales/all" class="button-admin-choice-middle"
+           style="border-radius: 10px 0 0 0">All</a>
+        <a href="${pageContext.request.contextPath}/sales/user"
+           class="button-admin-choice-middle">User</a>
+      </c:if>
       <form method="get" action="${pageContext.request.contextPath}/sales/all/dates">
         <label for="dateStart">Start Date:</label>
         <input id="dateStart" type="date" name="dateStart">
@@ -40,9 +42,9 @@
                 class="button-admin-choice-middle">Search Dates
         </button>
       </form>
-      <button onclick="viewSales('user')"
-              class="button-admin-choice-middle">Search Dates By User
-      </button>
+      <%--<button onclick="viewSales('user')"--%>
+      <%--class="button-admin-choice-middle">Search Dates By User--%>
+      <%--</button>--%>
     </div>
 
     <div class="checkout-right">
@@ -52,7 +54,8 @@
         <thead>
         <tr>
           <th>ID</th>
-          <th>Username</th>
+          <th>Seller</th>
+          <th>Buyer</th>
           <th>Unit</th>
           <th>Quantity</th>
           <th>Price Per Unit</th>
@@ -65,10 +68,15 @@
           <tr>
             <td>${s.saleId}</td>
             <td>${s.listingByListingId.userByUserId.email}</td>
+            <td>${s.buyer.email}</td>
             <td>${s.listingByListingId.productByProductId.unitByUnitId.unitName}</td>
             <td>${s.saleQuantity}</td>
-            <td>${s.listingByListingId.pricePerUnit}&euro;</td>
-            <td>${s.listingByListingId.pricePerUnit * s.saleQuantity}&euro;</td>
+            <fmt:formatNumber var="ppu" minFractionDigits="1" maxFractionDigits="2"
+                              value="${s.listingByListingId.pricePerUnit}"/>
+            <fmt:formatNumber var="totalPrice" minFractionDigits="1" maxFractionDigits="2"
+                              value="${s.listingByListingId.pricePerUnit * s.saleQuantity}"/>
+            <td>${ppu}&euro;</td>
+            <td>${totalPrice}&euro;</td>
             <td>${s.saleDate}</td>
           </tr>
         </c:forEach>

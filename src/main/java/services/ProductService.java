@@ -17,6 +17,7 @@ public class ProductService {
     public List<Product> getAllDiscounts() {
         return em
                 .createNamedQuery("Product.getAllDiscounts", Product.class)
+                .setMaxResults(3)
                 .getResultList();
     }
 

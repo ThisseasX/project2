@@ -2,6 +2,7 @@
 <%@ page import="java.util.Collections" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html>
 <head>
@@ -51,12 +52,15 @@
         </thead>
 
         <tbody>
-        <c:forEach items="${cart.items}" var="l">
-          <tr id="row_${l.listingId}" class="rem1">
-            <td class="invert"><div class="common">${l.listingId}</div></td>
-            <td class="invert-image"><a
-                href="${pageContext.request.contextPath}/listings/${l.productByProductId.productId}"><img
-                src="<c:choose>
+        <c:if test="${cart.items.size() gt 0}">
+          <c:forEach items="${cart.items}" var="l">
+            <tr id="row_${l.listingId}" class="rem1">
+              <td class="invert">
+                <div class="common">${l.listingId}</div>
+              </td>
+              <td class="invert-image"><a
+                  href="${pageContext.request.contextPath}/listings/${l.productByProductId.productId}"><img
+                  src="<c:choose>
                               <c:when test="${l.image ne null and l.image.length() > 0}">
                                 ${pageContext.request.contextPath}/listings/image/${l.listingId}
                               </c:when>
@@ -64,53 +68,80 @@
                                 ${pageContext.request.contextPath}/products/image/${l.productByProductId.productId}
                               </c:otherwise>
                             </c:choose>" alt=" " class="img-responsive"/></a>
-            </td>
-            <td class="invert"><div class="common">${l.listingName}</div></td>
-            <td class="invert"><div class="common">${l.userByUserId.name}</div></td>
-            <td class="invert"><div class="common">${l.listingQuantity}</div></td>
-            <td id="cart_${l.listingId}" class="invert">
-              <div class="btn-group mybtn">
+              </td>
+              <td class="invert">
+                <div class="common">${l.listingName}</div>
+              </td>
+              <td class="invert">
+                <div class="common">${l.userByUserId.name}</div>
+              </td>
+              <td class="invert">
+                <div class="common">${l.listingQuantity}</div>
+              </td>
+              <td id="cart_${l.listingId}" class="invert">
+                <div class="btn-group mybtn">
                   <button type="button" class="btn btn-default btn-danger"
-                       onclick="modifyCart('subtract',${l.listingId})">
+                          onclick="modifyCart('subtract',${l.listingId})">
                     <span style="color: white" class="glyphicon glyphicon-minus"></span>
                   </button>
 
-                <button style="cursor: text" class="btn disabled"><span><div class="common">${l.cartQuantity}</div></span></button>
+                  <button style="cursor: text" class="btn disabled"><span><div
+                      class="common">${l.cartQuantity}</div></span></button>
                   <button type="button" class="btn btn-default btn-success"
-                       onclick="modifyCart('add',${l.listingId})">
+                          onclick="modifyCart('add',${l.listingId})">
                     <span style="color: white" class="glyphicon glyphicon-plus"></span>
                   </button>
-              </div>
-            </td>
-            <td id="price_${l.listingId}" class="invert"><div class="common">${l.pricePerUnit}&euro;</div></td>
-            <td id="total_${l.listingId}" class="invert"><div class="common">${l.cartQuantity * l.pricePerUnit}&euro;</div></td>
-            <td class="invert">
-              <div class="rem">
-                <button type="button"
-                        class="btn btn-primary"
-                        onclick="modifyCart('remove',${l.listingId})">
-                  <span style="color: #ffffff" class="glyphicon glyphicon-minus"></span>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </c:forEach>
+                </div>
+              </td>
+              <td id="price_${l.listingId}" class="invert">
+                <div class="common">${l.pricePerUnit}&euro;</div>
+              </td>
+              <td id="total_${l.listingId}" class="invert">
+                <fmt:formatNumber var="cart_subtotal" minFractionDigits="1" maxFractionDigits="2"
+                                  value="${l.cartQuantity * l.pricePerUnit}"/>
+                <div class="common">${cart_subtotal}&euro;</div>
+              </td>
+              <td class="invert">
+                <div class="rem">
+                  <button type="button"
+                          class="btn btn-primary"
+                          onclick="modifyCart('remove',${l.listingId})">
+                    <span style="color: #ffffff" class="glyphicon glyphicon-minus"></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </c:forEach>
+        </c:if>
         </tbody>
 
       </table>
 
+      <c:if test="${cart.items.size() lt 1}">
+        <div style="text-align:center; font-size:22px; border-bottom:1px solid rgba(0,0,0,0.15);
+            border-left:1px solid rgba(0,0,0,0.16); border-right:1px solid rgba(0,0,0,0.16); padding: 5px 0">
+          You have no items in your cart. <br>Go add some!
+        </div>
+      </c:if>
+
     </div>
     <div class="checkout-left">
-      <div class="checkout-left-basket">
-        <ul>
-          <%--<li>Product1 <i>-</i> <span>$15.00 </span></li>--%>
-          <%--<li>Product2 <i>-</i> <span>$25.00 </span></li>--%>
-          <%--<li>Product3 <i>-</i> <span>$29.00 </span></li>--%>
-          <li style="font-size: 22px">Total Price<i> :</i> <span>$${cart.totalPrice}</span></li>
-        </ul>
-        <a href="${pageContext.request.contextPath}/cart/checkout"><h4>Proceed to Checkout</h4></a>
-        <button onclick="modifyCart('clear', -1)">Clear Cart</button>
-      </div>
+      <c:if test="${cart.items.size() gt 0}">
+        <div class="checkout-left-basket">
+          <ul>
+            <c:forEach items="${cart.items}" var="l">
+              <fmt:formatNumber var="subtotal" minFractionDigits="1" maxFractionDigits="2"
+                                value="${l.cartQuantity * l.pricePerUnit}"/>
+              <li style="margin-bottom: 0">${l.listingName} x${l.cartQuantity} <i>-</i> <span>${subtotal}</span></li>
+            </c:forEach>
+            <fmt:formatNumber var="total" minFractionDigits="1" maxFractionDigits="2"
+                              value="${cart.totalPrice}"/>
+            <li style="font-size: 22px; margin-top: 22px">Total Price<i> :</i> <span>$${total}</span></li>
+          </ul>
+          <a href="${pageContext.request.contextPath}/cart/checkout"><h4>Proceed to Checkout</h4></a>
+          <button onclick="modifyCart('clear', -1)">Clear Cart</button>
+        </div>
+      </c:if>
       <div class="checkout-right-basket">
         <a href="${pageContext.request.contextPath}/products">
           <span class="glyphicon glyphicon-menu-left"

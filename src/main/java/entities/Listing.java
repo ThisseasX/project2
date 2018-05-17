@@ -8,6 +8,7 @@ import java.util.Collection;
 @NamedQueries({
         @NamedQuery(name = "Listing.getAll", query = "SELECT l FROM Listing l"),
         @NamedQuery(name = "Listing.getAllAvailable", query = "SELECT l FROM Listing l WHERE l.statusByStatusId.statusId = 1"),
+        @NamedQuery(name = "Listing.getAllAvailableByUser", query = "SELECT l FROM Listing l WHERE l.statusByStatusId.statusId = 1 AND l.userByUserId = :user"),
         @NamedQuery(name = "Listing.getAllInactive", query = "SELECT l FROM Listing l WHERE l.statusByStatusId.statusId = 2"),
         @NamedQuery(name = "Listing.getAllDepleted", query = "SELECT l FROM Listing l WHERE l.statusByStatusId.statusId = 3"),
         @NamedQuery(name = "Listing.getAllPending", query = "SELECT l FROM Listing l WHERE l.statusByStatusId.statusId = 4"),

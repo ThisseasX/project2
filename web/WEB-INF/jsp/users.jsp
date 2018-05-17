@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
@@ -15,7 +16,7 @@
 <%@include file="../fragments/topbar.jspf" %>
 
 <%
-  List<String> path = new ArrayList<>(Collections.singletonList("Management"));
+  List<String> path = new ArrayList<>(Arrays.asList("Management", "User Details"));
   pageContext.setAttribute("path", path);
 %>
 

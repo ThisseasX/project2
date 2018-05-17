@@ -59,7 +59,9 @@
                             </c:choose>"></a>
                     <div class="product-name">${checked_out_cart.items[i].listingName}
                       x${checked_out_cart.items[i].cartQuantity}</div>
-                    <h4>${checked_out_cart.items[i].pricePerUnit * checked_out_cart.items[i].cartQuantity}&euro;</h4>
+                    <fmt:formatNumber var="subtotal" minFractionDigits="0" maxFractionDigits="2"
+                                      value="${checked_out_cart.items[i].pricePerUnit * checked_out_cart.items[i].cartQuantity}"/>
+                    <h4>${subtotal}&euro;</h4>
                   </div>
                 </div>
               </figure>

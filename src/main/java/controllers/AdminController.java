@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import services.AccountService;
 import services.GenericService;
 import services.ListingService;
 
@@ -40,17 +39,26 @@ public class AdminController {
                                  @PathVariable String query) {
 
         User u = (User) session.getAttribute("user");
-        if (u == null || !u.isAdmin()) return "redirect:/users/login";
+        if (u == null || u.isClient()) return "redirect:/users/login";
 
-        m.addAttribute("listings", listingService.getAll(StringUtils.capitalize(query)));
+        if (u.isVendor()) {
+            m.addAttribute("listings", listingService.getAllByUser(u));
+        } else if (u.isAdmin()) {
+            m.addAttribute("listings", listingService.getAllByStatus(StringUtils.capitalize(query)));
+        }
+
         return "manage-listings";
+    }
+
+    @GetMapping("/admin-panel")
+    public String adminPanel(HttpSession session) {
+        User u = (User) session.getAttribute("user");
+        if (u == null) return "redirect:/users/login";
+        return "admin-panel";
     }
 
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
     }
-
-    @GetMapping("/admin-panel")
-    public String adminPanel() { return "admin-panel"; }
 }

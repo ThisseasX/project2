@@ -1,6 +1,9 @@
 package services;
 
-import entities.*;
+import entities.Account;
+import entities.Listing;
+import entities.Status;
+import entities.User;
 import exceptions.InsufficientBalanceException;
 import model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,5 +112,16 @@ public class AccountService {
     private void addBalance(Account to, double amount) {
         to.setBalance(to.getBalance() + amount);
         em.merge(to);
+    }
+
+    public double getBalance(User u) {
+        return round(u.getAccount().getBalance());
+    }
+
+    private static double round(double value) {
+        long factor = (long) Math.pow(10, 2);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 }

@@ -1,5 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
@@ -15,7 +15,7 @@
 <%@include file="../fragments/topbar.jspf" %>
 
 <%
-  List<String> path = new ArrayList<>(Collections.singletonList("Management"));
+  List<String> path = new ArrayList<>(Arrays.asList("Management", "Manage Products"));
   pageContext.setAttribute("path", path);
 %>
 
@@ -26,15 +26,17 @@
 <div class="checkout">
   <div class="container">
 
-    <div class="btn-group btn-group-justified">
-      <a href="${pageContext.request.contextPath}/admin/listings/all" class="btn btn-primary">All</a>
-      <a href="${pageContext.request.contextPath}/admin/listings/available" class="btn btn-primary">Active</a>
-      <a href="${pageContext.request.contextPath}/admin/listings/inactive" class="btn btn-primary">Inactive</a>
-      <a href="${pageContext.request.contextPath}/admin/listings/depleted" class="btn btn-primary">Depleted</a>
-      <a href="${pageContext.request.contextPath}/admin/listings/pending" class="btn btn-primary">Pending</a>
-    </div>
+    <c:if test="${sessionScope.user ne null and sessionScope.user.role.roleId == 1}">
+      <div class="btn-group btn-group-justified">
+        <a href="${pageContext.request.contextPath}/admin/listings/all" class="btn btn-primary">All</a>
+        <a href="${pageContext.request.contextPath}/admin/listings/available" class="btn btn-primary">Active</a>
+        <a href="${pageContext.request.contextPath}/admin/listings/inactive" class="btn btn-primary">Inactive</a>
+        <a href="${pageContext.request.contextPath}/admin/listings/depleted" class="btn btn-primary">Depleted</a>
+        <a href="${pageContext.request.contextPath}/admin/listings/pending" class="btn btn-primary">Pending</a>
+      </div>
+    </c:if>
 
-    <div class="btn-group-justified">
+    <%--<div class="btn-group-justified">
       <a href="${pageContext.request.contextPath}/admin/listings/all" class="button-admin-choice-middle"
          style="border-radius: 10px 0 0 0">All</a>
       <a href="${pageContext.request.contextPath}/admin/listings/available"
@@ -45,7 +47,7 @@
          class="button-admin-choice-middle">Depleted</a>
       <a href="${pageContext.request.contextPath}/admin/listings/pending" class="button-admin-choice-middle"
          style="border-radius: 0 10px 0 0">Pending</a>
-    </div>
+    </div>--%>
 
     <div class="checkout-right">
 
@@ -62,7 +64,9 @@
           <th>Base Price Out</th>
           <th>Date Listed</th>
           <th>Total Price</th>
-          <th>Status</th>
+          <c:if test="${sessionScope.user ne null and sessionScope.user.role.roleId == 1}">
+            <th>Status</th>
+          </c:if>
         </tr>
         </thead>
         <tbody>
@@ -77,11 +81,29 @@
             <td>${l.productByProductId.basePriceOut}&euro;</td>
             <td>${l.listingDate}</td>
             <td>${l.pricePerUnit * l.listingQuantity}&euro;</td>
-            <td>
-              <button style="width: 100%" class="btn btn-info" onclick="changeStatusId(${l.listingId})" id="status_${l.listingId}">
-                  ${l.statusByStatusId.statusName}
-              </button>
-            </td>
+            <c:if test="${sessionScope.user ne null and sessionScope.user.role.roleId == 1}">
+              <td>
+                <button style="width: 100%" class="btn
+                <c:choose>
+<c:when test="${l.statusByStatusId.statusId == 1}">
+btn-success
+</c:when>
+<c:when test="${l.statusByStatusId.statusId == 2}">
+btn-danger
+</c:when>
+<c:when test="${l.statusByStatusId.statusId == 3}">
+btn-warning
+</c:when>
+<c:when test="${l.statusByStatusId.statusId == 4}">
+btn-info
+</c:when>
+</c:choose>
+" onclick="changeStatusId(${l.listingId})"
+                        id="status_${l.listingId}">
+                    ${l.statusByStatusId.statusName}
+                </button>
+              </td>
+            </c:if>
           </tr>
         </c:forEach>
         </tbody>
@@ -112,7 +134,7 @@
         $.post("${pageContext.request.contextPath}/admin/change_listing_status/" + id,
             function (data) {
                 $("#status_" + id).text(data);
-                $.post("${pageContext.request.contextPath}/admin/balance",
+                $.post("${pageContext.request.contextPath}/users/balance",
                     function (data) {
                         $("#user_balance").text("Balance: " + data + "\u20AC");
                     }

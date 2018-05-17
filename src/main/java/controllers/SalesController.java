@@ -35,9 +35,14 @@ public class SalesController {
     @GetMapping("/all")
     public String getAllSales(HttpSession session, Model m) {
         User u = (User) session.getAttribute("user");
-        if (u == null || !u.isAdmin()) return "redirect:/users/login";
-
-        m.addAttribute("sales", genericService.getAll(Sale.class, true));
+        if (u == null) return "redirect:/users/login";
+        if (u.isVendor()) {
+            return "redirect:/sales/user";
+        } else if (u.isAdmin()) {
+            m.addAttribute("sales", genericService.getAll(Sale.class, true));
+        } else if (u.isVendor()) {
+            return "redirect:/sales/buyer";
+        }
         return "sales";
     }
 
@@ -47,6 +52,15 @@ public class SalesController {
         if (u == null) return "redirect:/users/login";
 
         m.addAttribute("sales", saleService.getSalesByUser(u));
+        return "sales";
+    }
+
+    @GetMapping("/buyer")
+    public String getSalesByBuyer(HttpSession session, Model m) {
+        User u = (User) session.getAttribute("user");
+        if (u == null) return "redirect:/users/login";
+
+        m.addAttribute("sales", saleService.getSalesByBuyer(u));
         return "sales";
     }
 

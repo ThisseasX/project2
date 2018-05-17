@@ -15,7 +15,7 @@
 <%@include file="../fragments/topbar.jspf" %>
 
 <%
-  List<String> path = new ArrayList<>(Arrays.asList("Manage", "Sell Product"));
+  List<String> path = new ArrayList<>(Arrays.asList("Management", "Sell Product"));
   pageContext.setAttribute("path", path);
 %>
 

@@ -5,10 +5,13 @@ import entities.Contact;
 import entities.Role;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import services.AccountService;
 import services.GenericService;
 import services.UserService;
 
@@ -23,11 +26,13 @@ public class UserController {
 
     private final GenericService genericService;
     private final UserService userService;
+    private final AccountService accountService;
 
     @Autowired
-    public UserController(GenericService genericService, UserService userService) {
+    public UserController(GenericService genericService, UserService userService, AccountService accountService) {
         this.genericService = genericService;
         this.userService = userService;
+        this.accountService = accountService;
     }
 
     @GetMapping("/all")
@@ -120,6 +125,13 @@ public class UserController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+
+    @PostMapping("/balance")
+    public ResponseEntity<Double> getBalance(HttpSession session) {
+        User u = (User) session.getAttribute("user");
+        if (u == null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        else return new ResponseEntity<>(accountService.getBalance(u), HttpStatus.OK);
     }
 
     @ModelAttribute("all_roles")

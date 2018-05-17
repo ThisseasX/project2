@@ -144,7 +144,10 @@ public class ProductController {
     }
 
     @GetMapping("/products/new")
-    public String newProductChoice(Model m) {
+    public String newProductChoice(Model m, HttpSession session) {
+        User u = (User) session.getAttribute("user");
+        if (u == null || u.isVendor()) return "redirect:/listings/new";
+
         List<Category> categories = genericService.getAll(Category.class, true);
         m.addAttribute("all_categories", categories);
         return "new-product-choice";
@@ -189,18 +192,6 @@ public class ProductController {
         return "redirect:/products/" + id;
     }
 
-    private byte[] getResizedImage(@RequestParam MultipartFile image) throws IOException {
-        BufferedImage buffered = resizeImage(image);
-        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        ImageIO.write(buffered, "png", byteStream);
-        byteStream.flush();
-
-        byte[] img = byteStream.toByteArray();
-        byteStream.close();
-
-        return img;
-    }
-
     @GetMapping("/{action}/image/{id}")
     public void viewImage(HttpServletResponse response,
                           @PathVariable String action,
@@ -217,6 +208,18 @@ public class ProductController {
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
+    }
+
+    private byte[] getResizedImage(@RequestParam MultipartFile image) throws IOException {
+        BufferedImage buffered = resizeImage(image);
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        ImageIO.write(buffered, "png", byteStream);
+        byteStream.flush();
+
+        byte[] img = byteStream.toByteArray();
+        byteStream.close();
+
+        return img;
     }
 
     private BufferedImage resizeImage(MultipartFile image) throws IOException {

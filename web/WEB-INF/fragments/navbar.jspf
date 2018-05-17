@@ -45,8 +45,9 @@
 
               </div>
 
-              <button onclick="window.location.href='${pageContext.request.contextPath}/listings'" class="product-button">
-                  View All Products
+              <button onclick="window.location.href='${pageContext.request.contextPath}/listings'"
+                      class="product-button">
+                View All Products
               </button>
 
             </ul>
@@ -63,26 +64,13 @@
 
                     <h6>My Account</h6>
 
-                    <li>
-                      <a href="${pageContext.request.contextPath}/admin/listings/all">Manage</a>
-                    </li>
-                    <li>
-                      <a href="${pageContext.request.contextPath}/listings/new">New Listing</a>
-                    </li>
-                    <li>
-                      <a href="${pageContext.request.contextPath}/products/new">New Product Type</a>
-                    </li>
-                    <li>
-                      <a href="${pageContext.request.contextPath}/sales/all">All Sales</a>
-                    </li>
-                    <li>
-                      <a href="${pageContext.request.contextPath}/users/all">All Users</a>
-                    </li>
+                    <c:if test="${sessionScope.user ne null}">
+                      <li>
+                        <a href="${pageContext.request.contextPath}/admin/admin-panel">Management Panel</a>
+                      </li>
+                    </c:if>
                     <li>
                       <a href="${pageContext.request.contextPath}/cart">My Cart</a>
-                    </li>
-                    <li>
-                      <a href="${pageContext.request.contextPath}/admin/admin-panel">Admin Panel</a>
                     </li>
                     <c:choose>
                       <c:when test="${sessionScope.user ne null}">

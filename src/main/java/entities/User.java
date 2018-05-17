@@ -25,6 +25,7 @@ public class User implements Serializable {
     private String password;
     private String name;
     private String surname;
+    private Collection<Sale> purchasesByUserId;
     private Collection<Listing> listingsByUserId;
     private Collection<Wish> wishesByUserId;
     private Role role;
@@ -116,6 +117,15 @@ public class User implements Serializable {
         return result;
     }
 
+    @OneToMany(mappedBy = "buyer")
+    public Collection<Sale> getPurchasesByUserId() {
+        return purchasesByUserId;
+    }
+
+    public void setPurchasesByUserId(Collection<Sale> purchasesByUserId) {
+        this.purchasesByUserId = purchasesByUserId;
+    }
+
     @OneToMany(mappedBy = "userByUserId")
     public Collection<Listing> getListingsByUserId() {
         return listingsByUserId;
@@ -137,6 +147,16 @@ public class User implements Serializable {
     @Transient
     public boolean isAdmin() {
         return this.role.getRoleId() == 1;
+    }
+
+    @Transient
+    public boolean isVendor() {
+        return this.role.getRoleId() == 2;
+    }
+
+    @Transient
+    public boolean isClient() {
+        return this.role.getRoleId() == 3;
     }
 
     @Valid

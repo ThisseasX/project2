@@ -8,19 +8,19 @@
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <a href="${pageContext.request.contextPath}/listings">
-        <img class="first-slide" src="images/Fruitsc.jpg" alt="First slide">
+        <img class="first-slide" src="${pageContext.request.contextPath}/images/Fruitsc.jpg" alt="First slide">
       </a>
 
     </div>
     <div class="item">
       <a href="${pageContext.request.contextPath}/listings">
-        <img class="second-slide " src="images/Vegetablec.jpg" alt="Second slide">
+        <img class="second-slide " src="${pageContext.request.contextPath}/images/Vegetablec.jpg" alt="Second slide">
       </a>
 
     </div>
     <div class="item">
       <a href="${pageContext.request.contextPath}/listings">
-        <img class="third-slide " src="images/Dairyc.jpg" alt="Third slide">
+        <img class="third-slide " src="${pageContext.request.contextPath}/images/Dairyc.jpg" alt="Third slide">
       </a>
 
     </div>

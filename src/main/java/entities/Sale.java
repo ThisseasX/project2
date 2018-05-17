@@ -1,13 +1,13 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @SuppressWarnings("RedundantIfStatement")
 @NamedQueries({
         @NamedQuery(name = "Sale.getAll", query = "SELECT s FROM Sale s"),
         @NamedQuery(name = "Sale.getAllByUser", query = "SELECT s FROM Sale s WHERE s.listingByListingId.userByUserId = :user"),
+        @NamedQuery(name = "Sale.getAllByBuyer", query = "SELECT s FROM Sale s WHERE s.buyer = :buyer"),
         @NamedQuery(name = "Sale.getAllBetweenDates", query = "SELECT s FROM Sale s WHERE s.saleDate BETWEEN :dateStart AND :dateEnd"),
         @NamedQuery(name = "Sale.getAllByUserBetweenDates", query = "SELECT s FROM Sale s WHERE s.listingByListingId.userByUserId = :user AND s.saleDate BETWEEN :dateStart AND :dateEnd")
 })
@@ -16,6 +16,7 @@ public class Sale {
 
     private Integer saleId;
     private Integer saleQuantity;
+    private User buyer;
     private Date saleDate;
     private Listing listingByListingId;
 
@@ -79,6 +80,16 @@ public class Sale {
         result = 31 * result + (saleQuantity != null ? saleQuantity.hashCode() : 0);
         result = 31 * result + (saleDate != null ? saleDate.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "buyer_id", referencedColumnName = "user_id", nullable = false)
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
     }
 
     @ManyToOne

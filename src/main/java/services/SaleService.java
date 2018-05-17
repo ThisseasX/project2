@@ -24,6 +24,13 @@ public class SaleService {
                 .getResultList();
     }
 
+    public List<Sale> getSalesByBuyer(User u) {
+        return em
+                .createNamedQuery("Sale.getAllByBuyer", Sale.class)
+                .setParameter("buyer", u)
+                .getResultList();
+    }
+
     public List<Sale> getAllSalesBetweenDates(String dateStart, String dateEnd) {
         return em
                 .createNamedQuery("Sale.getAllBetweenDates", Sale.class)

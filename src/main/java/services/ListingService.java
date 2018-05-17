@@ -2,6 +2,7 @@ package services;
 
 import entities.Listing;
 import entities.Status;
+import entities.User;
 import exceptions.InsufficientBalanceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -55,10 +56,17 @@ public class ListingService {
         return status.getStatusName();
     }
 
-    public List<Listing> getAll(String query) {
-        if (query.equals("All")) query = "";
+    public List<Listing> getAllByStatus(String status) {
+        if (status.equals("All")) status = "";
         return em
-                .createNamedQuery("Listing.getAll" + query, Listing.class)
+                .createNamedQuery("Listing.getAll" + status, Listing.class)
+                .getResultList();
+    }
+
+    public List<Listing> getAllByUser(User u) {
+        return em
+                .createNamedQuery("Listing.getAllAvailableByUser", Listing.class)
+                .setParameter("user", u)
                 .getResultList();
     }
 
