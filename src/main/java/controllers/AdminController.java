@@ -50,4 +50,7 @@ public class AdminController {
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
     }
+
+    @GetMapping("/admin-panel")
+    public String adminPanel() { return "admin-panel"; }
 }

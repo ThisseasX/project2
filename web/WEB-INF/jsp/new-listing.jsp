@@ -40,7 +40,7 @@
         <h1>${selected.productName}</h1>
 
         <div>
-          <img src="${pageContext.request.contextPath}/${selected.imagePath}">
+          <img src="${pageContext.request.contextPath}/products/image/${selected.productId}">
         </div>
 
         <div class="row">

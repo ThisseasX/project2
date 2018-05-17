@@ -7,20 +7,20 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <a href="beverages.html">
-        <img class="first-slide" src="images/b1.jpg" alt="First slide">
+      <a href="${pageContext.request.contextPath}/listings">
+        <img class="first-slide" src="images/Fruitsc.jpg" alt="First slide">
       </a>
 
     </div>
     <div class="item">
-      <a href="personalcare.html">
-        <img class="second-slide " src="images/b3.jpg" alt="Second slide">
+      <a href="${pageContext.request.contextPath}/listings">
+        <img class="second-slide " src="images/Vegetablec.jpg" alt="Second slide">
       </a>
 
     </div>
     <div class="item">
-      <a href="household.html">
-        <img class="third-slide " src="images/b1.jpg" alt="Third slide">
+      <a href="${pageContext.request.contextPath}/listings">
+        <img class="third-slide " src="images/Dairyc.jpg" alt="Third slide">
       </a>
 
     </div>

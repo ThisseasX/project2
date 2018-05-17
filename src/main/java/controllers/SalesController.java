@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Category;
 import entities.Sale;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import services.SaleService;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @SuppressWarnings("SameReturnValue")
 @RequestMapping("/sales")
@@ -88,5 +90,10 @@ public class SalesController {
         SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
+
+    @ModelAttribute("categories")
+    public List<Category> fetchCategories() {
+        return genericService.getAll(Category.class, true);
     }
 }

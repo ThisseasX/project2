@@ -73,11 +73,11 @@
       </c:if>
     </c:forEach>
     <br>
-    <h2 style="font-size:20px">Total Quantity: ${checked_out_cart.totalQuantity}
+    <h2 style="font-size:20px; padding-bottom: 10px">Total Products: ${checked_out_cart.totalQuantity}
     <br>
     <fmt:formatNumber var="totalPrice" minFractionDigits="0" maxFractionDigits="2"
                       value="${checked_out_cart.totalPrice}"/>
-    <h2>Total Price: ${totalPrice}&euro;</h2>
+    <br>Total Price: ${totalPrice}&euro;</h2>
   </div>
 </div>
 <!-- //checkout -->

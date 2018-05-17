@@ -1,21 +1,24 @@
 <ul id="demo1">
   <li>
-    <img src="images/11.jpg" alt=""/>
+    <img src="images/carfd.jpg" alt=""/>
     <div class="slide-desc">
-      <h3>Buy Rice Products Are Now On Line With Us</h3>
+      <h3 style="font-family:'Century Schoolbook';font-size:35px">Fruit, fruit and more fruit</h3>
+      <p style="font-size:35px;font-family:'Century Schoolbook';font-style: italic">healthy and nutritious can be delicious!</p>
     </div>
   </li>
   <li>
-    <img src="images/22.jpg" alt=""/>
+    <img src="images/carvd.jpg" alt=""/>
     <div class="slide-desc">
-      <h3>Whole Spices Products Are Now On Line With Us</h3>
+      <h3 style="font-family:'Century Schoolbook';font-size:35px">Be a vegetable all you life</h3>
+      <p style="font-size:35px;font-family:'Century Schoolbook';font-style: italic">vegetables are food for the soul!</p>
     </div>
   </li>
 
   <li>
-    <img src="images/44.jpg" alt=""/>
+    <img src="images/cardd2.jpg" alt=""/>
     <div class="slide-desc">
-      <h3>Whole Spices Products Are Now On Line With Us</h3>
+      <h3 style="font-family:'Century Schoolbook';font-size:35px">All You Need Is Dairy</h3>
+      <p style="font-size:35px;font-family:'Century Schoolbook';font-style: italic">have you had your dairy today?</p>
     </div>
   </li>
 </ul>

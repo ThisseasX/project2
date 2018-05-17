@@ -2,8 +2,8 @@
 <%--@elvariable id="discounts" type="java.util.List<entities.Product>"--%>
 <div class="top-brands">
   <div class="container">
-    <div class="grid_3 grid_5">
-      <h2 style="padding-top:20px">Top selling offers</h2>
+    <div class="grid_3 grid_5" style="background-color:#f0f0f0;border:1px solid rgba(190, 190, 190, 0.3)">
+      <h2 style="padding-top:20px">Our discounts</h2>
       <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
         <div id="myTabContent" class="tab-content">
           <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
@@ -27,8 +27,8 @@
                                 <img title=" " alt=" "
                                      src="${pageContext.request.contextPath}/products/image/${discounts[i].productId}"/>
                               </a>
-                              <div class="product-name">${discounts[i].productName}</div>
-                              <h1 style="text-align: center">-${discounts[i].discount}%</h1>
+                              <div style="color:#fe9126" class="product-name">${discounts[i].productName}</div>
+                              <h3 style="text-align: center">-${discounts[i].discount}%</h3>
                             </div>
                           </div>
                         </figure>

@@ -2295,7 +2295,21 @@ a.callbacks1_s3.active, a.callbacks1_s3:focus {
 /*--//slider end here--*/
 /*-- about-slid --*/
 .about-slid {
-    background: url(../images/vldark1.jpg) no-repeat 0px center fixed;
+    background: url(../images/parvd.jpg) no-repeat 0px center fixed;
+    background-size: cover;
+    text-align: center;
+    padding: 6em 0;
+}
+
+.about-slid2 {
+    background: url(../images/parmixd.jpg) no-repeat 0px center fixed;
+    background-size: cover;
+    text-align: center;
+    padding: 6em 0;
+}
+
+.about-slid3 {
+    background: url(../images/pardnd3.jpg) no-repeat 0px center fixed;
     background-size: cover;
     text-align: center;
     padding: 6em 0;
@@ -2312,7 +2326,33 @@ a.callbacks1_s3.active, a.callbacks1_s3:focus {
     font-family: 'Abel', sans-serif;
 }
 
+.about-slid2 h2 {
+    color: #fff;
+    font-size: 3.5em;
+    font-family: 'Abel', sans-serif;
+}
+
+.about-slid3 h2 {
+    color: #fff;
+    font-size: 3.5em;
+    font-family: 'Abel', sans-serif;
+}
+
 .about-slid p {
+    color: #fff;
+    font-size: 1em;
+    margin-top: 2em;
+    line-height: 1.8em;
+}
+
+.about-slid2 p {
+    color: #fff;
+    font-size: 1em;
+    margin-top: 2em;
+    line-height: 1.8em;
+}
+
+.about-slid3 p {
     color: #fff;
     font-size: 1em;
     margin-top: 2em;
@@ -3232,6 +3272,14 @@ h3.agileits-icons-title {
         font-size: 2.5em;
     }
 
+    .about-slid2 h2 {
+        font-size: 2.5em;
+    }
+
+    .about-slid3 h2 {
+        font-size: 2.5em;
+    }
+
     .about-slid-info {
         width: 100%;
     }
@@ -3553,11 +3601,35 @@ h3.agileits-icons-title {
         font-size: 2em;
     }
 
+    .about-slid2 h2 {
+        font-size: 2em;
+    }
+
+    .about-slid3 h2 {
+        font-size: 2em;
+    }
+
     .about-slid {
         padding: 4em 0;
     }
 
+    .about-slid2 {
+        padding: 4em 0;
+    }
+
+    .about-slid3 {
+        padding: 4em 0;
+    }
+
     .about-slid p {
+        font-size: 0.9em;
+    }
+
+    .about-slid2 p {
+        font-size: 0.9em;
+    }
+
+    .about-slid3 p {
         font-size: 0.9em;
     }
 
@@ -3750,6 +3822,14 @@ h3.agileits-icons-title {
         font-size: 1.7em;
     }
 
+    .about-slid2 h2 {
+        font-size: 1.7em;
+    }
+
+    .about-slid3 h2 {
+        font-size: 1.7em;
+    }
+
     .login-form-grids {
         width: 90%;
     }
@@ -3936,7 +4016,23 @@ h3.agileits-icons-title {
         font-size: 1.5em;
     }
 
+    .about-slid2 h2 {
+        font-size: 1.5em;
+    }
+
+    .about-slid3 h2 {
+        font-size: 1.5em;
+    }
+
     .about-slid p {
+        font-size: 0.875em;
+    }
+
+    .about-slid2 p {
+        font-size: 0.875em;
+    }
+
+    .about-slid3 p {
         font-size: 0.875em;
     }
 
@@ -4147,7 +4243,23 @@ h3.agileits-icons-title {
         padding: 3em 0;
     }
 
+    .about-slid2 {
+        padding: 3em 0;
+    }
+
+    .about-slid3 {
+        padding: 3em 0;
+    }
+
     .about-slid h2 {
+        font-size: 1.3em;
+    }
+
+    .about-slid2 h2 {
+        font-size: 1.3em;
+    }
+
+    .about-slid3 h2 {
         font-size: 1.3em;
     }
 

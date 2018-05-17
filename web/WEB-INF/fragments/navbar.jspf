@@ -81,6 +81,9 @@
                     <li>
                       <a href="${pageContext.request.contextPath}/cart">My Cart</a>
                     </li>
+                    <li>
+                      <a href="${pageContext.request.contextPath}/admin/admin-panel">Admin Panel</a>
+                    </li>
                     <c:choose>
                       <c:when test="${sessionScope.user ne null}">
                         <li>
