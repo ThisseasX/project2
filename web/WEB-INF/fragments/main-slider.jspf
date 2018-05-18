@@ -9,7 +9,7 @@
   <li>
     <img src="${pageContext.request.contextPath}/images/carvd.jpg" alt=""/>
     <div class="slide-desc">
-      <h3 style="font-family:'Century Schoolbook';font-size:35px">Be a vegetable all you life</h3>
+      <h3 style="font-family:'Century Schoolbook';font-size:35px">Be a vegetable all your life</h3>
       <p style="font-size:35px;font-family:'Century Schoolbook';font-style: italic">vegetables are food for the soul!</p>
     </div>
   </li>
