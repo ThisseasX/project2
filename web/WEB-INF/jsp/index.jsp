@@ -23,7 +23,7 @@
   <div class="container">
     <div class="about-slid-info">
       <h2>Reach new clients for your products!</h2>
-      <p>We know hard it can be to find new clients easily.<br>
+      <p>We know how hard it can be to find new clients.<br>
         Our website can offer you all the necessary exposure.</p>
     </div>
   </div>
@@ -42,12 +42,12 @@
             hard shopping days belongs to the past.
           <p>Amazing <a href="${pageContext.request.contextPath}/wishlist"
                         style="text-decoration:none; color:#fe9126">wishlist</a> technology! Never miss a discount!
-            Our mechanics spent a lot of time creating a system that will
+            Our engineers spent a lot of time creating a system that will
             inform you about discounts in products of your interest,
             as well as about products that are available to the market again, after they were depleted.
             <br><br><a href="${pageContext.request.contextPath}/users/register" style="text-decoration:none;
-            color:#3399cc">Sign up</a> and manage your account easily! Signing up is for free! Our user-oriented process
-            guarantees you an easy account management.</p>
+            color:#3399cc">Sign up</a> and manage your account easily! Signing up is free! Our user-oriented process
+            guarantees you easy account management.</p>
         </div>
         <div class="clearfix"></div>
       </div>
@@ -59,7 +59,7 @@
   <div class="container">
     <div class="about-slid-info">
       <h2>Reach new clients for your products!</h2>
-      <p>We know hard it can be to find new clients easily.<br>
+      <p>We know how hard it can be to find new clients.<br>
         Our website can offer you all the necessary exposure.</p>
     </div>
   </div>

@@ -1,6 +1,7 @@
 package controllers;
 
 import entities.Category;
+import entities.Product;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +10,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import services.GenericService;
 import services.ListingService;
+import services.NotificationService;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("SameReturnValue")
@@ -20,11 +23,13 @@ public class AdminController {
 
     private final GenericService genericService;
     private final ListingService listingService;
+    private final NotificationService notificationService;
 
     @Autowired
-    public AdminController(GenericService genericService, ListingService listingService) {
+    public AdminController(GenericService genericService, ListingService listingService, NotificationService notificationService) {
         this.genericService = genericService;
         this.listingService = listingService;
+        this.notificationService = notificationService;
     }
 
     @PostMapping("/change_listing_status/{id}")
@@ -60,5 +65,12 @@ public class AdminController {
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
+    }
+
+    @ModelAttribute("all_notifications")
+    public List<Product> fetchNotifications(HttpSession session) {
+        User u = (User) session.getAttribute("user");
+        if (u == null) return new ArrayList<>();
+        else return notificationService.readNotifications(u);
     }
 }

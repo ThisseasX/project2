@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
@@ -11,6 +14,11 @@
 
 <%--Header--%>
 <%@include file="../fragments/topbar.jspf" %>
+
+<%
+  List<String> path = new ArrayList<>(Collections.singletonList("Contact"));
+  pageContext.setAttribute("path", path);
+%>
 
 <%--Breadcrumbs--%>
 <%@include file="../fragments/breadcrumbs.jspf" %>
@@ -44,20 +52,20 @@
     <div class="col-md-6 w3_agileits_contact_grid_right">
       <h2 class="w3_agile_header">Leave a<span> Message</span></h2>
 
-      <form action="#" method="post">
+      <form action="${pageContext.request.contextPath}/mail" method="post">
 					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="text" id="input-25" name="Name" placeholder=" " required="" />
+						<input class="input__field input__field--ichiro" type="text" id="input-25" name="subject" placeholder=" " required="" />
 						<label class="input__label input__label--ichiro" for="input-25">
 							<span class="input__label-content input__label-content--ichiro">Your Name</span>
 						</label>
 					</span>
         <span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="email" id="input-26" name="Email" placeholder=" " required="" />
+						<input class="input__field input__field--ichiro" type="email" id="input-26" name="from" placeholder=" " required="" />
 						<label class="input__label input__label--ichiro" for="input-26">
 							<span class="input__label-content input__label-content--ichiro">Your Email</span>
 						</label>
 					</span>
-        <textarea name="Message" placeholder="Your message here..." required=""></textarea>
+        <textarea name="body" placeholder="Your message here..." required=""></textarea>
         <input type="submit" value="Submit">
       </form>
     </div>

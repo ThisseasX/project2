@@ -37,7 +37,7 @@ public class Contact {
     }
 
     @Basic
-    @Column(name = "city", nullable = false, length = 50)
+    @Column(name = "city", length = 50)
     public String getCity() {
         return city;
     }
@@ -47,7 +47,7 @@ public class Contact {
     }
 
     @Basic
-    @Column(name = "region", nullable = false, length = 50)
+    @Column(name = "region", length = 50)
     public String getRegion() {
         return region;
     }

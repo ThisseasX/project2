@@ -2,7 +2,10 @@ package entities;
 
 import javax.persistence.*;
 
-@NamedQuery(name = "Wish.exists", query = "SELECT w FROM Wish w WHERE w.userByUserId = :user AND w.productByProductId = :product")
+@NamedQueries({
+        @NamedQuery(name = "Wish.exists", query = "SELECT w FROM Wish w WHERE w.userByUserId = :user AND w.productByProductId = :product"),
+        @NamedQuery(name = "Wish.getAllByProduct", query = "SELECT w.userByUserId FROM Wish w WHERE w.productByProductId = :product")
+})
 @Entity
 public class Wish {
 

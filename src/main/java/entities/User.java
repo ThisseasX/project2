@@ -28,6 +28,7 @@ public class User implements Serializable {
     private Collection<Sale> purchasesByUserId;
     private Collection<Listing> listingsByUserId;
     private Collection<Wish> wishesByUserId;
+    private Collection<Notification> notificationsByUserId;
     private Role role;
     private Contact contact;
     private Account account;
@@ -142,6 +143,15 @@ public class User implements Serializable {
 
     public void setWishesByUserId(Collection<Wish> wishesByUserId) {
         this.wishesByUserId = wishesByUserId;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<Notification> getNotificationsByUserId() {
+        return notificationsByUserId;
+    }
+
+    public void setNotificationsByUserId(Collection<Notification> notificationsByUserId) {
+        this.notificationsByUserId = notificationsByUserId;
     }
 
     @Transient

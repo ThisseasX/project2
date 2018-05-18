@@ -26,7 +26,6 @@
     <mvc:resources mapping="/images/**" location="/images/"/>
     <mvc:resources mapping="/bootstrap/**" location="/bootstrap/"/>
     <mvc:resources mapping="/jquery/**" location="/jquery/"/>
-    <mvc:resources mapping="/uploaded/**" location="/uploaded/"/>
 
     <bean id="userService" class="services.UserService"/>
     <bean id="listingService" class="services.ListingService"/>
@@ -35,6 +34,8 @@
     <bean id="cartService" class="services.CartService"/>
     <bean id="accountService" class="services.AccountService"/>
     <bean id="productService" class="services.ProductService"/>
+    <bean id="mailService" class="services.MailService"/>
+    <bean id="notificationService" class="services.NotificationService"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>

@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import services.GenericService;
-import services.ListingService;
-import services.ProductService;
-import services.WishService;
+import services.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("SameReturnValue")
@@ -27,14 +25,16 @@ public class ProductController {
     private final ListingService listingService;
     private final ProductService productService;
     private final WishService wishService;
+    private final NotificationService notificationService;
 
     @Autowired
     public ProductController(GenericService genericService,
-                             ListingService listingService, ProductService productService, WishService wishService) {
+                             ListingService listingService, ProductService productService, WishService wishService, NotificationService notificationService) {
         this.genericService = genericService;
         this.listingService = listingService;
         this.productService = productService;
         this.wishService = wishService;
+        this.notificationService = notificationService;
     }
 
     @GetMapping("/search")
@@ -208,6 +208,13 @@ public class ProductController {
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
+    }
+
+    @ModelAttribute("all_notifications")
+    public List<Product> fetchNotifications(HttpSession session) {
+        User u = (User) session.getAttribute("user");
+        if (u == null) return new ArrayList<>();
+        else return notificationService.readNotifications(u);
     }
 
     private byte[] getResizedImage(@RequestParam MultipartFile image) throws IOException {

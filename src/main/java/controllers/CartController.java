@@ -1,6 +1,8 @@
 package controllers;
 
 import entities.Category;
+import entities.Product;
+import entities.User;
 import exceptions.InsufficientBalanceException;
 import model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import services.AccountService;
 import services.CartService;
 import services.GenericService;
+import services.NotificationService;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("SameReturnValue")
@@ -25,12 +29,14 @@ public class CartController {
     private final GenericService genericService;
     private final CartService cartService;
     private final AccountService accountService;
+    private final NotificationService notificationService;
 
     @Autowired
-    public CartController(GenericService genericService, CartService cartService, AccountService accountService) {
+    public CartController(GenericService genericService, CartService cartService, AccountService accountService, NotificationService notificationService) {
         this.genericService = genericService;
         this.cartService = cartService;
         this.accountService = accountService;
+        this.notificationService = notificationService;
     }
 
     @GetMapping
@@ -66,5 +72,12 @@ public class CartController {
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
+    }
+
+    @ModelAttribute("all_notifications")
+    public List<Product> fetchNotifications(HttpSession session) {
+        User u = (User) session.getAttribute("user");
+        if (u == null) return new ArrayList<>();
+        else return notificationService.readNotifications(u);
     }
 }

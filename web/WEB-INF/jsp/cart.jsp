@@ -93,13 +93,15 @@
                   </button>
                 </div>
               </td>
+              <fmt:formatNumber var="ppu" minFractionDigits="1" maxFractionDigits="2"
+                                value="${l.pricePerUnit * ((100 - l.productByProductId.discount) / 100)}"/>
+              <fmt:formatNumber var="price" minFractionDigits="1" maxFractionDigits="2"
+                                value="${l.cartQuantity * ppu}"/>
               <td id="price_${l.listingId}" class="invert">
-                <div class="common">${l.pricePerUnit}&euro;</div>
+                <div class="common">${ppu}&euro;</div>
               </td>
               <td id="total_${l.listingId}" class="invert">
-                <fmt:formatNumber var="cart_subtotal" minFractionDigits="1" maxFractionDigits="2"
-                                  value="${l.cartQuantity * l.pricePerUnit}"/>
-                <div class="common">${cart_subtotal}&euro;</div>
+                <div class="common">${price}&euro;</div>
               </td>
               <td class="invert">
                 <div class="rem">
@@ -131,7 +133,7 @@
           <ul>
             <c:forEach items="${cart.items}" var="l">
               <fmt:formatNumber var="subtotal" minFractionDigits="1" maxFractionDigits="2"
-                                value="${l.cartQuantity * l.pricePerUnit}"/>
+                                value="${l.cartQuantity * l.pricePerUnit * ((100 - l.productByProductId.discount) / 100)}"/>
               <li style="margin-bottom: 0">${l.listingName} x${l.cartQuantity} <i>-</i> <span>${subtotal}</span></li>
             </c:forEach>
             <fmt:formatNumber var="total" minFractionDigits="1" maxFractionDigits="2"

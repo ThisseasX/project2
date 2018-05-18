@@ -16,14 +16,16 @@ import java.util.List;
 @Repository
 public class ListingService {
 
-    private AccountService accountService;
+    private final AccountService accountService;
+    private final NotificationService notificationService;
 
     @PersistenceContext
     private EntityManager em;
 
     @Autowired
-    public void setAccountService(AccountService accountService) {
+    public ListingService(AccountService accountService, NotificationService notificationService) {
         this.accountService = accountService;
+        this.notificationService = notificationService;
     }
 
     @Transactional
@@ -51,6 +53,11 @@ public class ListingService {
 
         listing.setStatusByStatusId(status);
         em.merge(listing);
+
+        //noinspection ConstantConditions
+        if (status.getStatusId() == 1) {
+            notificationService.sendNotifications(listing.getProductByProductId());
+        }
 
         //noinspection ConstantConditions
         return status.getStatusName();

@@ -1,6 +1,7 @@
 package controllers;
 
 import entities.Category;
+import entities.Product;
 import entities.Sale;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import services.GenericService;
+import services.NotificationService;
 import services.SaleService;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,11 +27,13 @@ public class SalesController {
 
     private final GenericService genericService;
     private final SaleService saleService;
+    private final NotificationService notificationService;
 
     @Autowired
-    public SalesController(GenericService genericService, SaleService saleService) {
+    public SalesController(GenericService genericService, SaleService saleService, NotificationService notificationService) {
         this.genericService = genericService;
         this.saleService = saleService;
+        this.notificationService = notificationService;
     }
 
     @GetMapping("/all")
@@ -69,16 +73,15 @@ public class SalesController {
                                           @RequestParam Date dateStart,
                                           @RequestParam Date dateEnd) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh/mm/ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         String startDate = sdf.format(dateStart);
         String endDate = sdf.format(dateEnd);
 
         m.addAttribute("sales", saleService.getAllSalesBetweenDates(
-                startDate,
-                endDate
+                dateStart,
+                dateEnd
         ));
         return "sales";
-
     }
 
     @GetMapping("/user/{dateStart}/{dateEnd}")
@@ -99,15 +102,21 @@ public class SalesController {
     }
 
     @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        String datePattern = "yyyy/MM/dd hh/mm/ss";
-        SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
+    public void initBinder(WebDataBinder webDataBinder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+        webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
+    }
+
+    @ModelAttribute("all_notifications")
+    public List<Product> fetchNotifications(HttpSession session) {
+        User u = (User) session.getAttribute("user");
+        if (u == null) return new ArrayList<>();
+        else return notificationService.readNotifications(u);
     }
 }

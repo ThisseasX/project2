@@ -1,9 +1,6 @@
 package controllers;
 
-import entities.Category;
-import entities.Contact;
-import entities.Role;
-import entities.User;
+import entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +10,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import services.AccountService;
 import services.GenericService;
+import services.NotificationService;
 import services.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("SameReturnValue")
@@ -27,12 +26,14 @@ public class UserController {
     private final GenericService genericService;
     private final UserService userService;
     private final AccountService accountService;
+    private final NotificationService notificationService;
 
     @Autowired
-    public UserController(GenericService genericService, UserService userService, AccountService accountService) {
+    public UserController(GenericService genericService, UserService userService, AccountService accountService, NotificationService notificationService) {
         this.genericService = genericService;
         this.userService = userService;
         this.accountService = accountService;
+        this.notificationService = notificationService;
     }
 
     @GetMapping("/all")
@@ -142,5 +143,12 @@ public class UserController {
     @ModelAttribute("categories")
     public List<Category> fetchCategories() {
         return genericService.getAll(Category.class, true);
+    }
+
+    @ModelAttribute("all_notifications")
+    public List<Product> fetchNotifications(HttpSession session) {
+        User u = (User) session.getAttribute("user");
+        if (u == null) return new ArrayList<>();
+        else return notificationService.readNotifications(u);
     }
 }

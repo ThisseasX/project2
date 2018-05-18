@@ -35,6 +35,9 @@
           <th>Image</th>
           <th>Category Name</th>
           <th>Remove</th>
+          <c:if test="${newProducts ne null and newProducts.size() > 0}">
+            <th>New</th>
+          </c:if>
         </tr>
         </thead>
 
@@ -46,8 +49,9 @@
                 <div class="common">${p.productId}</div>
               </td>
               <td class="invert-image">
-                <a href="${pageContext.request.contextPath}/products/${p.productId}"><img
-                    src="${pageContext.request.contextPath}/products/image/${p.productId}" alt=" " class="img-responsive"/></a>
+                <a href="${pageContext.request.contextPath}/listings/${p.productId}"><img
+                    src="${pageContext.request.contextPath}/products/image/${p.productId}" alt=" "
+                    class="img-responsive"/></a>
               </td>
               <td>
                 <div class="common">${p.productName}</div>
@@ -60,6 +64,9 @@
                 />
                 <label for="_${p.productId}" class="heart" onclick="toggleWish(${p.productId})">❤</label>
               </td>
+              <c:if test="${newProducts ne null and newProducts.size() > 0 and newProducts.contains(p)}">
+                <td>New!</td>
+              </c:if>
             </tr>
           </c:forEach>
         </c:if>
@@ -68,12 +75,12 @@
 
       </table>
 
-        <c:if test="${wishlist eq null or wishlist.size() < 1}">
-          <div style="text-align:center; font-size:22px; border-bottom:1px solid rgba(0,0,0,0.15);
+      <c:if test="${wishlist eq null or wishlist.size() < 1}">
+        <div style="text-align:center; font-size:22px; border-bottom:1px solid rgba(0,0,0,0.15);
             border-left:1px solid rgba(0,0,0,0.16); border-right:1px solid rgba(0,0,0,0.16); padding: 5px 0">
-            You have no items in your wishlist. <br>Go add some!
-          </div>
-        </c:if>
+          You have no items in your wishlist. <br>Go add some!
+        </div>
+      </c:if>
 
     </div>
   </div>

@@ -56,7 +56,9 @@ public class Cart {
     public double getTotalPrice() {
         return items
                 .stream()
-                .mapToDouble(a -> a.getCartQuantity() * a.getPricePerUnit())
+                .mapToDouble(a -> a.getCartQuantity() *
+                        a.getPricePerUnit() *
+                        ((100d - a.getProductByProductId().getDiscount()) / 100d))
                 .sum();
     }
 

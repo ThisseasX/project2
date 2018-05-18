@@ -60,7 +60,7 @@
                     <div class="product-name">${checked_out_cart.items[i].listingName}
                       x${checked_out_cart.items[i].cartQuantity}</div>
                     <fmt:formatNumber var="subtotal" minFractionDigits="0" maxFractionDigits="2"
-                                      value="${checked_out_cart.items[i].pricePerUnit * checked_out_cart.items[i].cartQuantity}"/>
+                                      value="${checked_out_cart.items[i].pricePerUnit * checked_out_cart.items[i].cartQuantity * ((100 - checked_out_cart.items[i].productByProductId.discount) / 100)}"/>
                     <h4>${subtotal}&euro;</h4>
                   </div>
                 </div>

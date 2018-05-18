@@ -1,3 +1,6 @@
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
@@ -11,6 +14,11 @@
 
 <%--Header--%>
 <%@include file="../fragments/topbar.jspf" %>
+
+<%
+  List<String> path = new ArrayList<>(Collections.singletonList("About Us"));
+  pageContext.setAttribute("path", path);
+%>
 
 <%--Breadcrumbs--%>
 <%@include file="../fragments/breadcrumbs.jspf" %>
@@ -111,7 +119,7 @@
 <div class="about-slid agileits-w3layouts">
   <div class="container">
     <div class="about-slid-info">
-      <h2>Work with us, our profit shares worth it!</h2>
+      <h2>Work with us, our profit shares are worth it!</h2>
       <p>Vendors are the backbone of the Farmers Market.
         FM has enjoyed a reputation for relationship building
         among its vendors, and has been instrumental in

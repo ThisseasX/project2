@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
@@ -9,6 +12,11 @@
 <body>
 <%--Header--%>
 <%@include file="../fragments/topbar.jspf" %>
+
+<%
+  List<String> path = new ArrayList<>(Collections.singletonList("FAQ"));
+  pageContext.setAttribute("path", path);
+%>
 
 <%--Breadcrumbs--%>
 <%@include file="../fragments/breadcrumbs.jspf" %>
@@ -29,17 +37,17 @@
       </li>
       <li class="item2"><a href="#" title="click here"><h4 style="color: #fe9126">Who made this?</h4></a>
         <ul>
-          <li class="subitem1"><p> This e-shop was carefully designed as a deliverable project from the Tomtogs team for the Alliance for Digital Employability Bootcamp.
+          <li class="subitem1"><p> This e-shop was carefully designed as a deliverable project from the Tomdogs team for the Alliance for Digital Employability Bootcamp.
             <br>Feel free to browse through the site's numerous capabilities, and appreciate what we have made.</p></li>
         </ul>
       </li>
-      <li class="item3"><a href="#" title="click here"><h4 style="color: #3399cc">How can i become a vendor?</h4></a>
+      <li class="item3"><a href="#" title="click here"><h4 style="color: #3399cc">How can I become a vendor?</h4></a>
         <ul>
           <li class="subitem1"><p> You can be a member <a href="${pageContext.request.contextPath}/users/register" style="text-decoration:none">here</a> and have a chance to sell your products in a wider audience.
             <br>Our cooperation is using a state-of-the-art algorithm to share the profits amongst our members.</p></li>
         </ul>
       </li>
-      <li class="item4"><a href="#" title="click here"><h4 style="color: #fe9126">How can i buy your products?</h4></a>
+      <li class="item4"><a href="#" title="click here"><h4 style="color: #fe9126">How can I buy your products?</h4></a>
         <ul>
           <li class="subitem1"><p> Create an account <a href="${pageContext.request.contextPath}/users/register" style="text-decoration:none">here</a>
             <br>You can organise your purchases using our site's Cart. Not ready to buy yet?
@@ -47,10 +55,10 @@
             <br>Our systems guarantee that no payment method would be a problem for you!</p></li>
         </ul>
       </li>
-      <li class="item5"><a href="#" title="click here"><h4 style="color: #3399cc">How can i contact you?</h4></a>
+      <li class="item5"><a href="#" title="click here"><h4 style="color: #3399cc">How can I contact you?</h4></a>
         <ul>
           <li class="subitem1"><p> Complaints? Feedback? Or just saying a quick hello?
-            <br>Whatever it is, let u know <a href="${pageContext.request.contextPath}/contact" style="text-decoration:none">here</a>!
+            <br>Whatever it is, let us know <a href="${pageContext.request.contextPath}/contact" style="text-decoration:none">here</a>!
             <br> Please insert your name, your email, and whatever you want to tell us!</p></li>
         </ul>
       </li>

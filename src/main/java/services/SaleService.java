@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -31,7 +32,7 @@ public class SaleService {
                 .getResultList();
     }
 
-    public List<Sale> getAllSalesBetweenDates(String dateStart, String dateEnd) {
+    public List<Sale> getAllSalesBetweenDates(Date dateStart, Date dateEnd) {
         return em
                 .createNamedQuery("Sale.getAllBetweenDates", Sale.class)
                 .setParameter("dateStart", dateStart)
