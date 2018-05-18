@@ -12,7 +12,7 @@
           </li>
           <li>
             <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
-            <a href="mailto:info@example.com">info@afdemp.org</a>
+            <a href="mailto:info@example.com">tomdogs.info@gmail.com</a>
           </li>
           <li>
             <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+30 210 372 9052
@@ -24,15 +24,15 @@
         <ul class="info">
           <li>
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            <a href="#">About Us</a>
+            <a href="${pageContext.request.contextPath}/about">About Us</a>
           </li>
           <li>
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            <a href="#">Contact Us</a>
+            <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
           </li>
           <li>
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            <a href="#">FAQ's</a>
+            <a href="${pageContext.request.contextPath}/faq">FAQ's</a>
           </li>
         </ul>
       </div>
