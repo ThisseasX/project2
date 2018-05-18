@@ -31,20 +31,20 @@
 
   <div class="container">
 
-    <h2>Sell Product</h2>
+    <h2 style="margin-bottom:25px">Sell Product</h2>
 
-    <div class="login-form-grids">
+    <div class="login-form-grids" style="border:1px solid rgba(190, 190, 190, 0.3);background-color:#f0f0f0">
 
       <form method="post">
 
-        <h1>${selected.productName}</h1>
+        <h1 style="text-align:center;margin-bottom:20px">${selected.productName}</h1>
 
-        <div>
+        <div style="text-align:center">
           <img src="${pageContext.request.contextPath}/products/image/${selected.productId}">
         </div>
 
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-12" style="font-size:17px">
             <label for="listingName">Product Name</label>
             <div class="form-group">
               <input type="text" id="listingName" name="listingName" class="form-control" pattern="{1,30}">
@@ -53,7 +53,7 @@
         </div>
 
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-12" style="font-size:17px">
             <label for="listingQuantity">Quantity</label>
             <div class="form-group">
               <input type="number" id="listingQuantity" name="listingQuantity" class="form-control" pattern="[0-9]+">
@@ -61,9 +61,8 @@
           </div>
         </div>
 
-        <h1>Accepted at:</h1>
-        <h1>${selected.basePriceIn}&euro;</h1>
-        <h1>per ${selected.unitByUnitId.unitName}</h1>
+        <h4 style="text-align:center;margin-top:12px">Accepted at:</h4>
+        <h4 style="text-align:center;margin-top:8px">${selected.basePriceIn}&euro; per ${selected.unitByUnitId.unitName}</h4>
 
         <div class="row">
           <div class="col-xs-12">

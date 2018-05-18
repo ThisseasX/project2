@@ -8,6 +8,31 @@
 <head>
   <%@include file="../fragments/head.jspf" %>
   <title>New Product Type</title>
+  <style>
+    /*.container {*/
+      /*padding: 2px 16px;*/
+    /*}*/
+
+    .panel {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      background-color:#3399cc;
+      transition: 0.5s;
+    }
+
+    .panel:hover {
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+      background-color: #fe9126;
+    }
+
+    darkh {
+      background-color: #3399cc;
+    }
+
+    .darkh:hover {
+      filter: brightness(90%);
+      background-color: #fe9126;
+    }
+  </style>
 </head>
 
 <body>
@@ -35,24 +60,26 @@
       <c:if test="${i eq 0 or i mod 3 eq 0}">
         <div class="agile_top_brands_grids">
       </c:if>
-      <div class="col-md-4 top_brand_left">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid">
+      <div class="col-md-4 top_brand_left" style="cursor: pointer">
+        <a href="${pageContext.request.contextPath}/products/new/${all_categories[i].categoryId}">
+        <div class="hover14 column panel" style="border-radius:8px;border:1px solid rgba(0, 0, 0, 0.05);">
+          <div class="agile_top_brand_left_grid panel darkh" style="border:none;border-radius:8px">
             <div class="agile_top_brand_left_grid1">
-              <figure>
+
                 <div class="snipcart-item block">
                   <div class="snipcart-thumb">
                     <div class="product-name">
-                      <a href="${pageContext.request.contextPath}/products/new/${all_categories[i].categoryId}">
-                          ${all_categories[i].categoryName}
-                      </a>
+                      <%--<a href="${pageContext.request.contextPath}/products/new/${all_categories[i].categoryId}">--%>
+                      <h2 style="color:white">${all_categories[i].categoryName}</h2>
+                      <%--</a>--%>
                     </div>
                   </div>
                 </div>
-              </figure>
+
             </div>
           </div>
         </div>
+        </a>
       </div>
       <c:if test="${i eq all_categories.size() - 1 or i mod 3 eq 2}">
         <div class="clearfix"></div>

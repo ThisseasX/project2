@@ -39,7 +39,7 @@
           <p class="top"><br>Organising your purchases can be such a mess! With our new
             <a href="${pageContext.request.contextPath}/cart"
               style="text-decoration:none;color:#4841f4">shopping cart </a>technology,
-            hard shopping days belongs to the past.
+            hard shopping days belong to the past.
           <p>Amazing <a href="${pageContext.request.contextPath}/wishlist"
                         style="text-decoration:none; color:#fe9126">wishlist</a> technology! Never miss a discount!
             Our engineers spent a lot of time creating a system that will
@@ -58,13 +58,16 @@
 <div class="about-slid3 agileits-w3layouts">
   <div class="container">
     <div class="about-slid-info">
-      <h2>Reach new clients for your products!</h2>
-      <p>We know how hard it can be to find new clients.<br>
-        Our website can offer you all the necessary exposure.</p>
+      <h2>Work with us, our profit shares are worth it!</h2>
+      <p>Vendors are the backbone of the Farmers Market.
+        We have enjoyed a reputation for relationship building
+        among our vendors, that has been instrumental in
+        taking several local businesses to the next level
+        of their success.</p>
     </div>
   </div>
 </div>
-
+<div class="container-fluid">
 <div class="about">
   <div class="container col-md-offset-2 col-md-8"
        style="background-color:#f0f0f0;padding-bottom:10px;margin-bottom:80px;border:1px solid rgba(190, 190, 190, 0.3)">
@@ -89,6 +92,7 @@
       <div class="clearfix"></div>
     </div>
   </div>
+</div>
 </div>
 
 <%--Carousel--%>

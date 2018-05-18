@@ -98,6 +98,7 @@
                               ${ppu}&euro;
                             </span>
                           </c:if>
+                            <div class="product-name" style="padding:0;margin-top:5px">per ${listings[i].productByProductId.unitByUnitId.unitName}</div>
                           </h4>
                         </div>
                         <div class="snipcart-details top_brand_home_details">

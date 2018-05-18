@@ -26,12 +26,12 @@
 <div class="checkout">
   <div class="container">
 
-    <div class="btn-group-justified">
+    <div class="btn-group btn-group-justified">
       <c:if test="${sessionScope.user.admin}">
         <a href="${pageContext.request.contextPath}/sales/all" class="button-admin-choice-middle"
            style="border-radius: 10px 0 0 0">All</a>
         <a href="${pageContext.request.contextPath}/sales/user"
-           class="button-admin-choice-middle">User</a>
+           class="button-admin-choice-middle" style="border-radius:0 10px 0 0">User</a>
       </c:if>
       <form method="get" action="${pageContext.request.contextPath}/sales/all/dates">
         <label for="dateStart">Start Date:</label>
@@ -56,6 +56,7 @@
           <th>ID</th>
           <th>Seller</th>
           <th>Buyer</th>
+          <th>Product</th>
           <th>Unit</th>
           <th>Quantity</th>
           <th>Price Per Unit</th>
@@ -67,8 +68,9 @@
         <c:forEach items="${sales}" var="s">
           <tr>
             <td>${s.saleId}</td>
-            <td>${s.listingByListingId.userByUserId.email}</td>
-            <td>${s.buyer.email}</td>
+            <td>${s.listingByListingId.userByUserId.name}</td>
+            <td>${s.buyer.name}</td>
+            <td>${s.listingByListingId.listingName}</td>
             <td>${s.listingByListingId.productByProductId.unitByUnitId.unitName}</td>
             <td>${s.saleQuantity}</td>
             <fmt:formatNumber var="ppu" minFractionDigits="1" maxFractionDigits="2"

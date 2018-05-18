@@ -42,15 +42,15 @@
 <%@include file="../fragments/breadcrumbs.jspf" %>
 
 <div class="faq-w3agile">
-  <h3>Admin Panel</h3>
+  <h3>Management Panel</h3>
   <div class="container" style="background-color:#f5f5f5; margin-top:30px; padding:0 20px 40px 20px;
     border: 1px solid rgba(153, 153, 153, 0.144); text-align: center">
     <div class="agile_top_brands_grids">
       <c:if test="${sessionScope.user.admin or sessionScope.user.vendor}">
-        <div class="col-md-6 top_brand_left" style="cursor: pointer;">
+        <div class="col-md-6 top_brand_left" style="cursor: pointer">
           <a style="text-decoration:none;" href="${pageContext.request.contextPath}/admin/listings/all">
             <div class="hover14 column panel"
-                 style="border-radius:8px;color:#fe9126;border:1px solid rgba(0, 0, 0, 0.05);">
+                 style="border-radius:8px;background-color:#fe9126;border:1px solid rgba(0, 0, 0, 0.05);">
               <div class="agile_top_brand_left_grid panel darkh"
                    style="background-color:#fe9126;border:none;border-radius:8px">
                 <div class="agile_top_brand_left_grid1">

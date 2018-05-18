@@ -119,12 +119,10 @@
 <div class="about-slid agileits-w3layouts">
   <div class="container">
     <div class="about-slid-info">
-      <h2>Work with us, our profit shares are worth it!</h2>
-      <p>Vendors are the backbone of the Farmers Market.
-        FM has enjoyed a reputation for relationship building
-        among its vendors, and has been instrumental in
-        taking several local businesses to the next level
-        of their success.</p>
+      <h2>A great variety of quality products!</h2>
+      <p>You name it, we have it! Vegetables,
+        fruits, dry nuts, cereal, or even dairy!
+      <br>You can choose from over 10 top quality product categories!</p>
     </div>
   </div>
 </div>
