@@ -57,6 +57,7 @@
         <tr>
           <th>ID</th>
           <th>Username</th>
+          <th>Product Name</th>
           <th>Unit</th>
           <th>Quantity</th>
           <th>Price Per Unit</th>
@@ -74,13 +75,16 @@
           <tr>
             <td>${l.listingId}</td>
             <td>${l.userByUserId.email}</td>
+            <td>${l.listingName}</td>
             <td>${l.productByProductId.unitByUnitId.unitName}</td>
             <td>${l.listingQuantity}</td>
             <td>${l.pricePerUnit}&euro;</td>
             <td>${l.productByProductId.basePriceIn}&euro;</td>
             <td>${l.productByProductId.basePriceOut}&euro;</td>
             <td>${l.listingDate}</td>
-            <td>${l.pricePerUnit * l.listingQuantity}&euro;</td>
+            <fmt:formatNumber var="price" minFractionDigits="1" maxFractionDigits="2"
+                              value="${l.productByProductId.basePriceIn * l.listingQuantity}"/>
+            <td>${price}&euro;</td>
             <c:if test="${sessionScope.user ne null and sessionScope.user.role.roleId == 1}">
               <td>
                 <button style="width: 100%" class="btn
