@@ -73,10 +73,6 @@ public class SalesController {
                                           @RequestParam Date dateStart,
                                           @RequestParam Date dateEnd) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        String startDate = sdf.format(dateStart);
-        String endDate = sdf.format(dateEnd);
-
         m.addAttribute("sales", saleService.getAllSalesBetweenDates(
                 dateStart,
                 dateEnd
