@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
   <%@include file="../fragments/head.jspf" %>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/heart.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/heart.css">
   <title>Wishlist</title>
 </head>
 <body>

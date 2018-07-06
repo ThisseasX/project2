@@ -43,13 +43,13 @@
           Please refer to our <a href="${pageContext.request.contextPath}/faq" style="text-decoration:none">FAQ</a> section, for more details. </p>
         <div class="about-w3agilerow">
           <div class="col-md-4 about-w3imgs">
-            <img src="${pageContext.request.contextPath}/images/pvs1.jpg" alt="vegetables" class="img-responsive zoom-img"/>
+            <img src="${pageContext.request.contextPath}/resources/images/pvs1.jpg" alt="vegetables" class="img-responsive zoom-img"/>
           </div>
           <div class="col-md-4 about-w3imgs">
-            <img src="${pageContext.request.contextPath}/images/pfs1.jpg" alt="fruits" class="img-responsive zoom-img"/>
+            <img src="${pageContext.request.contextPath}/resources/images/pfs1.jpg" alt="fruits" class="img-responsive zoom-img"/>
           </div>
           <div class="col-md-4 about-w3imgs">
-            <img src="${pageContext.request.contextPath}/images/pds1.jpg" alt="dairy" class="img-responsive zoom-img"/>
+            <img src="${pageContext.request.contextPath}/resources/images/pds1.jpg" alt="dairy" class="img-responsive zoom-img"/>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -67,7 +67,7 @@
         </div>
         <div class="testi">
           <h3 class="w3_agile_header" style="font-size:25px; padding-top: 14px">TESTIMONIALS </h3>
-          <script src="${pageContext.request.contextPath}/js/responsiveslides.min.js"></script>
+          <script src="${pageContext.request.contextPath}/resources/js/responsiveslides.min.js"></script>
           <div id="top" class="callbacks_container">
             <ul class="rslides" id="slider5">
               <li>

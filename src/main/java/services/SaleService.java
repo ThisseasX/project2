@@ -1,7 +1,6 @@
 package services;
 
 import entities.Listing;
-import entities.Product;
 import entities.Sale;
 import entities.User;
 import org.springframework.stereotype.Repository;

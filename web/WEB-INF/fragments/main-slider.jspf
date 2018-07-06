@@ -1,24 +1,27 @@
 <ul id="demo1">
   <li>
-    <img src="${pageContext.request.contextPath}/images/carfd.jpg" alt=""/>
+    <img src="${pageContext.request.contextPath}/resources/images/carfd.jpg" alt=""/>
     <div class="slide-desc">
-      <h3 style="font-family:'Century Schoolbook';font-size:35px">Fruit, fruit and more fruit</h3>
-      <p style="font-size:35px;font-family:'Century Schoolbook';font-style: italic">healthy and nutritious can be delicious!</p>
+      <h3 style="font-family:'Century Schoolbook',sans-serif;font-size:35px">Fruit, fruit and more fruit</h3>
+      <p style="font-size:35px;font-family:'Century Schoolbook',sans-serif;font-style: italic">healthy and nutritious
+        can be delicious!</p>
     </div>
   </li>
   <li>
-    <img src="${pageContext.request.contextPath}/images/carvd.jpg" alt=""/>
+    <img src="${pageContext.request.contextPath}/resources/images/carvd.jpg" alt=""/>
     <div class="slide-desc">
-      <h3 style="font-family:'Century Schoolbook';font-size:35px">Be a vegetable all your life</h3>
-      <p style="font-size:35px;font-family:'Century Schoolbook';font-style: italic">vegetables are food for the soul!</p>
+      <h3 style="font-family:'Century Schoolbook',sans-serif;font-size:35px">Be a vegetable all your life</h3>
+      <p style="font-size:35px;font-family:'Century Schoolbook',sans-serif;font-style: italic">vegetables are food for
+        the soul!</p>
     </div>
   </li>
 
   <li>
-    <img src="${pageContext.request.contextPath}/images/cardd2.jpg" alt=""/>
+    <img src="${pageContext.request.contextPath}/resources/images/cardd2.jpg" alt=""/>
     <div class="slide-desc">
-      <h3 style="font-family:'Century Schoolbook';font-size:35px">All You Need Is Dairy</h3>
-      <p style="font-size:35px;font-family:'Century Schoolbook';font-style: italic">have you had your dairy today?</p>
+      <h3 style="font-family:'Century Schoolbook',sans-serif;font-size:35px">All You Need Is Dairy</h3>
+      <p style="font-size:35px;font-family:'Century Schoolbook',sans-serif;font-style: italic">have you had your dairy
+        today?</p>
     </div>
   </li>
 </ul>

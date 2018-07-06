@@ -28,7 +28,7 @@
 <!-- checkout -->
 <div class="faq-w3agile">
   <h3>Checkout</h3>
-  <div class="container" style="background-color:#f5f5f5; margin-top:30px; padding:0px 40px;
+  <div class="container" style="background-color:#f5f5f5; margin-top:30px; padding:0 40px;
     border: 1px solid rgba(153, 153, 153, 0.144); text-align: center">
 
     <h2 style="padding-top: 20px">Congratulations!<br>you just purchased the following products:</h2>
@@ -42,7 +42,7 @@
           <div class="agile_top_brand_left_grid">
             <c:if test="${checked_out_cart.items[i].productByProductId.discount > 1}">
               <div class="agile_top_brand_left_grid_pos">
-                <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
+                <img src="${pageContext.request.contextPath}/resources/images/offer.png" alt=" " class="img-responsive">
               </div>
             </c:if>
             <div class="agile_top_brand_left_grid1">

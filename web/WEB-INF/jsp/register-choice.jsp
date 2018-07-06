@@ -49,14 +49,14 @@
     <div class="register" style="width:45%; float:left; padding-top:16px">
       <div class="card" onclick="window.location.href='${pageContext.request.contextPath}/users/register/2'">
         <h2 style="font-size:30px; margin-bottom:10px; padding-bottom:5px">Vendor</h2>
-        <img src="${pageContext.request.contextPath}/images/member.jpg" alt="vendor" style="width:100%">
+        <img src="${pageContext.request.contextPath}/resources/images/member.jpg" alt="vendor" style="width:100%">
       </div>
     </div>
     <div style="width:10%; float:left; margin-top:1px"></div>
     <div class="register" style="width:45%; float:left; padding-top:16px">
       <div class="card" onclick="window.location.href='${pageContext.request.contextPath}/users/register/3'">
         <h2 style="font-size:30px;  margin-bottom:10px; padding-bottom:5px">Client</h2>
-        <img src="${pageContext.request.contextPath}/images/client.jpg" alt="client" style="width:100%">
+        <img src="${pageContext.request.contextPath}/resources/images/client.jpg" alt="client" style="width:100%">
       </div>
     </div>
   </div>

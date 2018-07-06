@@ -1,4 +1,3 @@
-<%@ page import="entities.Category" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
@@ -10,12 +9,12 @@
   <title>New Product Type</title>
   <style>
     /*.container {*/
-      /*padding: 2px 16px;*/
+    /*padding: 2px 16px;*/
     /*}*/
 
     .panel {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      background-color:#3399cc;
+      background-color: #3399cc;
       transition: 0.5s;
     }
 
@@ -24,6 +23,7 @@
       background-color: #fe9126;
     }
 
+    /*noinspection CssInvalidHtmlTagReference*/
     darkh {
       background-color: #3399cc;
     }
@@ -53,7 +53,7 @@
 <!-- checkout -->
 <div class="faq-w3agile">
   <h3>Supported Products</h3>
-  <div class="container" style="background-color:#f5f5f5; margin-top:30px; padding:0px 40px;
+  <div class="container" style="background-color:#f5f5f5; margin-top:30px; padding:0 40px;
     border: 1px solid rgba(153, 153, 153, 0.144); text-align: center">
 
     <c:forEach var="i" begin="0" end="${all_categories.size() - 1}">
@@ -62,23 +62,23 @@
       </c:if>
       <div class="col-md-4 top_brand_left" style="cursor: pointer">
         <a href="${pageContext.request.contextPath}/products/new/${all_categories[i].categoryId}">
-        <div class="hover14 column panel" style="border-radius:8px;border:1px solid rgba(0, 0, 0, 0.05);">
-          <div class="agile_top_brand_left_grid panel darkh" style="border:none;border-radius:8px">
-            <div class="agile_top_brand_left_grid1">
+          <div class="hover14 column panel" style="border-radius:8px;border:1px solid rgba(0, 0, 0, 0.05);">
+            <div class="agile_top_brand_left_grid panel darkh" style="border:none;border-radius:8px">
+              <div class="agile_top_brand_left_grid1">
 
                 <div class="snipcart-item block">
                   <div class="snipcart-thumb">
                     <div class="product-name">
-                      <%--<a href="${pageContext.request.contextPath}/products/new/${all_categories[i].categoryId}">--%>
+                        <%--<a href="${pageContext.request.contextPath}/products/new/${all_categories[i].categoryId}">--%>
                       <h2 style="color:white">${all_categories[i].categoryName}</h2>
-                      <%--</a>--%>
+                        <%--</a>--%>
                     </div>
                   </div>
                 </div>
 
+              </div>
             </div>
           </div>
-        </div>
         </a>
       </div>
       <c:if test="${i eq all_categories.size() - 1 or i mod 3 eq 2}">

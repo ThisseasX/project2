@@ -74,8 +74,8 @@
 <script type="text/javascript">
     $(function() {
 
-        var menu_ul = $('.faq > li > ul'),
-            menu_a  = $('.faq > li > a');
+        const menu_ul = $('.faq > li > ul'),
+            menu_a = $('.faq > li > a');
 
         menu_ul.hide();
 

@@ -1,8 +1,8 @@
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery/external/jquery/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/move-top.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/easing.js"></script>
-<%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/minicart.min.js"></script>--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/skdslider.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/responsiveslides.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/move-top.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/easing.js"></script>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/minicart.min.js"></script>--%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/skdslider.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/responsiveslides.min.js"></script>

@@ -7,7 +7,7 @@
 <html>
 <head>
   <%@include file="../fragments/head.jspf" %>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login-register.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login-register.css">
   <title>New Product Type</title>
 </head>
 
@@ -59,7 +59,7 @@
 
         <div class="row">
           <div class="col-md-offset-4 col-xs-6" style="font-size:17px;margin-top:10px">
-            <label for="unitId">Unit<el>
+            <label for="unitId">Unit</label>
             <select id="unitId" name="unitId">
               <c:forEach items="${all_units}" var="u">
                 <option value="${u.unitId}">

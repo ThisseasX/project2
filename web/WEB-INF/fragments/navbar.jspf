@@ -1,3 +1,4 @@
+<%--suppress HtmlUnknownTag --%>
 <%--@elvariable id="categories" type="java.util.List"--%>
 <div id="topnav" class="navigation-agileits">
   <div class="container-fluid">

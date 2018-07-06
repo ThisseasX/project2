@@ -6,7 +6,7 @@
 <html>
 <head>
   <%@include file="../fragments/head.jspf" %>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login-register.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login-register.css">
   <title>Login</title>
 </head>
 
@@ -75,7 +75,7 @@
 <%--Footer--%>
 <%@include file="../fragments/footer.jspf" %>
 
-<script src="${pageContext.request.contextPath}/js/no-space.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/no-space.js"></script>
 
 </body>
 </html>

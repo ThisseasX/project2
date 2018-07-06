@@ -2,7 +2,6 @@ package services;
 
 import entities.Listing;
 import model.Cart;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

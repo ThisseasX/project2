@@ -2,19 +2,19 @@
   <div class="container">
     <div class="col-md-6 ban-bottom3">
       <div class="ban-top">
-        <img src="${pageContext.request.contextPath}/images/phm.jpg" class="img-responsive" alt="1"/>
+        <img src="${pageContext.request.contextPath}/resources/images/phm.jpg" class="img-responsive" alt="1"/>
 
       </div>
       <div class="ban-img">
         <div class=" ban-bottom1">
           <div class="ban-top">
-            <img src="${pageContext.request.contextPath}/images/phs.jpg" class="img-responsive" alt=""/>
+            <img src="${pageContext.request.contextPath}/resources/images/phs.jpg" class="img-responsive" alt=""/>
 
           </div>
         </div>
         <div class="ban-bottom2">
           <div class="ban-top">
-            <img src="${pageContext.request.contextPath}/images/phs2.jpg" class="img-responsive" alt=""/>
+            <img src="${pageContext.request.contextPath}/resources/images/phs2.jpg" class="img-responsive" alt=""/>
 
           </div>
         </div>
@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-6 ban-bottom">
       <div class="ban-top">
-        <img src="${pageContext.request.contextPath}/images/phl.jpg" class="img-responsive" alt=""/>
+        <img src="${pageContext.request.contextPath}/resources/images/phl.jpg" class="img-responsive" alt=""/>
 
 
       </div>

@@ -41,7 +41,7 @@
 
     <div class="product_list_header">
       <c:if test="${sessionScope.user ne null}">
-        <span id="cart_quantity"
+        <span id="notifications"
               class="badge badge-light">${all_notifications.size()}</span>
         <button class="w3view-cart" onclick="window.location.href = '${pageContext.request.contextPath}/wishlist'">
           <i class="fa fa-heart" aria-hidden="true"></i>
@@ -68,7 +68,7 @@
     <div class="company_logo">
       <h1>
         <a href="${pageContext.request.contextPath}/">
-          <img src="${pageContext.request.contextPath}/images/logo.png" alt="Farmers Market">
+          <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Farmers Market">
         </a>
       </h1>
     </div>

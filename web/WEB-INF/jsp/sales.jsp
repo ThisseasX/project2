@@ -104,6 +104,7 @@
 <%--Footer--%>
 <%@include file="../fragments/footer.jspf" %>
 
+<%--suppress JSUnusedLocalSymbols --%>
 <script>
 
     function viewSales(user) {

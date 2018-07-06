@@ -27,7 +27,7 @@
 <!-- checkout -->
 <div class="faq-w3agile">
   <h3>Supported Products</h3>
-  <div class="container" style="background-color:#f5f5f5; margin-top:30px; padding:0px 40px;
+  <div class="container" style="background-color:#f5f5f5; margin-top:30px; padding:0 40px;
     border: 1px solid rgba(153, 153, 153, 0.144); text-align: center">
 
     <c:forEach var="i" begin="0" end="${all_products.size() - 1}">

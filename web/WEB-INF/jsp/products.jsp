@@ -8,7 +8,7 @@
 <html>
 <head>
   <%@include file="../fragments/head.jspf" %>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/heart.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/heart.css">
   <title>Products</title>
 </head>
 
@@ -71,7 +71,7 @@
                 <div class="agile_top_brand_left_grid">
                   <c:if test="${listings[i].productByProductId.discount > 1}">
                     <div class="agile_top_brand_left_grid_pos">
-                      <img src="${pageContext.request.contextPath}/images/offer.png" alt="offer" class="img-responsive">
+                      <img src="${pageContext.request.contextPath}/resources/images/offer.png" alt="offer" class="img-responsive">
                     </div>
                   </c:if>
                   <div class="agile_top_brand_left_grid1">
@@ -132,7 +132,7 @@
                 <div class="agile_top_brand_left_grid">
                   <c:if test="${products[i].discount > 1}">
                     <div class="agile_top_brand_left_grid_pos">
-                      <img src="${pageContext.request.contextPath}/images/offer.png" alt=" " class="img-responsive">
+                      <img src="${pageContext.request.contextPath}/resources/images/offer.png" alt=" " class="img-responsive">
                     </div>
                   </c:if>
                   <c:if test="${sessionScope.user ne null}">
